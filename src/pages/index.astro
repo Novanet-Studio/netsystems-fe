@@ -5,119 +5,1322 @@ import Card from '../components/Card.astro';
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<svg
-			class="astro-a"
-			width="495"
-			height="623"
-			viewBox="0 0 495 623"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-			aria-hidden="true"
-		>
-			<path
-				fill-rule="evenodd"
-				clip-rule="evenodd"
-				d="M167.19 364.254C83.4786 364.254 0 404.819 0 404.819C0 404.819 141.781 19.4876 142.087 18.7291C146.434 7.33701 153.027 0 162.289 0H332.441C341.703 0 348.574 7.33701 352.643 18.7291C352.92 19.5022 494.716 404.819 494.716 404.819C494.716 404.819 426.67 364.254 327.525 364.254L264.41 169.408C262.047 159.985 255.147 153.581 247.358 153.581C239.569 153.581 232.669 159.985 230.306 169.408L167.19 364.254ZM160.869 530.172C160.877 530.18 160.885 530.187 160.894 530.195L160.867 530.181C160.868 530.178 160.868 530.175 160.869 530.172ZM136.218 411.348C124.476 450.467 132.698 504.458 160.869 530.172C160.997 529.696 161.125 529.242 161.248 528.804C161.502 527.907 161.737 527.073 161.917 526.233C165.446 509.895 178.754 499.52 195.577 500.01C211.969 500.487 220.67 508.765 223.202 527.254C224.141 534.12 224.23 541.131 224.319 548.105C224.328 548.834 224.337 549.563 224.347 550.291C224.563 566.098 228.657 580.707 237.264 593.914C245.413 606.426 256.108 615.943 270.749 622.478C270.593 621.952 270.463 621.508 270.35 621.126C270.045 620.086 269.872 619.499 269.685 618.911C258.909 585.935 266.668 563.266 295.344 543.933C298.254 541.971 301.187 540.041 304.12 538.112C310.591 533.854 317.059 529.599 323.279 525.007C345.88 508.329 360.09 486.327 363.431 457.844C364.805 446.148 363.781 434.657 359.848 423.275C358.176 424.287 356.587 425.295 355.042 426.275C351.744 428.366 348.647 430.33 345.382 431.934C303.466 452.507 259.152 455.053 214.03 448.245C184.802 443.834 156.584 436.019 136.218 411.348Z"
-				fill="url(#paint0_linear_1805_24383)"></path>
-			<defs>
-				<linearGradient
-					id="paint0_linear_1805_24383"
-					x1="247.358"
-					y1="0"
-					x2="247.358"
-					y2="622.479"
-					gradientUnits="userSpaceOnUse"
-				>
-					<stop stop-opacity="0.9"></stop>
-					<stop offset="1" stop-opacity="0.2"></stop>
-				</linearGradient>
-			</defs>
-		</svg>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
+		<div class="page-wrapper">
+ 	
+			<!-- Preloader -->
+			<div class="preloader">
+			<span></span>
+		</div>
+		 
+		 <!-- Main Header -->
+			<header class="main-header">
+				
+			<!-- Header Top -->
+			<div class="header-top">
+				<div class="auto-container clearfix">
+					
+					<div class="pull-left">
+						<ul class="info">
+							<li><a href="tel:+6789-875-2235"><span class="icon flaticon-phone"></span>Call: +6789-875-2235</a></li>
+							<li><a href="mailto:Info.domain@info.com"><span class="icon flaticon-email-2"></span>Info.domain@info.com</a></li>
+						</ul>
+					</div>
+					
+					<div class="pull-right clearfix">
+						<!-- Social Box -->
+						<ul class="social-box">
+							<li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
+							<li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
+							<li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
+							<li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+			
+					<!-- Header Lower -->
+					<div class="header-lower">
+							
+				<div class="auto-container clearfix">
+					<div class="inner-container clearfix">
+						
+						<div class="pull-left logo-box">
+							<div class="logo"><a href="index.html"><img src="images/logo.png" alt="" title=""></a></div>
+						</div>
+						<div class="nav-outer clearfix">
+							
+							<!-- Mobile Navigation Toggler -->
+							<div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
+							<!-- Main Menu -->
+							<nav class="main-menu show navbar-expand-md">
+								<div class="navbar-header">
+									<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+									</button>
+								</div>
+								
+								<div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
+									<ul class="navigation clearfix">
+										<li class="current dropdown"><a href="#">Home</a>
+											<ul>
+												<li><a href="index.html">Homepage One</a></li>
+												<li><a href="index-2.html">Homepage Two</a></li>
+												<li><a href="index-3.html">Homepage Three</a></li>
+												<li><a href="index-4.html">Homepage Four</a></li>
+												<li><a href="index-5.html">Homepage Five</a></li>
+												<li><a href="index-6.html">Homepage Six</a></li>
+												<li><a href="index-7.html">Homepage Seven</a></li>
+												<li><a href="index-8.html">Homepage Eight</a></li>
+												<li><a href="index-9.html">Homepage Nine</a></li>
+											</ul>
+										</li>
+										<li class="dropdown"><a href="#">About</a>
+											<ul>
+												<li><a href="about.html">About Us</a></li>
+												<li><a href="price.html">Pricing</a></li>
+												<li><a href="movie.html">Movie's</a></li>
+											</ul>
+										</li>
+										<li class="dropdown"><a href="#">Services</a>
+											<ul>
+												<li><a href="services.html">Services</a></li>
+												<li><a href="services-detail.html">Services Detail</a></li>
+											</ul>
+										</li>
+										<li class="dropdown"><a href="#">Shop</a>
+											<ul>
+												<li><a href="shop.html">Our Products</a></li>
+												<li><a href="shop-single.html">Product Single</a></li>
+												<li><a href="shoping-cart.html">Shoping Cart</a></li>
+												<li><a href="checkout.html">Checkout</a></li>
+											</ul>
+										</li>
+										<li class="dropdown"><a href="#">Blog</a>
+											<ul>
+												<li><a href="blog.html">Our Blog</a></li>
+												<li><a href="news-detail.html">Blog Single</a></li>
+												<li><a href="not-found.html">Not Found</a></li>
+											</ul>
+										</li>
+										<li><a href="contact.html">Contact us</a></li>
+									</ul>
+								</div>
+								
+							</nav>
+							<!-- Main Menu End-->
+							
+							<!-- Outer Box -->
+							<div class="outer-box clearfix">
+								
+								<!--Search Box-->
+								<div class="search-box-outer">
+									<div class="search-box-btn"><span class="fa fa-search"></span></div>
+								</div>
+								
+								<!-- Cart Box -->
+								<div class="cart-box">
+									<div class="dropdown">
+										<button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flaticon-shopping-bag-2"></span><span class="total-cart">2</span></button>
+										<div class="dropdown-menu pull-right cart-panel" aria-labelledby="dropdownMenu1">
+											<div class="cart-product">
+												<div class="inner">
+													<div class="cross-icon"><span class="icon fa fa-remove"></span></div>
+													<div class="image"><img src="images/resource/post-thumb-1.jpg" alt="" /></div>
+													<h3><a href="shoping-cart.html">Product 01</a></h3>
+													<div class="quantity-text">Quantity 1</div>
+													<div class="price">$99.00</div>
+												</div>
+											</div>
+											<div class="cart-product">
+												<div class="inner">
+													<div class="cross-icon"><span class="icon fa fa-remove"></span></div>
+													<div class="image"><img src="images/resource/post-thumb-2.jpg" alt="" /></div>
+													<h3><a href="shoping-cart.html">Product 02</a></h3>
+													<div class="quantity-text">Quantity 1</div>
+													<div class="price">$99.00</div>
+												</div>
+											</div>
+											<div class="cart-total">Sub Total: <span>$198</span></div>
+											<ul class="btns-boxed">
+												<li><a href="shoping-cart.html">View Cart</a></li>
+												<li><a href="checkout.html">CheckOut</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<!-- End Cart Box -->
+								
+								<!-- Nav Btn -->
+								<div class="nav-btn navSidebar-button"><span class="icon flaticon-dots-menu"></span></div>
+								
+							</div>
+							<!-- End Outer Box -->
+							
+						</div>
+					</div>
+					
+				</div>
+					</div>
+					<!-- End Header Lower -->
+					
+			<!-- Sticky Header  -->
+					<div class="sticky-header">
+							<div class="auto-container clearfix">
+									<!-- Logo -->
+									<div class="logo pull-left">
+											<a href="index.html" title=""><img src="images/logo-small.png" alt="" title=""></a>
+									</div>
+					
+									<!--Right Col-->
+									<div class="pull-right">
+											<!-- Main Menu -->
+											<nav class="main-menu">
+													<!--Keep This Empty / Menu will come through Javascript-->
+											</nav><!-- Main Menu End-->
+						
+						<!-- Outer Box -->
+						<div class="outer-box clearfix">
+							
+							<!--Search Box-->
+							<div class="search-box-outer">
+								<div class="search-box-btn"><span class="fa fa-search"></span></div>
+							</div>
+							
+							<!-- Cart Box -->
+							<div class="cart-box">
+								<div class="dropdown">
+									<button class="cart-box-btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flaticon-shopping-bag-2"></span><span class="total-cart">2</span></button>
+									<div class="dropdown-menu pull-right cart-panel" aria-labelledby="dropdownMenu2">
+										<div class="cart-product">
+											<div class="inner">
+												<div class="cross-icon"><span class="icon fa fa-remove"></span></div>
+												<div class="image"><img src="images/resource/post-thumb-1.jpg" alt="" /></div>
+												<h3><a href="shoping-cart.html">Product 01</a></h3>
+												<div class="quantity-text">Quantity 1</div>
+												<div class="price">$99.00</div>
+											</div>
+										</div>
+										<div class="cart-product">
+											<div class="inner">
+												<div class="cross-icon"><span class="icon fa fa-remove"></span></div>
+												<div class="image"><img src="images/resource/post-thumb-2.jpg" alt="" /></div>
+												<h3><a href="shoping-cart.html">Product 02</a></h3>
+												<div class="quantity-text">Quantity 1</div>
+												<div class="price">$99.00</div>
+											</div>
+										</div>
+										<div class="cart-total">Sub Total: <span>$198</span></div>
+										<ul class="btns-boxed">
+											<li><a href="shoping-cart.html">View Cart</a></li>
+											<li><a href="checkout.html">CheckOut</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- End Cart Box -->
+							
+							<!-- Nav Btn -->
+							<div class="nav-btn navSidebar-button"><span class="icon flaticon-dots-menu"></span></div>
+							
+						</div>
+						<!-- End Outer Box -->
+						
+									</div>
+							</div>
+					</div><!-- End Sticky Menu -->
+			
+			<!-- Mobile Menu  -->
+					<div class="mobile-menu">
+							<div class="menu-backdrop"></div>
+							<div class="close-btn"><span class="icon flaticon-multiply"></span></div>
+							
+							<nav class="menu-box">
+									<div class="nav-logo"><a href="index.html"><img src="images/logo.png" alt="" title=""></a></div>
+									<div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+							</nav>
+					</div><!-- End Mobile Menu -->
+		
+			</header>
+			<!-- End Main Header -->
+		
+		<!-- Sidebar Cart Item -->
+		<div class="xs-sidebar-group info-group">
+			<div class="xs-overlay xs-bg-black"></div>
+			<div class="xs-sidebar-widget">
+				<div class="sidebar-widget-container">
+					<div class="widget-heading">
+						<a href="#" class="close-side-widget">
+							X
+						</a>
+					</div>
+					<div class="sidebar-textwidget">
+						
+						<!-- Sidebar Info Content -->
+						<div class="sidebar-info-contents">
+							<div class="content-inner">
+								<div class="logo">
+									<a href="index.html"><img src="images/logo-2.png" alt="" /></a>
+								</div>
+								<div class="content-box">
+									<h5>About Us</h5>
+									<p class="text">The argument in favor of using filler text goes something like this: If you use real content in the Consulting Process, anytime you reach a review point you’ll end up reviewing and negotiating the content itself and not the design.</p>
+									<a href="contact.html" class="theme-btn btn-style-one"><span class="txt">Consultation</span></a>
+								</div>
+								<div class="contact-info">
+									<h5>Contact Info</h5>
+									<ul class="list-style-one">
+										<li><span class="icon fa fa-location-arrow"></span>Chicago 12, Melborne City, USA</li>
+										<li><span class="icon fa fa-phone"></span>(111) 111-111-1111</li>
+										<li><span class="icon fa fa-envelope"></span>nextbit@gmail.com</li>
+										<li><span class="icon fa fa-clock-o"></span>Week Days: 09.00 to 18.00 Sunday: Closed</li>
+									</ul>
+								</div>
+								<!-- Social Box -->
+								<ul class="social-box">
+									<li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
+									<li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
+									<li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
+									<li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
+								</ul>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END sidebar widget item -->
+		
+		<!-- Main Section -->
+			<section class="main-slider">
+			
+			<div class="main-slider-carousel owl-carousel owl-theme">
+							
+							<div class="slide" style="background-image: url(images/main-slider/slider_1.jpg)">
+					<div class="pattern-layer" style="background-image: url(images/main-slider/pattern-layer.png)"></div>
+					<!-- <div class="color-layer-one"></div>
+					<div class="color-layer-two"></div>
+					<div class="color-layer-three"></div> -->
+					<div class="auto-container">
+						
+						<!-- Content Boxed -->
+						<div class="content-boxed">
+							<div class="inner-box">
+								<div class="title">Nextbit Internet & TV</div>
+								<h1>Ultimate control of your internet</h1>
+								<div class="btns-box">
+									<a href="about.html" class="theme-btn btn-style-two"><span class="txt">Read More <i class="lnr lnr-arrow-right"></i></span></a>
+									<a href="contact.html" class="theme-btn btn-style-three"><span class="txt">Contact Now <i class="lnr lnr-arrow-right"></i></span></a>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="slide" style="background-image: url(images/main-slider/slider_2.jpg)">
+					<div class="pattern-layer" style="background-image: url(images/main-slider/pattern-layer.png)"></div>
+					<!-- <div class="color-layer-one"></div>
+					<div class="color-layer-two"></div>
+					<div class="color-layer-three"></div> -->
+					<div class="auto-container">
+						
+						<!-- Content Boxed -->
+						<div class="content-boxed">
+							<div class="inner-box">
+								<div class="title">Nextbit Internet & TV</div>
+								<h1>Ultimate control of your internet</h1>
+								<div class="btns-box">
+									<a href="about.html" class="theme-btn btn-style-two"><span class="txt">Read More <i class="lnr lnr-arrow-right"></i></span></a>
+									<a href="contact.html" class="theme-btn btn-style-three"><span class="txt">Contact Now <i class="lnr lnr-arrow-right"></i></span></a>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+			
+		</section>
+		<!-- End Main Section -->
+		
+		<!-- Appointment Section -->
+		<section class="appointment-section" style="background-image: url(images/background/pattern-1.png)">
+			<div class="auto-container">
+				<div class="row clearfix">
+					
+					<!-- Title Column -->
+					<div class="title-column col-lg-6 col-md-12 col-sm-12">
+						<div class="inner-column">
+							<h3>Let's find deals and services available in your area</h3>
+						</div>
+					</div>
+					
+					<!-- Form Column -->
+					<div class="form-column col-lg-6 col-md-12 col-sm-12">
+						<div class="inner-column">
+							<div class="appointment-form">
+								<form method="post" action="contact.html">
+									<div class="form-group">
+										<input type="email" name="email" value="" placeholder="Enter street address & apartment" required="">
+										<button type="submit" class="theme-btn btn-style-two"><span class="txt">Check Availability <i class="lnr lnr-arrow-right"></i></span></button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		<!-- End Appointment Section -->
+		
+		<!-- Services Section -->
+		<section class="services-section" style="background-image: url(images/background/pattern-2.png)">
+			<div class="auto-container">
+				
+				<!-- Upper Section -->
+				<div class="upper-section">
+					<div class="row clearfix">
+						
+						<!-- Service block -->
+						<div class="service-block col-lg-4 col-md-6 col-sm-12">
+							<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+								<span class="border-one"></span>
+								<span class="border-two"></span>
+								<h4><a href="services-detail.html">Broadband</a></h4>
+								<div class="text">Lorem ipsum dolor sit amet them consec tetura dipiscing elit sed doeiumod Donec modern solution quam felis.</div>
+								<div class="icon"><img src="images/icons/service-1.svg" alt="" /></div>
+								<a class="services" href="services-detail.html">Get Broadband Service <span class="arrow lnr lnr-arrow-right"></span></a>
+							</div>
+						</div>
+						
+						<!-- Service block -->
+						<div class="service-block active col-lg-4 col-md-6 col-sm-12">
+							<div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+								<span class="border-one"></span>
+								<span class="border-two"></span>
+								<h4><a href="services-detail.html">Satelite TV</a></h4>
+								<div class="text">Lorem ipsum dolor sit amet them consec tetura dipiscing elit sed doeiumod Donec modern solution quam felis.</div>
+								<div class="icon"><img src="images/icons/service-2.svg" alt="" /></div>
+								<a class="services" href="services-detail.html">Get Broadband Service <span class="arrow lnr lnr-arrow-right"></span></a>
+							</div>
+						</div>
+						
+						<!-- Service block -->
+						<div class="service-block col-lg-4 col-md-6 col-sm-12">
+							<div class="inner-box wow fadeInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+								<span class="border-one"></span>
+								<span class="border-two"></span>
+								<h4><a href="services-detail.html">Home Phone</a></h4>
+								<div class="text">Lorem ipsum dolor sit amet them consec tetura dipiscing elit sed doeiumod Donec modern solution quam felis.</div>
+								<div class="icon"><img src="images/icons/service-3.svg" alt="" /></div>
+								<a class="services" href="services-detail.html">Get Broadband Service <span class="arrow lnr lnr-arrow-right"></span></a>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- End Upper Section -->
+				
+				<!-- Lower Section -->
+				<div class="lower-section">
+					<div class="row clearfix">
+						
+						<!-- Image Column -->
+						<div class="image-column col-lg-6 col-md-12 col-sm-12">
+							<div class="inner-column titlt" data-tilt data-tilt-max="3">
+								<div class="color-layer"></div>
+								<div class="border-layer"></div>
+								<div class="image">
+									<img src="images/resource/service-1.png" alt="" />
+								</div>
+							</div>
+						</div>
+						
+						<!-- Content Column -->
+						<div class="content-column col-lg-6 col-md-12 col-sm-12">
+							<div class="inner-column">
+								<!-- Sec Title -->
+								<div class="sec-title">
+									<div class="title">WHO WE ARE</div>
+									<h2>Get TV service with your internet service</h2>
+								</div>
+								<div class="bold-text">Business is the activity of making one's living or making money by producing or buying and selling products</div>
+								<div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eius to mod tempor incididunt ut labore et dolore magna aliqua. Ut enims ad minim veniam. Aenean massa. Cum sociis natoque penatibus et magnis dis partu rient to montes.Aene an massa.</div>
+								<a href="about.html" class="theme-btn btn-style-four"><span class="txt">Read More <i class="lnr lnr-arrow-right"></i></span></a>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- End Lower Section -->
+				
+			</div>
+		</section>
+		<!-- End Services Section -->
+		
+		<!-- Pricing Section -->
+		<section class="pricing-section" style="background-image: url(images/background/pattern-3.png)">
+			<div class="auto-container">
+				<!-- Sec Title -->
+				<div class="sec-title light centered">
+					<div class="title">Pricing Plan</div>
+					<h2>Choose your plan</h2>
+				</div>
+				<!-- End Sec Title -->
+				<div class="row clearfix">
+					
+					<!-- Price Block -->
+					<div class="price-block col-xl-3 col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+							<div class="upper-box" style="background-image: url(images/background/pattern-4.png)">
+								<ul class="icon-list">
+									<li><span class="icon"><img src="images/icons/service-1.svg" alt="" /></span></li>
+								</ul>
+								<h4>Only Internet <span>$55.00 / Month</span></h4>
+							</div>
+							<div class="lower-box">
+								<ul class="price-list">
+									<li>Internet with a 100Mbps</li>
+									<li>Connect multiple users</li>
+									<li>WiFi router & prevention</li>
+									<li>Unlimited devices</li>
+								</ul>
+								<div class="button-box">
+									<a href="price.html" class="theme-btn btn-style-four"><span class="txt">Get started</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Price Block -->
+					<div class="price-block col-xl-3 col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box wow fadeInLeft" data-wow-delay="150ms" data-wow-duration="1500ms">
+							<div class="upper-box" style="background-image: url(images/background/pattern-4.png)">
+								<ul class="icon-list">
+									<li><span class="icon"><img src="images/icons/service-2.svg" alt="" /></span></li>
+								</ul>
+								<h4>Only TV <span>$55.00 / Month</span></h4>
+							</div>
+							<div class="lower-box">
+								<ul class="price-list">
+									<li>Internet with a 100Mbps</li>
+									<li>Connect multiple users</li>
+									<li>WiFi router & prevention</li>
+									<li>Unlimited devices</li>
+								</ul>
+								<div class="button-box">
+									<a href="price.html" class="theme-btn btn-style-four"><span class="txt">Get started</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Price Block -->
+					<div class="price-block col-xl-3 col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box wow fadeInLeft" data-wow-delay="300ms" data-wow-duration="1500ms">
+							<div class="upper-box" style="background-image: url(images/background/pattern-4.png)">
+								<ul class="icon-list">
+									<li><span class="icon"><img src="images/icons/service-3.svg" alt="" /></span></li>
+								</ul>
+								<h4>Only Home Phone <span>$55.00 / Month</span></h4>
+							</div>
+							<div class="lower-box">
+								<ul class="price-list">
+									<li>Internet with a 100Mbps</li>
+									<li>Connect multiple users</li>
+									<li>WiFi router & prevention</li>
+									<li>Unlimited devices</li>
+								</ul>
+								<div class="button-box">
+									<a href="price.html" class="theme-btn btn-style-four"><span class="txt">Get started</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Price Block -->
+					<div class="price-block col-xl-3 col-lg-4 col-md-6 col-sm-12">
+						<div class="inner-box wow fadeInLeft" data-wow-delay="450ms" data-wow-duration="1500ms">
+							<div class="upper-box" style="background-image: url(images/background/pattern-4.png)">
+								<ul class="icon-list">
+									<li><span class="icon"><img src="images/icons/service-1.svg" alt="" /></span></li>
+									<li><span class="icon"><img src="images/icons/service-2.svg" alt="" /></span></li>
+									<li><span class="icon"><img src="images/icons/service-3.svg" alt="" /></span></li>
+								</ul>
+								<h4>Internet + TV + Phone <span>$55.00 / Month</span></h4>
+							</div>
+							<div class="lower-box">
+								<ul class="price-list">
+									<li>Internet with a 100Mbps</li>
+									<li>Connect multiple users</li>
+									<li>WiFi router & prevention</li>
+									<li>Unlimited devices</li>
+								</ul>
+								<div class="button-box">
+									<a href="price.html" class="theme-btn btn-style-four"><span class="txt">Get started</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		<!-- End Pricing Section -->
+		
+		<!-- Facility Section -->
+		<section class="facility-section" style="background-image: url(images/background/pattern-6.png)">
+			<div class="auto-container">
+				<!-- Sec Title -->
+				<div class="sec-title">
+					<div class="clearfix">
+						<div class="pull-left">
+							<div class="title">Our Facility</div>
+							<h2>Few great reasons make <br> you choice us</h2>
+						</div>
+						<div class="pull-right">
+							<div class="text">Business is the activity of making one's living or making money by producing <br> cumsociis natoque penatibus et magnis dis partu rient to montes. Aene an <br> massa. cumsociis natoque penatibus.  </div>
+						</div>
+					</div>
+				</div>
+				<!-- End Sec Title -->
+				<div class="row clearfix">
+				
+					<!-- Blocks Column -->
+					<div class="blocks-column col-lg-6 col-md-12 col-sm-12">
+						<div class="inner-column">
+							<div class="row clearfix">
+								
+								<!-- Facility Block -->
+								<div class="facility-block col-lg-6 col-md-6 col-sm-12">
+									<div class="inner-box">
+										<div class="pattern-layer" style="background-image: url(images/background/pattern-14.png)"></div>
+										<div class="icon-box flaticon-swimming-pool"></div>
+										<h5><a href="services-detail.html">Free Installation</a></h5>
+										<div class="text">Lorem ipsum dolor sit amet them consec tetur elit sed do eiumod. Donec quam felis ies nec.</div>
+									</div>
+								</div>
+								
+								<!-- Facility Block -->
+								<div class="facility-block col-lg-6 col-md-6 col-sm-12">
+									<div class="inner-box">
+										<div class="pattern-layer" style="background-image: url(images/background/pattern-14.png)"></div>
+										<div class="icon-box flaticon-5g"></div>
+										<h5><a href="services-detail.html">Ultrafast Connect</a></h5>
+										<div class="text">Lorem ipsum dolor sit amet them consec tetur elit sed do eiumod. Donec quam felis ies nec.</div>
+									</div>
+								</div>
+								
+								<!-- Facility Block -->
+								<div class="facility-block col-lg-6 col-md-6 col-sm-12">
+									<div class="inner-box">
+										<div class="pattern-layer" style="background-image: url(images/background/pattern-14.png)"></div>
+										<div class="icon-box flaticon-8k"></div>
+										<h5><a href="services-detail.html">4K and 8K Quality</a></h5>
+										<div class="text">Lorem ipsum dolor sit amet them consec tetur elit sed do eiumod. Donec quam felis ies nec.</div>
+									</div>
+								</div>
+								
+								<!-- Facility Block -->
+								<div class="facility-block col-lg-6 col-md-6 col-sm-12">
+									<div class="inner-box">
+										<div class="pattern-layer" style="background-image: url(images/background/pattern-14.png)"></div>
+										<div class="icon-box flaticon-customer-service"></div>
+										<h5><a href="contact.html">Fast Support 24/7</a></h5>
+										<div class="text">Lorem ipsum dolor sit amet them consec tetur elit sed do eiumod. Donec quam felis ies nec.</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					
+					<!-- Image Column -->
+					<div class="image-column col-lg-6 col-md-12 col-sm-12">
+						<div class="inner-column">
+							<div class="pattern-layer"></div>
+							<div class="image wow slideInRight" data-wow-delay="0ms" data-wow-duration="1500ms">
+								<img src="images/resource/facility.png" alt="" />
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		<!-- End Facility Section -->
+		
+		<!-- Internet Section -->
+		<section class="internet-section" style="background-image: url(images/background/11.jpg)">
+			<div class="auto-container">
+				<div class="clearfix">
+					<div class="content-column">
+						<h2>Save money by bundling your internet service with TV service.</h2>
+						<div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eius to mod tempor incididunt ut labore et dolore magna aliqua. Ut enims ad minim veniam. Aenean massa. Cum sociis natoque penatibus et magnis dis partu rient to montes.Aene an massa.</div>
+						<div class="price">$25/ per month</div>
+						<a href="about.html" class="theme-btn btn-style-four"><span class="txt">Read More <i class="lnr lnr-arrow-right"></i></span></a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Internet Section -->
+		
+		<!-- Testimonial Section -->
+		<section class="testimonial-section">
+			<div class="image-layer" style="background-image: url(images/background/pattern-7.png)"></div>
+			<div class="auto-container">
+				<!-- Sec Title -->
+				<div class="sec-title centered">
+					<div class="title">testimonial</div>
+					<h2>What our clients say</h2>
+				</div>
+				<!-- End Sec Title -->
+				
+				<div class="testimonial-carousel owl-carousel owl-theme">
+					
+					<!-- Testimonial Block -->
+					<div class="testimonial-block">
+						<div class="inner-box">
+							<div class="upper-box">
+								<div class="text">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consec tetur, adipisci velit, sed quia non num the quam eius modi the tempora Neque porro quis quam.</div>
+							</div>
+							<div class="lower-box">
+								<div class="color-layer"></div>
+								<div class="pattern-layer" style="background-image: url(images/background/pattern-8.png)"></div>
+								<div class="author-image-outer">
+									<span class="quote-icon fa fa-quote-left"></span>
+									<div class="author-image">
+										<img src="images/resource/author-1.jpg" alt="" />
+									</div>								
+								</div>
+								<div class="author-name">Stiven Morgan</div>
+								<div class="designation">Pure Tecnology</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Testimonial Block -->
+					<div class="testimonial-block">
+						<div class="inner-box">
+							<div class="upper-box">
+								<div class="text">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consec tetur, adipisci velit, sed quia non num the quam eius modi the tempora Neque porro quis quam.</div>
+							</div>
+							<div class="lower-box">
+								<div class="color-layer"></div>
+								<div class="pattern-layer" style="background-image: url(images/background/pattern-8.png)"></div>
+								<div class="author-image-outer">
+									<span class="quote-icon fa fa-quote-left"></span>
+									<div class="author-image">
+										<img src="images/resource/author-2.jpg" alt="" />
+									</div>								
+								</div>
+								<div class="author-name">Danial Pedro</div>
+								<div class="designation">Northen City</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Testimonial Block -->
+					<div class="testimonial-block">
+						<div class="inner-box">
+							<div class="upper-box">
+								<div class="text">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet consec tetur, adipisci velit, sed quia non num the quam eius modi the tempora Neque porro quis quam.</div>
+							</div>
+							<div class="lower-box">
+								<div class="color-layer"></div>
+								<div class="pattern-layer" style="background-image: url(images/background/pattern-8.png)"></div>
+								<div class="author-image-outer">
+									<span class="quote-icon fa fa-quote-left"></span>
+									<div class="author-image">
+										<img src="images/resource/author-3.jpg" alt="" />
+									</div>								
+								</div>
+								<div class="author-name">Rannsan Wiks</div>
+								<div class="designation">CEO, Glob Tech</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</section>
+		<!-- End Testimonial Section -->
+		
+		<!-- Clients Section -->
+		<section class="clients-section">
+			<div class="auto-container">
+				
+				<div class="carousel-outer">
+									<!--Sponsors Slider-->
+									<ul class="sponsors-carousel owl-carousel owl-theme">
+											<li><div class="image-box"><a href="#"><img src="images/clients/1.png" alt=""></a></div></li>
+											<li><div class="image-box"><a href="#"><img src="images/clients/2.png" alt=""></a></div></li>
+											<li><div class="image-box"><a href="#"><img src="images/clients/3.png" alt=""></a></div></li>
+											<li><div class="image-box"><a href="#"><img src="images/clients/4.png" alt=""></a></div></li>
+						<li><div class="image-box"><a href="#"><img src="images/clients/5.png" alt=""></a></div></li>
+											<li><div class="image-box"><a href="#"><img src="images/clients/1.png" alt=""></a></div></li>
+											<li><div class="image-box"><a href="#"><img src="images/clients/2.png" alt=""></a></div></li>
+						<li><div class="image-box"><a href="#"><img src="images/clients/3.png" alt=""></a></div></li>
+											<li><div class="image-box"><a href="#"><img src="images/clients/4.png" alt=""></a></div></li>
+									</ul>
+							</div>
+				
+			</div>
+		</section>
+		<!-- End Clients Section -->
+		
+		<!-- Featured Section -->
+		<section class="featured-section">
+			<div class="pattern-layer-one" style="background-image: url(images/background/pattern-9.png)"></div>
+			<div class="pattern-layer-two" style="background-image: url(images/background/pattern-10.png)"></div>
+			<div class="auto-container">
+			
+				<!-- Sec Title -->
+				<div class="sec-title light">
+					<div class="clearfix">
+						<div class="pull-left">
+							<div class="title">Now Showing</div>
+							<h2>Featured showing</h2>
+						</div>
+						<div class="pull-right">
+							<div class="button-box">
+								<a href="movie.html" class="theme-btn btn-style-two"><span class="txt">View More <i class="lnr lnr-arrow-right"></i></span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Sec Title -->
+				
+				<div class="row clearfix">
+					
+					<!-- Feature Block -->
+					<div class="feature-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image video-box"><span class="flaticon-play-arrow"><i class="ripple"></i></span></a>
+								<img src="images/resource/feature-1.jpg" alt="" />
+								<div class="overlay-box">
+									<ul class="post-meta">
+										<li><span class="icon fa fa-star"></span>5.7</li>
+										<li><span class="icon fa fa-comment"></span>25</li>
+									</ul>
+								</div>
+							</div>
+							<div class="lower-content">
+								<div class="clearfix">
+									<div class="pull-left">
+										<h6><a href="movie.html">Robin Hood</a></h6>
+									</div>
+									<div class="pull-right">
+										<div class="year">2010</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Feature Block -->
+					<div class="feature-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image video-box"><span class="flaticon-play-arrow"><i class="ripple"></i></span></a>
+								<img src="images/resource/feature-2.jpg" alt="" />
+								<div class="overlay-box">
+									<ul class="post-meta">
+										<li><span class="icon fa fa-star"></span>5.7</li>
+										<li><span class="icon fa fa-comment"></span>25</li>
+									</ul>
+								</div>
+							</div>
+							<div class="lower-content">
+								<div class="clearfix">
+									<div class="pull-left">
+										<h6><a href="movie.html">Bad Boys Life</a></h6>
+									</div>
+									<div class="pull-right">
+										<div class="year">2012</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Feature Block -->
+					<div class="feature-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image video-box"><span class="flaticon-play-arrow"><i class="ripple"></i></span></a>
+								<img src="images/resource/feature-3.jpg" alt="" />
+								<div class="overlay-box">
+									<ul class="post-meta">
+										<li><span class="icon fa fa-star"></span>5.7</li>
+										<li><span class="icon fa fa-comment"></span>25</li>
+									</ul>
+								</div>
+							</div>
+							<div class="lower-content">
+								<div class="clearfix">
+									<div class="pull-left">
+										<h6><a href="movie.html">Hot Dolitle</a></h6>
+									</div>
+									<div class="pull-right">
+										<div class="year">2014</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Feature Block -->
+					<div class="feature-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image video-box"><span class="flaticon-play-arrow"><i class="ripple"></i></span></a>
+								<img src="images/resource/feature-4.jpg" alt="" />
+								<div class="overlay-box">
+									<ul class="post-meta">
+										<li><span class="icon fa fa-star"></span>5.7</li>
+										<li><span class="icon fa fa-comment"></span>25</li>
+									</ul>
+								</div>
+							</div>
+							<div class="lower-content">
+								<div class="clearfix">
+									<div class="pull-left">
+										<h6><a href="movie.html">Invisible Man</a></h6>
+									</div>
+									<div class="pull-right">
+										<div class="year">2016</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Feature Block -->
+					<div class="feature-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image video-box"><span class="flaticon-play-arrow"><i class="ripple"></i></span></a>
+								<img src="images/resource/feature-5.jpg" alt="" />
+								<div class="overlay-box">
+									<ul class="post-meta">
+										<li><span class="icon fa fa-star"></span>5.7</li>
+										<li><span class="icon fa fa-comment"></span>25</li>
+									</ul>
+								</div>
+							</div>
+							<div class="lower-content">
+								<div class="clearfix">
+									<div class="pull-left">
+										<h6><a href="movie.html">Onward Hood</a></h6>
+									</div>
+									<div class="pull-right">
+										<div class="year">2018</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Feature Block -->
+					<div class="feature-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image video-box"><span class="flaticon-play-arrow"><i class="ripple"></i></span></a>
+								<img src="images/resource/feature-6.jpg" alt="" />
+								<div class="overlay-box">
+									<ul class="post-meta">
+										<li><span class="icon fa fa-star"></span>5.7</li>
+										<li><span class="icon fa fa-comment"></span>25</li>
+									</ul>
+								</div>
+							</div>
+							<div class="lower-content">
+								<div class="clearfix">
+									<div class="pull-left">
+										<h6><a href="movie.html">Tenet Life</a></h6>
+									</div>
+									<div class="pull-right">
+										<div class="year">2019</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Feature Block -->
+					<div class="feature-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image video-box"><span class="flaticon-play-arrow"><i class="ripple"></i></span></a>
+								<img src="images/resource/feature-7.jpg" alt="" />
+								<div class="overlay-box">
+									<ul class="post-meta">
+										<li><span class="icon fa fa-star"></span>5.7</li>
+										<li><span class="icon fa fa-comment"></span>25</li>
+									</ul>
+								</div>
+							</div>
+							<div class="lower-content">
+								<div class="clearfix">
+									<div class="pull-left">
+										<h6><a href="movie.html">The Grudge</a></h6>
+									</div>
+									<div class="pull-right">
+										<div class="year">2020</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Feature Block -->
+					<div class="feature-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image video-box"><span class="flaticon-play-arrow"><i class="ripple"></i></span></a>
+								<img src="images/resource/feature-8.jpg" alt="" />
+								<div class="overlay-box">
+									<ul class="post-meta">
+										<li><span class="icon fa fa-star"></span>5.7</li>
+										<li><span class="icon fa fa-comment"></span>25</li>
+									</ul>
+								</div>
+							</div>
+							<div class="lower-content">
+								<div class="clearfix">
+									<div class="pull-left">
+										<h6><a href="movie.html">Underwater</a></h6>
+									</div>
+									<div class="pull-right">
+										<div class="year">2022</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Feature Block -->
+					<div class="feature-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image video-box"><span class="flaticon-play-arrow"><i class="ripple"></i></span></a>
+								<img src="images/resource/feature-9.jpg" alt="" />
+								<div class="overlay-box">
+									<ul class="post-meta">
+										<li><span class="icon fa fa-star"></span>5.7</li>
+										<li><span class="icon fa fa-comment"></span>25</li>
+									</ul>
+								</div>
+							</div>
+							<div class="lower-content">
+								<div class="clearfix">
+									<div class="pull-left">
+										<h6><a href="movie.html">The Turning</a></h6>
+									</div>
+									<div class="pull-right">
+										<div class="year">2022</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Feature Block -->
+					<div class="feature-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image video-box"><span class="flaticon-play-arrow"><i class="ripple"></i></span></a>
+								<img src="images/resource/feature-10.jpg" alt="" />
+								<div class="overlay-box">
+									<ul class="post-meta">
+										<li><span class="icon fa fa-star"></span>5.7</li>
+										<li><span class="icon fa fa-comment"></span>25</li>
+									</ul>
+								</div>
+							</div>
+							<div class="lower-content">
+								<div class="clearfix">
+									<div class="pull-left">
+										<h6><a href="movie.html">Birds of Prey</a></h6>
+									</div>
+									<div class="pull-right">
+										<div class="year">2022</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</section>
+		<!-- End Featured Section -->
+		
+		<!-- Store Section -->
+		<section class="store-section">
+			<div class="auto-container">
+				<!-- Sec Title -->
+				<div class="sec-title centered">
+					<div class="title">Online store</div>
+					<h2>Our popular products</h2>
+				</div>
+				<!-- End Sec Title -->
+				
+				<div class="four-item-carousel owl-carousel owl-theme">
+					
+					<!-- Product Block -->
+					<div class="product-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="shop-single.html"><img src="images/resource/products/1.png" alt="" /></a>
+							</div>
+							<div class="lower-content">
+								<a href="shop-single.html" class="name">WiFe Streaming Router</a>
+								<div class="price">$33.40</div>
+								<ul class="shop-options">
+									<li><a href="shop-single.html" class="cart">Add to Cart</a></li>
+									<li><a href="shop-single.html" class="fa fa-heart"></a></li>
+									<li><a href="shop-single.html" class="fa fa-random"></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Product Block -->
+					<div class="product-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="shop-single.html"><img src="images/resource/products/2.png" alt="" /></a>
+							</div>
+							<div class="lower-content">
+								<a href="shop-single.html" class="name">Ultra HD 2GB+8GB TV Box</a>
+								<div class="price">$33.40</div>
+								<ul class="shop-options">
+									<li><a href="shop-single.html" class="cart">Add to Cart</a></li>
+									<li><a href="shop-single.html" class="fa fa-heart"></a></li>
+									<li><a href="shop-single.html" class="fa fa-random"></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Product Block -->
+					<div class="product-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="shop-single.html"><img src="images/resource/products/3.png" alt="" /></a>
+							</div>
+							<div class="lower-content">
+								<a href="shop-single.html" class="name">Bluetooth Speaker</a>
+								<div class="price">$33.40</div>
+								<ul class="shop-options">
+									<li><a href="shop-single.html" class="cart">Add to Cart</a></li>
+									<li><a href="shop-single.html" class="fa fa-heart"></a></li>
+									<li><a href="shop-single.html" class="fa fa-random"></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Product Block -->
+					<div class="product-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="shop-single.html"><img src="images/resource/products/4.png" alt="" /></a>
+							</div>
+							<div class="lower-content">
+								<a href="shop-single.html" class="name">Nest Cam Indoor</a>
+								<div class="price">$33.40</div>
+								<ul class="shop-options">
+									<li><a href="shop-single.html" class="cart">Add to Cart</a></li>
+									<li><a href="shop-single.html" class="fa fa-heart"></a></li>
+									<li><a href="shop-single.html" class="fa fa-random"></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Product Block -->
+					<div class="product-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="shop-single.html"><img src="images/resource/products/1.png" alt="" /></a>
+							</div>
+							<div class="lower-content">
+								<a href="shop-single.html" class="name">WiFe Streaming Router</a>
+								<div class="price">$33.40</div>
+								<ul class="shop-options">
+									<li><a href="shop-single.html" class="cart">Add to Cart</a></li>
+									<li><a href="shop-single.html" class="fa fa-heart"></a></li>
+									<li><a href="shop-single.html" class="fa fa-random"></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Product Block -->
+					<div class="product-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="shop-single.html"><img src="images/resource/products/2.png" alt="" /></a>
+							</div>
+							<div class="lower-content">
+								<a href="shop-single.html" class="name">Ultra HD 2GB+8GB TV Box</a>
+								<div class="price">$33.40</div>
+								<ul class="shop-options">
+									<li><a href="shop-single.html" class="cart">Add to Cart</a></li>
+									<li><a href="shop-single.html" class="fa fa-heart"></a></li>
+									<li><a href="shop-single.html" class="fa fa-random"></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Product Block -->
+					<div class="product-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="shop-single.html"><img src="images/resource/products/3.png" alt="" /></a>
+							</div>
+							<div class="lower-content">
+								<a href="shop-single.html" class="name">Bluetooth Speaker</a>
+								<div class="price">$33.40</div>
+								<ul class="shop-options">
+									<li><a href="shop-single.html" class="cart">Add to Cart</a></li>
+									<li><a href="shop-single.html" class="fa fa-heart"></a></li>
+									<li><a href="shop-single.html" class="fa fa-random"></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Product Block -->
+					<div class="product-block">
+						<div class="inner-box">
+							<div class="image">
+								<a href="shop-single.html"><img src="images/resource/products/4.png" alt="" /></a>
+							</div>
+							<div class="lower-content">
+								<a href="shop-single.html" class="name">Nest Cam Indoor</a>
+								<div class="price">$33.40</div>
+								<ul class="shop-options">
+									<li><a href="shop-single.html" class="cart">Add to Cart</a></li>
+									<li><a href="shop-single.html" class="fa fa-heart"></a></li>
+									<li><a href="shop-single.html" class="fa fa-random"></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		<!-- End Store Section -->
+		
+		<!-- CTA Section -->
+		<section class="cta-section">
+			<div class="auto-container">
+				<div class="inner-container" style="background-image: url(images/background/pattern-11.png)">
+					<div class="row clearfix">
+						
+						<!-- Title Column -->
+						<div class="title-column col-lg-6 col-md-12 col-sm-12">
+							<div class="inner-column">
+								<h3>Sign up for our newsletter</h3>
+								<div class="text">Stay up to update with our latest news and products.</div>
+							</div>
+						</div>
+						
+						<!-- Form Column -->
+						<div class="form-column col-lg-6 col-md-12 col-sm-12">
+							<div class="inner-column">
+								<div class="newsletter-form">
+									<form method="post" action="contact.html">
+										<div class="form-group">
+											<input type="email" name="email" value="" placeholder="Your Email Address" required="">
+											<button type="submit" class="theme-btn btn-style-five"><span class="txt">Subscribe</span></button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End CTA Section -->
+		
+		<!-- Main Footer -->
+			<footer class="main-footer">
+			<div class="pattern-layer-one" style="background-image: url(images/background/pattern-12.png)"></div>
+			<div class="pattern-layer-two" style="background-image: url(images/background/pattern-13.png)"></div>
+				<div class="auto-container">
+							<div class="widgets-section">
+								<div class="logo">
+						<a href="index.html"><img src="images/footer-logo.png" alt="" /></a>
+					</div>
+					<ul class="contact-info-list">
+						<li>
+							<span class="icon"><img src="images/icons/icon-1.png" alt="" /></span>
+							<a href="tel:+3453-909-6565">+3453-909-6565</a><br>
+							<a href="tel:+2390-875-223">+2390-875-223</a>
+						</li>
+						<li>
+							<span class="icon"><img src="images/icons/icon-2.png" alt="" /></span>
+							<a href="mailto:infoname@gmail.com">infoname@gmail.com</a><br>
+							<a href="www.yourname.com">www.yourname.com</a>
+						</li>
+						<li>
+							<span class="icon"><img src="images/icons/icon-3.png" alt="" /></span>
+							503 Old Buffalo Street <br> Northwest #205, New York-3087
+						</li>
+					</ul>
+					
+					<!-- Social Box -->
+					<ul class="social-box">
+						<li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
+						<li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
+						<li><a href="https://skype.com/" class="fa fa-skype"></a></li>
+						<li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
+					</ul>
+					
+				</div>
+				
+			</div>
+			<!-- Footer Bottom -->
+			<div class="footer-bottom">
+				<div class="auto-container">
+					<div class="copyright">&copy; 2022 Your Company. All Rights Reserved. Designed By <a href="https://themeforest.net/user/themexriver">Themexriver</a></div>
+				</div>
+			</div>
+		</footer>
+		<!-- End Main Footer -->
+		
+	</div>
+	<!--End pagewrapper-->
+	
+	<!-- Search Popup -->
+	<div class="search-popup">
+		<div class="color-layer"></div>
+		<button class="close-search"><span class="fa fa-arrow-up"></span></button>
+		<form method="post" action="blog.html">
+			<div class="form-group">
+				<input type="search" name="search-field" value="" placeholder="Search Here" required="">
+				<button type="submit"><i class="fa fa-search"></i></button>
+			</div>
+		</form>
+	</div>
+	<!-- End Header Search -->
 	</main>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
-</style>
