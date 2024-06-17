@@ -397,7 +397,7 @@
 	padding:55px 0px 30px;
 	background-position:right top;
 	background-repeat:no-repeat;
-	background-color:var(--main-color-two);
+	background-color: #73028F;
 }
 
 .appointment-section .title-column{
@@ -572,7 +572,7 @@
 
 .service-block .inner-box:hover h4 a,
 .service-block .inner-box:hover .services{
-	color:var(--main-color);
+	color: #C200EC;
 }
 
 .service-block .inner-box .border-one{
@@ -582,8 +582,10 @@
 	width:50px;
 	height:50px;
 	opacity:0;
-	border-top:10px solid var(--main-color);
-	border-left:10px solid var(--main-color);
+	/* border-top:10px solid var(--main-color); */
+	/* border-left:10px solid var(--main-color); */
+	border-top:10px solid #C200EC;
+	border-left:10px solid #C200EC;
 	-webkit-transition: all 900ms ease;
 	-moz-transition: all 900ms ease;
 	-ms-transition: all 900ms ease;
@@ -598,8 +600,10 @@
 	width:50px;
 	height:50px;
 	opacity:0;
-	border-right:10px solid var(--main-color);
-	border-bottom:10px solid var(--main-color);
+	/* border-right:10px solid var(--main-color); */
+	/* border-bottom:10px solid var(--main-color); */
+	border-right:10px solid #C200EC;
+	border-bottom:10px solid #C200EC;
 	-webkit-transition: all 900ms ease;
 	-moz-transition: all 900ms ease;
 	-ms-transition: all 900ms ease;
@@ -655,7 +659,7 @@
 	right:0px;
 	top:-25px;
 	z-index:1;
-	background:url(../images/resource/service-border-layer.png) no-repeat;
+	background:url(../images/resource/service-border-layer-new.png) no-repeat;
 	background-size:cover;
 }
 
@@ -748,7 +752,7 @@
 	right:0px;
 	bottom:0px;
 	height:63px;
-	background:url(../images/background/pattern-5.png) repeat-x;
+	background:url(../images/background/pattern-5-new.png) repeat-x;
 }
 
 .price-block .icon-list{
@@ -1640,7 +1644,7 @@
 	border-radius:5px;
 	margin-bottom:-100px;
 	padding:60px 60px 30px;
-	background-color:var(--main-color);
+	background-color: #73028F;
 	background-position:left bottom;
 	background-repeat:no-repeat;
 }

@@ -9,7 +9,7 @@
 
 .main-footer{
 	position:relative;
-	background-color:var(--main-color-two);
+	background-color: #2D2D2D;
 }
 
 .main-footer .pattern-layer-one{
@@ -97,7 +97,7 @@
 	border-radius:50px;
 	display:inline-block;
 	color:var(--white-color);
-	background-color:var(--main-color);
+	background-color: #C200EC;
 }
 
 .main-footer .social-box li a:hover{
@@ -118,7 +118,7 @@
 	position:relative;
 	padding:34px 0px;
 	text-align:center;
-	background-color:#010a2e;
+	background-color:#37406A;
 }
 
 .main-footer .footer-bottom .copyright{

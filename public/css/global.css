@@ -811,7 +811,7 @@ img{
 	font-size: var(--font-16);
 	text-transform: capitalize;
 	color: var(--white-color);
-	background-color:var(--main-color);
+	background-color: #C200EC;
 }
 
 .btn-style-two:before{
@@ -929,7 +929,8 @@ img{
 	font-size: var(--font-16);
 	text-transform: capitalize;
 	color: var(--white-color);
-	background-color:var(--main-color);
+	/* background-color:var(--main-color); */
+	background-color: #C200EC;
 }
 
 .btn-style-four:before{

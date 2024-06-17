@@ -1,0 +1,79 @@
+---
+const list = [
+  'Urbanización Cruz verde',
+  'La Guinea',
+  'Castulo marmol',
+  'Barrio Cruz Verde',
+  'Parcelamiento Cruz verde',
+  'Josefa Camejo',
+  'Cabudare',
+  'San Nicolás, las panelas',
+  'Monseñor Iturriza',
+  '28 julio',
+  'Pantano centro',
+  'Velitas 2',
+  'Los claritos',
+  'Pantano abajo',
+  'Velitas 4',
+  'La Florida',
+  'Pantano arriba',
+  'Velitas edificios 480 años',
+]
+---
+
+<section class="cta-section">
+  <div class="auto-container">
+    <div
+      class="inner-container"
+      style="background-image: url(images/background/pattern-11.png)"
+    >
+      <div class="row clearfix">
+        <!-- Title Column -->
+        <div class="title-column col-lg-12 col-md-12 col-sm-12">
+          <div class="inner-column">
+            <h3>Zonas de cobertura</h3>
+            <!-- <div class="text">
+              Stay up to update with our latest news and products.
+            </div> -->
+          </div>
+        </div>
+
+        <!-- Form Column -->
+        <div class="list-group col-lg-12 col-md-12 col-sm-12">
+          <ul class="info-list">
+            {list.map(item => (
+              <li class="info-list-item">{item}</li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .info-list {
+    --icon-space: 1.3em;
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .info-list-item {
+    padding-left: var(--icon-space);
+    padding-bottom: 0.5em;
+    list-style-position: inside;
+    color: white;
+  }
+
+  .info-list-item::before {
+    content: "\f00c"; /* FontAwesome Unicode */
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-left: calc( var(--icon-space) * -1 );
+    width: var(--icon-space);
+    color: #C200EC;
+  }
+</style>
