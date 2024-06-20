@@ -1447,5 +1447,8 @@
 		margin-right:var(--margin-zero);
 		margin-bottom:var(--margin-bottom-15);
 	}
-	
+
+	.header-top .auto-container .pull-right {
+		display: none;
+	}
 }
