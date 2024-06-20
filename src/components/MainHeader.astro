@@ -24,7 +24,7 @@
   <!-- Header Lower -->
   <div class="header-lower">
     <div class="auto-container clearfix">
-      <div class="inner-container clearfix">
+      <div class="inner-container netsystem-header-menu">
         <div class="pull-left logo-box">
           <div class="logo">
             <a href="#home"
@@ -87,7 +87,7 @@
 
   <!-- Sticky Header  -->
   <div class="sticky-header">
-    <div class="auto-container clearfix">
+    <div class="auto-container netsystem-header-menu">
       <!-- Logo -->
       <div class="logo pull-left">
         <a href="#home"
@@ -100,7 +100,12 @@
         <nav class="main-menu">
           <!--Keep This Empty / Menu will come through Javascript-->
         </nav><!-- Main Menu End-->
+
+        <div class="mobile-nav-toggler">
+          <span class="icon flaticon-menu"></span>
+        </div>
       </div>
+
     </div>
   </div><!-- End Sticky Menu -->
 
@@ -131,5 +136,16 @@
   .sticky-header .logo.pull-left a[href="#home"] img {
     width: 85px;
     height: 70px;
+  }
+
+  .netsystem-header-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sticky-header .netsystem-header-menu .mobile-nav-toggler {
+    display: flex;
+    justify-content: flex-end;
   }
 </style>

@@ -225,7 +225,7 @@
 }
 
 .main-header .sticky-header .mobile-nav-toggler{
-	display:none;
+	/* display:none; */
 	cursor:pointer;
 	color:var(--black-color);
 	font-size:var(--font-30)
