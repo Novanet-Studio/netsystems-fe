@@ -1197,6 +1197,9 @@
 		padding-right:var(--padding-right-20);
 	}
 	
+	.sticky-header .netsystem-header-menu .mobile-nav-toggler {
+		display: none;
+	}
 }
 
 @media only screen and (max-width: 479px) {
@@ -1451,4 +1454,9 @@
 	.header-top .auto-container .pull-right {
 		display: none;
 	}
+
+	.sticky-header .netsystem-header-menu .mobile-nav-toggler {
+    display: flex;
+    justify-content: flex-end;
+  }
 }
