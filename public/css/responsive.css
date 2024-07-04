@@ -1459,4 +1459,9 @@
     display: flex;
     justify-content: flex-end;
   }
+
+	.logo-box .box img {
+		border: 10px solid red;
+		width: 100px;
+	}
 }

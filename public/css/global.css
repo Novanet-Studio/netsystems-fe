@@ -648,7 +648,7 @@ img{
 	right:15px;
 	width:40px;
 	height:40px;
-	color:var(--main-color);
+	color: #C200EC;
 	font-size:var(--font-16);
 	text-transform:uppercase;
 	line-height:38px;
@@ -667,7 +667,7 @@ img{
 
 .scroll-to-top:hover{
 	color:var(--white-color);
-	background:var(--main-color);
+	background:#C200EC;
 }
 
 /* List Style One */

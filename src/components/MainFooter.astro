@@ -46,7 +46,7 @@
   <div class="footer-bottom">
     <div class="auto-container">
       <div class="copyright">
-        &copy; © 2024 Tv Cable Net Systems. All Rights Reserved. Maded By
+        © 2024 Tv Cable Net Systems. All Rights Reserved. Maded By
         <img src="images/novanet-logo.svg" alt="">
       </div>
     </div>
@@ -82,5 +82,28 @@
     color: #fff;
     font-size: 36px;
     margin-bottom: 21px;
+    text-wrap: balance;
+  }
+
+  @media only screen and (max-width: 479px) {
+    .contact-info-list {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .contact-info-list li {
+      margin-right: 0;
+      padding-left: 0;
+    }
+
+    .footer-message {
+      font-size: 28px;
+    }
+
+    .copyright {
+      font-size: 13px !important;
+      text-wrap: balance;
+    }
   }
 </style>

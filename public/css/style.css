@@ -538,9 +538,13 @@
 
 .service-block .inner-box .icon{
 	position:relative;
-	max-width:60px;
+	max-width:80px;
 	margin:0 auto;
 	margin-bottom:var(--margin-bottom-30);
+}
+
+.service-block .inner-box .icon img {
+	width: 3rem;
 }
 
 .service-block:first-child .inner-box .text{

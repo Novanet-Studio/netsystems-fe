@@ -76,4 +76,13 @@ const list = [
     width: var(--icon-space);
     color: #C200EC;
   }
+
+  @media only screen and (max-width: 479px) {
+    .info-list {
+      padding-left: 1em;
+      padding-right: 1em;
+      --icon-space: 1.5em;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 </style>
