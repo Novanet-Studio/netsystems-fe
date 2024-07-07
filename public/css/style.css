@@ -87,7 +87,7 @@
 
 .main-slider .content-boxed{
 	position:relative;
-	max-width:720px;
+	max-width:750px;
 	z-index:10;
 }
 
@@ -124,6 +124,7 @@
 
 .main-slider h1{
 	color:var(--white-color);
+	font-size: 62px;
 	opacity: 0;
 	transform: translateX(200px);
 	transform-origin: top;
