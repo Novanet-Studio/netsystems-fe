@@ -648,8 +648,8 @@
 
 .services-section .image-column .color-layer{
 	position:absolute;
-	left:-15px;
-	bottom:-15px;
+	left:42px;
+	bottom:-12px;
 	right:60px;
 	height:100%;
 	background:url(../images/resource/service-pattern-layer.png) no-repeat;
@@ -658,10 +658,10 @@
 
 .services-section .image-column .border-layer{
 	position:absolute;
-	left:30px;
-	bottom:40px;
-	right:0px;
-	top:-25px;
+	left:82px;
+	bottom:20px;
+	right:35px;
+	top:-17px;
 	z-index:1;
 	background:url(../images/resource/service-border-layer-new.png) no-repeat;
 	background-size:cover;
@@ -962,7 +962,7 @@
 	right:0px;
 	height:325px;
 	width:100%;
-	background:url(../images/resource/facility-1.png) no-repeat;
+	background:url(../images/gallery/triangle.png) no-repeat;
 	background-size:cover;
 }
 
