@@ -59,22 +59,22 @@
               id="navbarSupportedContent"
             >
               <ul class="navigation clearfix">
-                <li class="current dropdown">
+                <li class="current dropdown" data-menu-item="inicio">
                   <a href="#">Inicio</a>
                 </li>
-                <li class="dropdown">
+                <li class="dropdown" data-menu-item="planes">
                   <a href="#planes">Planes</a>
                 </li>
-                <li class="dropdown">
+                <li class="dropdown" data-menu-item="panel">
                   <a href="#panel">Panel de usuario</a>
                 </li>
-                <li class="dropdown">
+                <li class="dropdown" data-menu-item="galeria">
                   <a href="#galeria">Galeria</a>
                 </li>
-                <li class="dropdown">
+                <li class="dropdown" data-menu-item="servicios">
                   <a href="#servicios">Servicios</a>
                 </li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#contacto" data-menu-item="contacto">Contacto</a></li>
               </ul>
             </div>
           </nav>
@@ -126,6 +126,24 @@
     </nav>
   </div><!-- End Mobile Menu -->
 </header>
+
+<script>
+  const listItems = document.querySelectorAll('#navbarSupportedContent ul li.dropdown');
+
+  listItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      const elements = document.querySelectorAll(`[data-menu-item="${item.dataset.menuItem}"]`)
+
+      listItems.forEach((li) => {
+        li.classList.remove('current');
+      });
+      
+      elements.forEach((element) => {
+        element.classList.add('current');
+      })
+          })
+  })
+</script>
 
 <style>
   .logo-box .logo img {
