@@ -190,6 +190,10 @@
 		visibility:hidden;
 		opacity:0;
 	}
+
+	.sticky-header .netsystem-header-menu .mobile-nav-toggler {
+		display: none;
+	}
 	
 }
 
