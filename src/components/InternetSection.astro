@@ -1,16 +1,20 @@
-<section
-  class="internet-section"
-  style="background-image: url(images/background/11.jpg)"
->
+<section class="internet-section">
+  <!-- style="background-image: url(images/background/11.jpg)" -->
   <div class="auto-container">
     <div class="clearfix">
       <div class="content-column">
         <h2>La tecnología de internet FTTx</h2>
         <div class="text">
-          Te permitirá disfrutar de una mayor calidad de conexión a internet y facilitará  el acceso a servicios y aplicaciones que requieren un ancho de banda considerable, aporta calidad y disponibilidad para cualquier medio de recepcion de television se puede apreciar la señal desde cualquier tv:
+          Te permitirá disfrutar de una mayor calidad de conexión a internet y
+          facilitará  el acceso a servicios y aplicaciones que requieren un
+          ancho de banda considerable, aporta calidad y disponibilidad para
+          cualquier medio de recepcion de television se puede apreciar la señal
+          desde cualquier tv:
         </div>
         <ul class="internet-list">
-          <li class="internet-list-item">Streaming de clases online y videojuegos</li>
+          <li class="internet-list-item">
+            Streaming de clases online y videojuegos
+          </li>
           <li class="internet-list-item">Trabajo remoto</li>
           <li class="internet-list-item">Telemedicina</li>
           <li class="internet-list-item">Television via cable</li>
@@ -30,5 +34,34 @@
   .internet-list-item {
     list-style-type: disc;
     list-style-position: inside;
+  }
+
+  .internet-section {
+    background-image: url(images/internet/internet-desktop.jpg);
+    background-position: center;
+  }
+
+  .internet-section h2,
+  .internet-section .text,
+  .internet-section .internet-list {
+    color: #fff;
+  }
+
+  @media only screen and (max-width: 479px) {
+    #inicio .main-slider-carousel .slide {
+      background-image: url(images/internet/internet-phone.jpg);
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    #inicio .main-slider-carousel .slide {
+      background-image: url(images/internet/internet-tablet.jpg);
+    }
+  }
+
+  @media only screen and (max-width: 1140px) {
+    #inicio .main-slider-carousel .slide {
+      background-image: url(images/internet/internet-desktop.jpg);
+    }
   }
 </style>

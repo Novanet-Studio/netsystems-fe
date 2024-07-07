@@ -271,7 +271,7 @@
 	.internet-section:before{
 		width:100%;
 		background-image:none;
-		background-color:rgba(255,255,255,0.60);
+		/* background-color:rgba(255,255,255,0.60); */
 	}
 	
 	.internet-section .content-column{
