@@ -140,7 +140,7 @@
   listItems.forEach((item) => {
     item.addEventListener("click", () => {
       const elements = document.querySelectorAll(
-        `[data-menu-item="${item.dataset.menuItem}"]`
+        `[data-menu-item="${(item as HTMLElement).dataset.menuItem}"]`
       );
 
       listItems.forEach((li) => {
