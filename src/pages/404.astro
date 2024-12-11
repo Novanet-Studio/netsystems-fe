@@ -1,0 +1,62 @@
+---
+import MainFooter from "../components/MainFooter.astro";
+import MainHeader from "../components/MainHeader.astro";
+import Preloader from "../components/Preloader.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Netsystem">
+  <main>
+    <div class="page-wrapper">
+      <!-- Preloader -->
+      <Preloader />
+      <!-- End Preloader -->
+
+      <!-- Main Header -->
+      <MainHeader />
+      <!-- End Main Header -->
+
+      <div class="auto-container">
+        <!-- Content Boxed -->
+        <div class="content-boxed">
+          <div class="text-wrapper">
+            <h1>404</h1>
+
+            <p>No pudimos encontrar la página que buscabas</p>
+
+            <a href="/" class="theme-btn btn-style-two"
+              ><span class="txt"
+                ><i class="lnr lnr-arrow-left"></i>
+                Volver al inicio</span
+              ></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Footer -->
+    <MainFooter />
+    <!-- End Main Footer -->
+  </main>
+</Layout>
+
+<style is:inline>
+  .text-wrapper {
+    min-height: 700px;
+
+    text-align: center;
+
+    display: grid;
+    place-content: center;
+  }
+
+  .text-wrapper h1 {
+    font-size: 10rem;
+  }
+
+  .text-wrapper p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
+</style>
