@@ -1,0 +1,32 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import MainFooter from "../components/MainFooter.astro";
+import MainHeader from "../components/MainHeader.astro";
+import Preloader from "../components/Preloader.astro";
+import PaymentSection from "../components/PaymentSection.astro";
+---
+
+<Layout title="Netsystem">
+  <main>
+    <div class="page-wrapper">
+      <!-- Preloader -->
+      <!-- <Preloader /> -->
+      <!-- End Preloader -->
+
+      <!-- Main Header -->
+      <MainHeader />
+      <!-- End Main Header -->
+
+      <!-- Payment Section -->
+      <PaymentSection />
+      <!-- End Payment Section -->
+    </div>
+
+    <!-- Main Footer -->
+    <MainFooter />
+    <!-- End Main Footer -->
+  </main>
+</Layout>
+
+<style is:inline></style>

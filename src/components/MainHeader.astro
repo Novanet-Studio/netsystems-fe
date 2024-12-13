@@ -62,22 +62,25 @@
             >
               <ul class="navigation clearfix">
                 <li class="current dropdown" data-menu-item="inicio">
-                  <a href="#">Inicio</a>
+                  <a href="/#">Inicio</a>
                 </li>
                 <li class="dropdown" data-menu-item="planes">
-                  <a href="#planes">Planes</a>
+                  <a href="/#planes">Planes</a>
                 </li>
                 <li class="dropdown" data-menu-item="panel">
-                  <a href="#panel">Panel de usuario</a>
+                  <a href="/#panel">Panel de usuario</a>
+                </li>
+                <li class="dropdown" data-menu-item="reporte-pago">
+                  <a href="/reporte-pago">Pago C2P</a>
                 </li>
                 <li class="dropdown" data-menu-item="galeria">
-                  <a href="#galeria">Galeria</a>
+                  <a href="/#galeria">Galeria</a>
                 </li>
                 <li class="dropdown" data-menu-item="servicios">
-                  <a href="#servicios">Servicios</a>
+                  <a href="/#servicios">Servicios</a>
                 </li>
                 <li>
-                  <a href="#contacto" data-menu-item="contacto">Contacto</a>
+                  <a href="/#contacto" data-menu-item="contacto">Contacto</a>
                 </li>
               </ul>
             </div>
@@ -134,13 +137,13 @@
 
 <script>
   const listItems = document.querySelectorAll(
-    "#navbarSupportedContent ul li.dropdown"
+    "#navbarSupportedContent ul li.dropdown",
   );
 
   listItems.forEach((item) => {
     item.addEventListener("click", () => {
       const elements = document.querySelectorAll(
-        `[data-menu-item="${(item as HTMLElement).dataset.menuItem}"]`
+        `[data-menu-item="${(item as HTMLElement).dataset.menuItem}"]`,
       );
 
       listItems.forEach((li) => {
@@ -176,27 +179,27 @@
     justify-content: flex-end;
   }
 
-  @media only screen and (min-width: 768px){
-  .logo-box .logo img {
-    width: 110px;
+  @media only screen and (min-width: 768px) {
+    .logo-box .logo img {
+      width: 110px;
+    }
+
+    .sticky-header .logo.pull-left a[href="#home"] img {
+      width: 95px;
+      height: auto;
+    }
+    .sticky-header .netsystem-header-menu .mobile-nav-toggler {
+      display: none;
+    }
   }
 
-  .sticky-header .logo.pull-left a[href="#home"] img {
-    width: 95px;
-    height: auto;
-  }
-	.sticky-header .netsystem-header-menu .mobile-nav-toggler {
-		display: none;
-	}
-}
+  @media only screen and (max-width: 1340px) {
+    .logo-box .logo img {
+      width: 130px;
+    }
 
-@media only screen and (max-width: 1340px){
-  .logo-box .logo img {
-    width: 130px;
+    .sticky-header .logo.pull-left a[href="#home"] img {
+      width: 105px;
+    }
   }
-
-  .sticky-header .logo.pull-left a[href="#home"] img {
-    width: 105px;
-  }
-}
 </style>
