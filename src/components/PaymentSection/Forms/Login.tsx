@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import PaymentWrapperContext from "../PaymentWrapperContex";
 import style from "../_styles.module.css";
@@ -6,17 +6,22 @@ import style from "../_styles.module.css";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import type { App } from "../../../env";
+import type { Netsystems } from "../../../env";
 
 import { NextStep } from "../NextStep";
+import useNetsystemsService from "../hooks/use-netsystems-services";
 
 export const Login = () => {
-  const { nextStep } = useContext(PaymentWrapperContext) as App.PayContextType;
+  const { getClientDetails } = useNetsystemsService();
 
-  const [auxMessage, setAuxMessage] = useState({
-    username: "",
-    password: "",
-  });
+  const { nextStep, setUserData } = useContext(
+    PaymentWrapperContext,
+  ) as Netsystems.PayContextType;
+
+  const [usernameInfo, setUsernameInfo] = useState("");
+  const [passwordInfo, setPasswordInfo] = useState("");
+  const [errorInfo, setErrorInfo] = useState("");
+  const [sendingInfo, setSendingInfo] = useState(false);
 
   const schema = yup
     .object({
@@ -33,11 +38,45 @@ export const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
-    console.log(`<<< Enviar datos a api/users >>>`, data);
+  const onSubmit = async (data: { username: string; password: string }) => {
+    setSendingInfo(true);
 
-    nextStep();
+    try {
+      const res: Netsystems.LoginResponse = await getClientDetails({
+        cedula: data.password,
+      });
+
+      console.log(`<<< res >>>`, res);
+
+      if (res.estado === "error") {
+        switch (res.message) {
+          case "No existe el cliente con el filtro indicado.":
+            setUsernameInfo("Usuario no encontrado");
+
+            break;
+
+          default:
+            setErrorInfo("Error desconocido");
+            break;
+        }
+
+        return;
+      }
+
+      setUserData(res);
+
+      //? save user data on PaymentWrapperContext
+
+      nextStep();
+    } catch (e) {
+      console.log(`<<< e >>>`, e);
+      setErrorInfo("🤕 Error de conexion con el servicio de pago");
+    } finally {
+      setSendingInfo(false);
+    }
   };
+
+  useEffect(() => {}, [null]);
 
   return (
     <>
@@ -48,7 +87,7 @@ export const Login = () => {
         <span className={style.paymentSec__form__content}>
           <input
             className={
-              errors.username?.type === "required" || auxMessage.username
+              errors.username?.type === "required" || usernameInfo
                 ? [style.input, style.input_invalid].join(" ")
                 : style.input
             }
@@ -56,15 +95,16 @@ export const Login = () => {
             {...register("username", { required: true })}
           />
 
-          {(errors.username?.type === "required" || auxMessage.username) && (
+          {(errors.username?.type === "required" || usernameInfo) && (
             <p role="alert" className={style.input_error}>
-              {auxMessage.username || "Usuario requerido"}
+              {usernameInfo || "Usuario requerido"}
             </p>
           )}
 
           <input
+            type="password"
             className={
-              errors.password?.type === "required" || auxMessage.password
+              errors.password?.type === "required" || passwordInfo
                 ? [style.input, style.input_invalid].join(" ")
                 : style.input
             }
@@ -72,9 +112,21 @@ export const Login = () => {
             {...register("password", { required: true })}
           />
 
-          {(errors.password?.type === "required" || auxMessage.password) && (
+          {(errors.password?.type === "required" || passwordInfo) && (
             <p role="alert" className={style.input_error}>
-              {auxMessage.password || "Contraseña requerida"}
+              {passwordInfo || "Contraseña requerida"}
+            </p>
+          )}
+
+          {!sendingInfo && errorInfo && (
+            <p role="alert" className={style.input_error}>
+              {errorInfo}
+            </p>
+          )}
+
+          {sendingInfo && (
+            <p role="alert" className={style.form_message}>
+              Enviando...
             </p>
           )}
         </span>

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import PaymentWrapperContext from "../PaymentWrapperContex";
 import style from "../_styles.module.css";
@@ -7,15 +7,23 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { banks } from "../../../utils/banks";
-import type { App } from "../../../env";
+import type { Netsystems } from "../../../env";
 
 import { NextStep } from "../NextStep";
 import { PrevStep } from "../PrevStep";
+import useNetsystemsService from "../hooks/use-netsystems-services";
+import useUsdConvertion from "../hooks/use-usd-convertion";
 
 export const PaymentReport = () => {
-  const { nextStep, prevStep } = useContext(
+  const { getInvoiceDebts } = useNetsystemsService();
+  const { getBcvUsd, getFormatAmount } = useUsdConvertion();
+
+  const { nextStep, prevStep, getUserData } = useContext(
     PaymentWrapperContext,
-  ) as App.PayContextType;
+  ) as Netsystems.PayContextType;
+
+  const [errorInfo, setErrorInfo] = useState("");
+  const [sendingInfo, setSendingInfo] = useState(false);
 
   const schema = yup
     .object({
@@ -25,13 +33,17 @@ export const PaymentReport = () => {
       bankIssue: yup.string(),
       payDate: yup.date().required(),
       referenceNro: yup.string().required(),
-      debtAmount: yup.string().required(),
+      convertionRate: yup.number().default(0),
+      debtAmount: yup.number().required(),
+      debtAmountLabel: yup.string().required(),
     })
     .required();
 
   const {
     register,
     handleSubmit,
+    setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -42,6 +54,59 @@ export const PaymentReport = () => {
 
     nextStep();
   };
+
+  const getDebts = async () => {
+    try {
+      const res: Netsystems.InvoiceDebtsResponse = await getInvoiceDebts({
+        cedula: getUserData().datos[0].cedula,
+      });
+
+      if (!res.code) {
+        return;
+      }
+
+      if (res.code === "160") {
+        setErrorInfo("No tienes facturas por pagar");
+        return;
+      }
+
+      setValue("debtAmount", Number(res.facturas[0].valor));
+
+      if (getValues("convertionRate")) setVesAmount();
+    } catch (e) {
+      console.log(`<<< e >>>`, e);
+    }
+  };
+
+  const getVesUsd = async () => {
+    try {
+      const res: Netsystems.BcvUsdResponse = await getBcvUsd();
+
+      setValue("convertionRate", Number(res.sources.BCV.quote));
+
+      if (getValues("debtAmount")) setVesAmount();
+    } catch (e) {
+      setErrorInfo("😡 Error de comunicacion con exchangedyn");
+    }
+  };
+
+  const setVesAmount = () => {
+    console.log(`<<< getValues("debtAmount") >>>`, getValues("debtAmount"));
+    console.log(
+      `<<< getValues("convertionRate") >>>`,
+      getValues("convertionRate"),
+    );
+
+    setValue(
+      "debtAmountLabel",
+      `Bs.S ${getFormatAmount(String(getValues("debtAmount") * getValues("convertionRate")), true)}`,
+    );
+  };
+
+  useEffect(() => {
+    getDebts();
+    getVesUsd();
+  }, []);
 
   return (
     <>
@@ -153,8 +218,8 @@ export const PaymentReport = () => {
               {...register("bankIssue")}
               defaultValue="0102"
             >
-              {banks.map((b: App.Bank) => (
-                <option value={b.code}>{`${b.name}`}</option>
+              {banks.map((b: Netsystems.Bank) => (
+                <option key={b.code} value={b.code}>{`${b.name}`}</option>
                 //* <option value={b.code}>{`${b.code} - ${b.name}`}</option>
               ))}
             </select>
@@ -183,19 +248,14 @@ export const PaymentReport = () => {
           <span className={style.input_wrapper}>
             <input
               className={
-                errors.debtAmount?.type === "required"
+                errors.debtAmountLabel?.type === "required"
                   ? [style.input, style.input_invalid].join(" ")
                   : style.input
               }
               placeholder="Monto a pagar"
-              {...register("debtAmount", { required: true })}
+              disabled
+              {...register("debtAmountLabel", { required: true })}
             />
-
-            {errors.debtAmount?.type === "required" && (
-              <p role="alert" className={style.input_error}>
-                {"Monto invalido"}
-              </p>
-            )}
           </span>
         </span>
 

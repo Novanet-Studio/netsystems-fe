@@ -2,21 +2,26 @@ import { useContext } from "react";
 import PaymentWrapperContext from "../PaymentWrapperContex";
 import style from "../_styles.module.css";
 
-import type { App } from "../../../env";
+import type { Netsystems } from "../../../env";
 
 import { NextStep } from "../NextStep";
 
 export const PaymentMethod = () => {
-  const { nextStep } = useContext(PaymentWrapperContext) as App.PayContextType;
+  const { nextStep } = useContext(
+    PaymentWrapperContext,
+  ) as Netsystems.PayContextType;
 
-  const paymentMethods: App.PaymentMethodItem[] = [
+  const paymentMethods: Netsystems.PaymentMethodItem[] = [
     {
       bank: "BdV",
       logoImage: "/images/payment-form/banks/BdV.png",
     },
   ];
 
-  const selectPaymentMethod = (_event: any, _p: App.PaymentMethodItem) => {
+  const selectPaymentMethod = (
+    _event: any,
+    _p: Netsystems.PaymentMethodItem,
+  ) => {
     _event.preventDefault();
 
     nextStep();
@@ -37,10 +42,7 @@ export const PaymentMethod = () => {
           ))}
         </span>
         <span className={style.paymentSec__form__buttons}>
-          <NextStep
-            label="Continuar"
-            handler={() => console.log("NextStep click on ContractForm")}
-          />
+          <NextStep label="Continuar" handler={() => nextStep()} />
         </span>
       </form>
     </>

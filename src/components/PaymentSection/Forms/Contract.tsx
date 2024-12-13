@@ -1,19 +1,24 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import PaymentWrapperContext from "../PaymentWrapperContex";
 import style from "../_styles.module.css";
 
-import type { App } from "../../../env";
+import type { Netsystems } from "../../../env";
 
 import { NextStep } from "../NextStep";
 import { PrevStep } from "../PrevStep";
 
-export const Contract = () => {
-  const { nextStep, prevStep } = useContext(
-    PaymentWrapperContext,
-  ) as App.PayContextType;
+type contract = {
+  text: string;
+  value: string;
+};
 
-  let contracts = ["Contract Nro 001", "Contract Nro 002"];
+export const Contract = () => {
+  const { nextStep, prevStep, getUserData, setUserData } = useContext(
+    PaymentWrapperContext,
+  ) as Netsystems.PayContextType;
+
+  let [contracts, setContracts] = useState<contract[]>([]);
 
   interface Form {
     nroContract: any;
@@ -22,10 +27,29 @@ export const Contract = () => {
   const { register, handleSubmit } = useForm<Form>();
 
   const onSubmit: SubmitHandler<Form> = (_data) => {
-    console.log(`<<< Siguiente paso >>>`, _data);
+    if (_data.nroContract === "") _data.nroContract = contracts[0].value;
+
+    setUserData({ ...getUserData(),  currentContract: _data.nroContract });
 
     nextStep();
   };
+
+  useEffect(() => {
+    const data: Netsystems.LoginResponse = getUserData();
+
+    let cAux: contract[] = [];
+
+    data.datos?.forEach((i) => {
+      i.servicios?.forEach((s) => {
+        cAux.push({
+          text: s.perfil,
+          value: String(s.id),
+        });
+      });
+    });
+
+    setContracts(cAux);
+  }, [setContracts]);
 
   return (
     <>
@@ -36,8 +60,8 @@ export const Contract = () => {
         <span className={style.paymentSec__form__content}>
           <select className={style.input} {...register("nroContract")}>
             {contracts.map((c, index) => (
-              <option key={`opt_${index}`} value={c}>
-                {c}
+              <option key={`opt_${index}`} value={c.value}>
+                {c.text}
               </option>
             ))}
           </select>

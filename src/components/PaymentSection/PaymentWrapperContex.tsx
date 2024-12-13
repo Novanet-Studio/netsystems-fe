@@ -1,6 +1,8 @@
 import { createContext } from "react";
-import type { App } from "../../env";
+import type { Netsystems } from "../../env";
 
-const PaymentWrapperContext = createContext<App.PayContextType | null>(null);
+const PaymentWrapperContext = createContext<Netsystems.PayContextType | null>(
+  null,
+);
 
 export default PaymentWrapperContext;

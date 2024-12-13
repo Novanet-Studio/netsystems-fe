@@ -4,7 +4,7 @@ import PaymentWrapperContex from "./PaymentWrapperContex";
 import { Steps } from "./Steps";
 
 import style from "./_styles.module.css";
-import type { App } from "../../env";
+import type { Netsystems } from "../../env";
 
 //FORMS
 import { Login } from "./Forms/Login";
@@ -15,7 +15,7 @@ import { PaymentReport } from "./Forms/ReportPayment";
 import { CompletedPayment } from "./Forms/CompletedPayment";
 
 const PaymentWrapper = () => {
-  const steps: App.PaymentFormInfo[] = [
+  const steps: Netsystems.PaymentFormInfo[] = [
     {
       title: "Ingresa a tu cuenta",
       subtitle: "Coloca la información solicitada",
@@ -63,6 +63,7 @@ const PaymentWrapper = () => {
   ];
 
   const [currentStep, setCurrentStep] = useState(0);
+  const [data, setData] = useState(0);
 
   const nextStep = () => {
     if (currentStep < steps.length - 1) setCurrentStep(currentStep + 1);
@@ -78,10 +79,20 @@ const PaymentWrapper = () => {
     setCurrentStep(step);
   };
 
+  const getUserData = () => {
+    return data;
+  };
+
+  const setUserData = (userData: any) => {
+    setData(userData);
+  };
+
   useEffect(() => {}, [null]);
 
   return (
-    <PaymentWrapperContex.Provider value={{ nextStep, prevStep, goToStep }}>
+    <PaymentWrapperContex.Provider
+      value={{ nextStep, prevStep, goToStep, getUserData, setUserData }}
+    >
       <FormWrapper stepInfo={steps[currentStep]} />
     </PaymentWrapperContex.Provider>
   );
@@ -90,7 +101,11 @@ const PaymentWrapper = () => {
 export default PaymentWrapper;
 
 /* > FORMS */
-const FormWrapper = ({ stepInfo }: { stepInfo: App.PaymentFormInfo }) => {
+const FormWrapper = ({
+  stepInfo,
+}: {
+  stepInfo: Netsystems.PaymentFormInfo;
+}) => {
   const { label, title, subtitle, bannerImage, form } = stepInfo;
 
   return (

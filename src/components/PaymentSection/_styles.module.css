@@ -203,6 +203,11 @@
   padding: 0.5rem;
 }
 
+.input[disabled] {
+  border: 1px solid #dadada;
+  background-color: #f0f0f0;
+}
+
 .input::placeholder {
   color: #8d8d8d;
 }
@@ -345,7 +350,7 @@
   }
 
   @media (max-width: 670px) {
-    .paymentSec__main{
+    .paymentSec__main {
       min-height: 70vh;
     }
 
