@@ -63,7 +63,7 @@ const PaymentWrapper = () => {
   ];
 
   const [currentStep, setCurrentStep] = useState(0);
-  const [data, setData] = useState(0);
+  const [data, setData] = useState<any>(null);
 
   const nextStep = () => {
     if (currentStep < steps.length - 1) setCurrentStep(currentStep + 1);

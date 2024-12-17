@@ -15,7 +15,7 @@ type contract = {
 
 export const Contract = () => {
   const { nextStep, prevStep, getUserData, setUserData } = useContext(
-    PaymentWrapperContext,
+    PaymentWrapperContext
   ) as Netsystems.PayContextType;
 
   let [contracts, setContracts] = useState<contract[]>([]);
@@ -29,7 +29,7 @@ export const Contract = () => {
   const onSubmit: SubmitHandler<Form> = (_data) => {
     if (_data.nroContract === "") _data.nroContract = contracts[0].value;
 
-    setUserData({ ...getUserData(),  currentContract: _data.nroContract });
+    setUserData({ ...getUserData(), currentContract: _data.nroContract });
 
     nextStep();
   };
@@ -58,7 +58,14 @@ export const Contract = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <span className={style.paymentSec__form__content}>
-          <select className={style.input} {...register("nroContract")}>
+          <label htmlFor="contract_nroContract" className={style.label}>
+            Contracto de servicio
+          </label>
+          <select
+            id="contract_nroContract"
+            className={style.input}
+            {...register("nroContract")}
+          >
             {contracts.map((c, index) => (
               <option key={`opt_${index}`} value={c.value}>
                 {c.text}

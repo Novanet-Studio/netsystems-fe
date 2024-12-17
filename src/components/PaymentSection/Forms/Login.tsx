@@ -15,7 +15,7 @@ export const Login = () => {
   const { getClientDetails } = useNetsystemsService();
 
   const { nextStep, setUserData } = useContext(
-    PaymentWrapperContext,
+    PaymentWrapperContext
   ) as Netsystems.PayContextType;
 
   const [usernameInfo, setUsernameInfo] = useState("");
@@ -46,8 +46,6 @@ export const Login = () => {
         cedula: data.password,
       });
 
-      console.log(`<<< res >>>`, res);
-
       if (res.estado === "error") {
         switch (res.message) {
           case "No existe el cliente con el filtro indicado.":
@@ -63,9 +61,8 @@ export const Login = () => {
         return;
       }
 
-      setUserData(res);
-
       //? save user data on PaymentWrapperContext
+      setUserData(res);
 
       nextStep();
     } catch (e) {
@@ -85,7 +82,9 @@ export const Login = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <span className={style.paymentSec__form__content}>
+          <label htmlFor="login_username" className={style.label}>Usuario</label>
           <input
+            id="login_username"
             className={
               errors.username?.type === "required" || usernameInfo
                 ? [style.input, style.input_invalid].join(" ")
@@ -101,6 +100,7 @@ export const Login = () => {
             </p>
           )}
 
+          <label htmlFor="login_password" className={style.label}>Contraseña</label>
           <input
             type="password"
             className={

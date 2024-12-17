@@ -19,7 +19,7 @@ export const PaymentReport = () => {
   const { getBcvUsd, getFormatAmount } = useUsdConvertion();
 
   const { nextStep, prevStep, getUserData } = useContext(
-    PaymentWrapperContext,
+    PaymentWrapperContext
   ) as Netsystems.PayContextType;
 
   const [errorInfo, setErrorInfo] = useState("");
@@ -32,7 +32,7 @@ export const PaymentReport = () => {
       cedula: yup.string().required(),
       bankIssue: yup.string(),
       payDate: yup.date().required(),
-      referenceNro: yup.string().required(),
+      dynamicPass: yup.string().required(),
       convertionRate: yup.number().default(0),
       debtAmount: yup.number().required(),
       debtAmountLabel: yup.string().required(),
@@ -91,15 +91,9 @@ export const PaymentReport = () => {
   };
 
   const setVesAmount = () => {
-    console.log(`<<< getValues("debtAmount") >>>`, getValues("debtAmount"));
-    console.log(
-      `<<< getValues("convertionRate") >>>`,
-      getValues("convertionRate"),
-    );
-
     setValue(
       "debtAmountLabel",
-      `Bs.S ${getFormatAmount(String(getValues("debtAmount") * getValues("convertionRate")), true)}`,
+      `Bs.S ${getFormatAmount(String(getValues("debtAmount") * getValues("convertionRate")), true)}`
     );
   };
 
@@ -119,14 +113,18 @@ export const PaymentReport = () => {
         >
           {/* ? phone input | telefono */}
           <span className={style.input_wrapper}>
+            <label htmlFor="reportPayment_phone" className={style.label}>
+              Telefono
+            </label>
             <input
+              id="reportPayment_phone"
               className={
                 errors.phone?.type === "required"
                   ? [style.input, style.input_invalid].join(" ")
                   : style.input
               }
               style={{ width: "100%" }}
-              placeholder="Telefono"
+              placeholder="ej: 04120000000"
               {...register("phone", { required: true })}
             />
 
@@ -139,6 +137,9 @@ export const PaymentReport = () => {
 
           {/* ? ci input | cedula */}
           <span className={style.input_wrapper}>
+            <label htmlFor="reportPayment_cedula" className={style.label}>
+              Cedula de identidad
+            </label>
             <span
               className={style.input_wrapper_row}
               style={{
@@ -166,13 +167,14 @@ export const PaymentReport = () => {
               </select>
 
               <input
+                id="reportPayment_cedula"
                 className={
                   errors.cedula?.type === "required"
                     ? [style.input, style.input_invalid].join(" ")
                     : style.input
                 }
                 style={{ width: "100%" }}
-                placeholder="Cedula de identidad"
+                placeholder="ej: 10000000"
                 {...register("cedula", { required: true })}
               />
             </span>
@@ -186,7 +188,11 @@ export const PaymentReport = () => {
 
           {/* ? payDate input | Fecha de pago */}
           <span className={style.input_wrapper}>
+            <label htmlFor="reportPayment_payDate" className={style.label}>
+              Fecha del pago
+            </label>
             <input
+              id="reportPayment_payDate"
               type="date"
               className={
                 errors.payDate?.type === "required"
@@ -208,7 +214,11 @@ export const PaymentReport = () => {
 
           {/* ? bankIssue input | Banco emisor */}
           <span className={style.input_wrapper}>
+            <label htmlFor="reportPayment_backIssue" className={style.label}>
+              Banco emisor
+            </label>
             <select
+              id="reportPayment_backIssue"
               className={
                 errors.bankIssue?.type === "required"
                   ? [style.input, style.input_invalid].join(" ")
@@ -227,26 +237,33 @@ export const PaymentReport = () => {
 
           {/* ? referenceNro input | Nro de referencia  */}
           <span className={style.input_wrapper}>
+            <label htmlFor="reportPayment_dynamicPass" className={style.label}>
+              Clave dinamica
+            </label>
             <input
               className={
-                errors.referenceNro?.type === "required"
+                errors.dynamicPass?.type === "required"
                   ? [style.input, style.input_invalid].join(" ")
                   : style.input
               }
-              placeholder="Nro de referencia"
-              {...register("referenceNro", { required: true })}
+              placeholder="ej: 123456"
+              {...register("dynamicPass", { required: true })}
             />
 
-            {errors.referenceNro?.type === "required" && (
+            {errors.dynamicPass?.type === "required" && (
               <p role="alert" className={style.input_error}>
-                {"Referencia invalida"}
+                {"Clave dinamica invalida"}
               </p>
             )}
           </span>
 
           {/* ? debtAmount input | Monto a pagar  */}
           <span className={style.input_wrapper}>
+            <label htmlFor="reportPayment_debtAmount" className={style.label}>
+              Monto a pagar
+            </label>
             <input
+              id="reportPayment_debtAmount"
               className={
                 errors.debtAmountLabel?.type === "required"
                   ? [style.input, style.input_invalid].join(" ")
