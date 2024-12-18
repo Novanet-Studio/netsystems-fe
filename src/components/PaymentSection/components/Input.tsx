@@ -12,6 +12,7 @@ export const BaseInput = (props: Netsystems.Input) => {
     defaultValue = "",
     inputRequiredMessage = "Campo requerido",
     isDisabled = false,
+    isInvalid = false,
     showInputErros = true,
     errors,
     register,
@@ -44,7 +45,7 @@ export const BaseInput = (props: Netsystems.Input) => {
         id={id}
         type={inputType}
         className={
-          errors[inputName]?.type === "required" || inputInfo
+          errors[inputName]?.type === "required" || inputInfo || isInvalid
             ? [style.input, style.input_invalid].join(" ")
             : style.input
         }

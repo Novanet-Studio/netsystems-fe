@@ -26,7 +26,7 @@ interface GetBanksParams {
 }
 
 interface GetOTPParams {
-  body: any;
+  celularDestino: string;
 }
 
 interface SetBdTPaymentParams {
@@ -118,10 +118,10 @@ function useNetsystemsService(): UseNetsystemsService {
   );
 
   const getOTP = useCallback(
-    async ({ body }: GetOTPParams): Promise<any> =>
+    async ({ celularDestino }: GetOTPParams): Promise<any> =>
       fetchData("/bdt/getOTP", {
         method: "POST",
-        body,
+        body: JSON.stringify({ celularDestino: celularDestino }),
       }),
     [fetchData]
   );

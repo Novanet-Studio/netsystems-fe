@@ -110,14 +110,14 @@ export const Login = () => {
           {sendingInfo ? (
             <FormAlert
               message={"Enviando..."}
-              style={style.form_message}
+              style={style.paymentSec__form__message}
               show={true}
             />
           ) : (
             errorInfo !== "" && (
               <FormAlert
                 message={errorInfo}
-                style={style.input_error}
+                style={style.paymentSec__form__error}
                 show={true}
               />
             )

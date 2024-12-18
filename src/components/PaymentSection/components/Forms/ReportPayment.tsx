@@ -24,9 +24,14 @@ export const PaymentReport = () => {
   ) as Netsystems.PayContextType;
 
   const [errorInfo, setErrorInfo] = useState("");
+  const [formInfo, setFormInfo] = useState({
+    phone: "",
+    cedula: "",
+  });
   const [sendingInfo, setSendingInfo] = useState(false);
 
   const [requestOTP, setRequestOTP] = useState(false);
+  const [OTP, setOTP] = useState("");
 
   const [debtAmountLabel, setDebtAmountLabel] = useState("");
 
@@ -66,17 +71,44 @@ export const PaymentReport = () => {
   };
 
   const getRequestOTP = async (info: any) => {
+    setSendingInfo(true);
     if (!requestOTP) {
-      const { data, error } = await getOTP({
-        body: {
-          celularDestino: `${info.literal}0${info.cedula}`,
-        },
+      const res = await getOTP({
+        celularDestino: `${info.literal}0${info.cedula}`,
       });
 
-      console.log(`<<< data >>>`, data);
-      console.log(`<<< error >>>`, error);
+      console.log(`<<< res >>>`, res);
 
-      setRequestOTP(true);
+      if (res.codResp === "ERROR") {
+        setErrorInfo("Error de comunicacion con Banco del Tesoro");
+
+        setSendingInfo(false);
+
+        return;
+      }
+
+      if (res.codResp === "P2P0041") {
+        setErrorInfo("Cedula no asociada a un usuario");
+
+        setFormInfo({
+          ...formInfo,
+          cedula: "Ingreso invalido",
+        });
+
+        setSendingInfo(false);
+
+        return;
+      }
+
+      if (res.codResp === "C2P0000") {
+        setOTP(res.claveDinamica);
+
+        setRequestOTP(true);
+
+        setSendingInfo(false);
+      }
+    } else {
+      setSendingInfo(false);
     }
   };
 
@@ -147,7 +179,7 @@ export const PaymentReport = () => {
               label="Telefono"
               placeholder="ej: 04120000000"
               inputName="phone"
-              inputInfo={""}
+              inputInfo={formInfo.phone}
               inputRequiredMessage="Telefono requerido"
               register={register}
               errors={errors}
@@ -171,8 +203,9 @@ export const PaymentReport = () => {
                 id="reportPayment_literal"
                 inputName="literal"
                 defaultValue={"V"}
-                inputInfo={" "}
-                isInvalid={errors.cedula?.type === "required"}
+                isInvalid={
+                  errors.cedula?.type === "required" || formInfo.cedula !== ""
+                }
                 source={[
                   {
                     label: "V",
@@ -201,15 +234,18 @@ export const PaymentReport = () => {
                 inputName="cedula"
                 defaultValue="11484286"
                 showInputErros={false}
+                isInvalid={formInfo.cedula !== ""}
                 register={register}
                 errors={errors}
               />
             </span>
 
             <FormAlert
-              message={"Cedula requerida"}
-              style={style.input_error}
-              show={errors.cedula?.type === "required"}
+              message={formInfo.cedula || "Cedula requerida"}
+              style={style.paymentSec__form__error}
+              show={
+                errors.cedula?.type === "required" || formInfo.cedula !== ""
+              }
             />
           </span>
 
@@ -280,6 +316,22 @@ export const PaymentReport = () => {
             </span>
           )}
         </span>
+
+        {sendingInfo ? (
+          <FormAlert
+            message={"Enviando..."}
+            style={style.paymentSec__form__message}
+            show={true}
+          />
+        ) : (
+          errorInfo !== "" && (
+            <FormAlert
+              message={errorInfo}
+              style={style.paymentSec__form__error}
+              show={true}
+            />
+          )
+        )}
 
         <span className={style.paymentSec__form__buttons}>
           <PrevStep label="Regresar" handler={() => prevStep()} />

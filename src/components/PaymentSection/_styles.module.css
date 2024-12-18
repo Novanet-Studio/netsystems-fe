@@ -150,6 +150,20 @@
   flex-direction: column;
 }
 
+.paymentSec__form__error {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
+  color: #df0b33;
+}
+
+.paymentSec__form__message {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
+  color: #061392;
+}
+
 .paymentSec__form__content {
   flex: 1;
 
