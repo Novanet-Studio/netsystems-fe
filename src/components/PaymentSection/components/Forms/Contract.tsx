@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import PaymentWrapperContext from "../PaymentWrapperContex";
-import style from "../_styles.module.css";
+import PaymentWrapperContext from "../../PaymentWrapperContex";
+import style from "../../_styles.module.css";
 
-import type { Netsystems } from "../../../env";
+import type { Netsystems } from "../../../../env";
 
 import { NextStep } from "../NextStep";
 import { PrevStep } from "../PrevStep";
+import { SelectInput } from "../Input";
 
 type contract = {
   text: string;
@@ -58,20 +59,17 @@ export const Contract = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <span className={style.paymentSec__form__content}>
-          <label htmlFor="contract_nroContract" className={style.label}>
-            Contracto de servicio
-          </label>
-          <select
+          <SelectInput
             id="contract_nroContract"
-            className={style.input}
-            {...register("nroContract")}
-          >
-            {contracts.map((c, index) => (
-              <option key={`opt_${index}`} value={c.value}>
-                {c.text}
-              </option>
-            ))}
-          </select>
+            label="Contracto de servicio"
+            inputName="nroContract"
+            defaultValue={contracts.length > 0 ? contracts[0].text : ""}
+            source={contracts.map((c) => ({
+              label: c.text,
+              value: c.value,
+            }))}
+            register={register}
+          />
         </span>
         <span className={style.paymentSec__form__buttons}>
           <PrevStep label="Regresar" handler={() => prevStep()} />

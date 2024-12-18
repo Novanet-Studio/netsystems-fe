@@ -279,6 +279,8 @@
 
   background-color: #cbcbcb;
 
+  cursor: pointer;
+
   display: flex;
   gap: 1rem;
 }

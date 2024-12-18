@@ -7,12 +7,12 @@ import style from "./_styles.module.css";
 import type { Netsystems } from "../../env";
 
 //FORMS
-import { Login } from "./Forms/Login";
-import { PaymentMethod } from "./Forms/PaymentMethod";
-import { UserData } from "./Forms/UserData";
-import { Contract } from "./Forms/Contract";
-import { PaymentReport } from "./Forms/ReportPayment";
-import { CompletedPayment } from "./Forms/CompletedPayment";
+import { Login } from "./components/Forms/Login";
+import { PaymentMethod } from "./components/Forms/PaymentMethod";
+import { UserData } from "./components/Forms/UserData";
+import { Contract } from "./components/Forms/Contract";
+import { PaymentReport } from "./components/Forms/ReportPayment";
+import { CompletedPayment } from "./components/Forms/CompletedPayment";
 
 const PaymentWrapper = () => {
   const steps: Netsystems.PaymentFormInfo[] = [

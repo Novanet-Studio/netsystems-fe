@@ -1,15 +1,18 @@
+//? react
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import PaymentWrapperContext from "../PaymentWrapperContex";
-import style from "../_styles.module.css";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-
-import type { Netsystems } from "../../../env";
-
+//? utils and components
+import useNetsystemsService from "../../hooks/use-netsystems-services";
+import PaymentWrapperContext from "../../PaymentWrapperContex";
+import { BaseInput, FormAlert } from "../Input";
 import { NextStep } from "../NextStep";
-import useNetsystemsService from "../hooks/use-netsystems-services";
+
+//? others
+import type { Netsystems } from "../../../../env";
+import style from "../../_styles.module.css";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export const Login = () => {
   const { getClientDetails } = useNetsystemsService();
@@ -82,52 +85,42 @@ export const Login = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <span className={style.paymentSec__form__content}>
-          <label htmlFor="login_username" className={style.label}>Usuario</label>
-          <input
+          <BaseInput
             id="login_username"
-            className={
-              errors.username?.type === "required" || usernameInfo
-                ? [style.input, style.input_invalid].join(" ")
-                : style.input
-            }
-            placeholder="Usuario"
-            {...register("username", { required: true })}
+            label="Usuario"
+            placeholder="ej: V12345678"
+            inputName="username"
+            inputInfo={usernameInfo}
+            inputRequiredMessage="Usuario requerido"
+            register={register}
+            errors={errors}
           />
 
-          {(errors.username?.type === "required" || usernameInfo) && (
-            <p role="alert" className={style.input_error}>
-              {usernameInfo || "Usuario requerido"}
-            </p>
-          )}
-
-          <label htmlFor="login_password" className={style.label}>Contraseña</label>
-          <input
-            type="password"
-            className={
-              errors.password?.type === "required" || passwordInfo
-                ? [style.input, style.input_invalid].join(" ")
-                : style.input
-            }
-            placeholder="Contraseña"
-            {...register("password", { required: true })}
+          <BaseInput
+            id="login_password"
+            label="Contraseña"
+            placeholder="..."
+            inputName="password"
+            inputType="password"
+            inputInfo={passwordInfo}
+            register={register}
+            errors={errors}
           />
 
-          {(errors.password?.type === "required" || passwordInfo) && (
-            <p role="alert" className={style.input_error}>
-              {passwordInfo || "Contraseña requerida"}
-            </p>
-          )}
-
-          {!sendingInfo && errorInfo && (
-            <p role="alert" className={style.input_error}>
-              {errorInfo}
-            </p>
-          )}
-
-          {sendingInfo && (
-            <p role="alert" className={style.form_message}>
-              Enviando...
-            </p>
+          {sendingInfo ? (
+            <FormAlert
+              message={"Enviando..."}
+              style={style.form_message}
+              show={true}
+            />
+          ) : (
+            errorInfo !== "" && (
+              <FormAlert
+                message={errorInfo}
+                style={style.input_error}
+                show={true}
+              />
+            )
           )}
         </span>
 

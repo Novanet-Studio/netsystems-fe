@@ -25,6 +25,10 @@ interface GetBanksParams {
   body: any;
 }
 
+interface GetOTPParams {
+  body: any;
+}
+
 interface SetBdTPaymentParams {
   body: any;
 }
@@ -41,6 +45,7 @@ interface UseNetsystemsService {
 
   //? bdt
   getBanks: (params: GetBanksParams) => Promise<any>;
+  getOTP: (params: GetOTPParams) => Promise<any>;
   setBdTPayment: (params: SetBdTPaymentParams) => Promise<any>;
   setConformation: (params: SetConformationParams) => Promise<any>;
 }
@@ -105,7 +110,16 @@ function useNetsystemsService(): UseNetsystemsService {
   //? bdt
   const getBanks = useCallback(
     async ({ body }: GetBanksParams): Promise<any> =>
-      fetchData("/bdt/bancos", {
+      fetchData("/bdt/getBanks", {
+        method: "POST",
+        body,
+      }),
+    [fetchData]
+  );
+
+  const getOTP = useCallback(
+    async ({ body }: GetOTPParams): Promise<any> =>
+      fetchData("/bdt/getOTP", {
         method: "POST",
         body,
       }),
@@ -114,7 +128,7 @@ function useNetsystemsService(): UseNetsystemsService {
 
   const setBdTPayment = useCallback(
     async ({ body }: SetBdTPaymentParams): Promise<any> =>
-      fetchData("/bdt/pago", {
+      fetchData("/bdt/setPayment", {
         method: "POST",
         body,
       }),
@@ -123,7 +137,7 @@ function useNetsystemsService(): UseNetsystemsService {
 
   const setConformation = useCallback(
     async ({ body }: SetConformationParams): Promise<any> =>
-      fetchData("/bdt/conformacion", {
+      fetchData("/bdt/conformation", {
         method: "POST",
         body,
       }),
@@ -138,6 +152,7 @@ function useNetsystemsService(): UseNetsystemsService {
 
     //? bdt
     getBanks,
+    getOTP,
     setBdTPayment,
     setConformation,
   };

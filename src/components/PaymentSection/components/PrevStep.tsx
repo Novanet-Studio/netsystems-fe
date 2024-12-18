@@ -1,4 +1,4 @@
-import style from "./_styles.module.css";
+import style from "../_styles.module.css";
 
 export const PrevStep = (props: { label: string; handler: () => void }) => {
   const { label, handler } = props;

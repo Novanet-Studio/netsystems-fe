@@ -14,6 +14,23 @@ declare namespace Netsystems {
     url: string;
   };
 
+  type Input = {
+    id: string;
+    label?: string;
+    placeholder?: string;
+    defaultValue?: string;
+    inputName: string;
+    inputType?: string;
+    inputInfo?: string;
+    inputRequiredMessage?: string;
+    isDisabled?: boolean;
+    isInvalid?: boolean;
+    showInputErros?: boolean;
+    source?: { label: string; value: string }[];
+    errors?: any;
+    register?: any;
+  };
+
   //? stepper items
   interface PaymentFormInfo {
     title: string;
@@ -23,6 +40,7 @@ declare namespace Netsystems {
     label?: string;
     stepIndicator?: JSX.Element;
   }
+
   //? payment form context
   type PayContextType = {
     nextStep: () => void;

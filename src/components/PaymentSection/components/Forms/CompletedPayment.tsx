@@ -1,4 +1,4 @@
-import style from "../_styles.module.css";
+import style from "../../_styles.module.css";
 
 import { NextStep } from "../NextStep";
 

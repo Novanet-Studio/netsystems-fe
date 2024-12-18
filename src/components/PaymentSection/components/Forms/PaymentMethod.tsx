@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import PaymentWrapperContext from "../PaymentWrapperContex";
-import style from "../_styles.module.css";
+import PaymentWrapperContext from "../../PaymentWrapperContex";
+import style from "../../_styles.module.css";
 
-import type { Netsystems } from "../../../env";
+import type { Netsystems } from "../../../../env";
 
 import { NextStep } from "../NextStep";
 

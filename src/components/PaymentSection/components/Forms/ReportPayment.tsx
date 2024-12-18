@@ -1,21 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import PaymentWrapperContext from "../PaymentWrapperContex";
-import style from "../_styles.module.css";
+import PaymentWrapperContext from "../../PaymentWrapperContex";
+import style from "../../_styles.module.css";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { banks } from "../../../utils/banks";
-import type { Netsystems } from "../../../env";
+import { banks } from "../../../../utils/banks";
+import type { Netsystems } from "../../../../env";
 
 import { NextStep } from "../NextStep";
 import { PrevStep } from "../PrevStep";
-import useNetsystemsService from "../hooks/use-netsystems-services";
-import useUsdConvertion from "../hooks/use-usd-convertion";
+import useNetsystemsService from "../../hooks/use-netsystems-services";
+import useUsdConvertion from "../../hooks/use-usd-convertion";
+import { BaseInput, FormAlert, SelectInput } from "../Input";
 
 export const PaymentReport = () => {
-  const { getInvoiceDebts } = useNetsystemsService();
+  const { getInvoiceDebts, getOTP } = useNetsystemsService();
   const { getBcvUsd, getFormatAmount } = useUsdConvertion();
 
   const { nextStep, prevStep, getUserData } = useContext(
@@ -25,6 +26,10 @@ export const PaymentReport = () => {
   const [errorInfo, setErrorInfo] = useState("");
   const [sendingInfo, setSendingInfo] = useState(false);
 
+  const [requestOTP, setRequestOTP] = useState(false);
+
+  const [debtAmountLabel, setDebtAmountLabel] = useState("");
+
   const schema = yup
     .object({
       phone: yup.string().required(),
@@ -32,10 +37,9 @@ export const PaymentReport = () => {
       cedula: yup.string().required(),
       bankIssue: yup.string(),
       payDate: yup.date().required(),
-      dynamicPass: yup.string().required(),
+      // dynamicPass: yup.string().required(),
       convertionRate: yup.number().default(0),
       debtAmount: yup.number().required(),
-      debtAmountLabel: yup.string().required(),
     })
     .required();
 
@@ -50,9 +54,30 @@ export const PaymentReport = () => {
   });
 
   const onSubmit = (data: any) => {
+    if (!requestOTP) {
+      getRequestOTP(data);
+
+      return;
+    }
+
     console.log(`<<< Enviar datos a api/BdV >>>`, data);
 
-    nextStep();
+    // nextStep();
+  };
+
+  const getRequestOTP = async (info: any) => {
+    if (!requestOTP) {
+      const { data, error } = await getOTP({
+        body: {
+          celularDestino: `${info.literal}0${info.cedula}`,
+        },
+      });
+
+      console.log(`<<< data >>>`, data);
+      console.log(`<<< error >>>`, error);
+
+      setRequestOTP(true);
+    }
   };
 
   const getDebts = async () => {
@@ -91,16 +116,20 @@ export const PaymentReport = () => {
   };
 
   const setVesAmount = () => {
-    setValue(
-      "debtAmountLabel",
+    setDebtAmountLabel(
       `Bs.S ${getFormatAmount(String(getValues("debtAmount") * getValues("convertionRate")), true)}`
+    );
+
+    setValue(
+      "debtAmount",
+      getValues("debtAmount") * getValues("convertionRate")
     );
   };
 
   useEffect(() => {
     getDebts();
     getVesUsd();
-  }, []);
+  }, [null]);
 
   return (
     <>
@@ -113,26 +142,16 @@ export const PaymentReport = () => {
         >
           {/* ? phone input | telefono */}
           <span className={style.input_wrapper}>
-            <label htmlFor="reportPayment_phone" className={style.label}>
-              Telefono
-            </label>
-            <input
+            <BaseInput
               id="reportPayment_phone"
-              className={
-                errors.phone?.type === "required"
-                  ? [style.input, style.input_invalid].join(" ")
-                  : style.input
-              }
-              style={{ width: "100%" }}
+              label="Telefono"
               placeholder="ej: 04120000000"
-              {...register("phone", { required: true })}
+              inputName="phone"
+              inputInfo={""}
+              inputRequiredMessage="Telefono requerido"
+              register={register}
+              errors={errors}
             />
-
-            {errors.phone?.type === "required" && (
-              <p role="alert" className={style.input_error}>
-                {"Telefono invalido"}
-              </p>
-            )}
           </span>
 
           {/* ? ci input | cedula */}
@@ -148,42 +167,50 @@ export const PaymentReport = () => {
                 gap: ".5rem",
               }}
             >
-              <select
-                className={
-                  errors.cedula?.type === "required"
-                    ? [style.input, style.input_invalid].join(" ")
-                    : style.input
-                }
-                style={{
-                  appearance: "textfield",
-                }}
-                {...register("literal")}
-                defaultValue="V"
-              >
-                <option value="V">V</option>
-                <option value="E">E</option>
-                <option value="J">J</option>
-                <option value="P">P</option>
-              </select>
+              <SelectInput
+                id="reportPayment_literal"
+                inputName="literal"
+                defaultValue={"V"}
+                inputInfo={" "}
+                isInvalid={errors.cedula?.type === "required"}
+                source={[
+                  {
+                    label: "V",
+                    value: "V",
+                  },
+                  {
+                    label: "E",
+                    value: "E",
+                  },
+                  {
+                    label: "J",
+                    value: "J",
+                  },
+                  {
+                    label: "P",
+                    value: "P",
+                  },
+                ]}
+                register={register}
+              />
 
-              <input
+              <BaseInput
                 id="reportPayment_cedula"
-                className={
-                  errors.cedula?.type === "required"
-                    ? [style.input, style.input_invalid].join(" ")
-                    : style.input
-                }
-                style={{ width: "100%" }}
+                inputType="number"
                 placeholder="ej: 10000000"
-                {...register("cedula", { required: true })}
+                inputName="cedula"
+                defaultValue="11484286"
+                showInputErros={false}
+                register={register}
+                errors={errors}
               />
             </span>
 
-            {errors.cedula?.type === "required" && (
-              <p role="alert" className={style.input_error}>
-                {"Cedula invalida"}
-              </p>
-            )}
+            <FormAlert
+              message={"Cedula requerida"}
+              style={style.input_error}
+              show={errors.cedula?.type === "required"}
+            />
           </span>
 
           {/* ? payDate input | Fecha de pago */}
@@ -201,7 +228,7 @@ export const PaymentReport = () => {
               }
               defaultValue={new Date().toISOString().substr(0, 10)}
               {...register("payDate", {
-                required: true,
+                valueAsDate: true,
               })}
             />
 
@@ -214,72 +241,53 @@ export const PaymentReport = () => {
 
           {/* ? bankIssue input | Banco emisor */}
           <span className={style.input_wrapper}>
-            <label htmlFor="reportPayment_backIssue" className={style.label}>
-              Banco emisor
-            </label>
-            <select
+            <SelectInput
               id="reportPayment_backIssue"
-              className={
-                errors.bankIssue?.type === "required"
-                  ? [style.input, style.input_invalid].join(" ")
-                  : style.input
-              }
-              style={{ width: "100%" }}
-              {...register("bankIssue")}
-              defaultValue="0102"
-            >
-              {banks.map((b: Netsystems.Bank) => (
-                <option key={b.code} value={b.code}>{`${b.name}`}</option>
-                //* <option value={b.code}>{`${b.code} - ${b.name}`}</option>
-              ))}
-            </select>
-          </span>
-
-          {/* ? referenceNro input | Nro de referencia  */}
-          <span className={style.input_wrapper}>
-            <label htmlFor="reportPayment_dynamicPass" className={style.label}>
-              Clave dinamica
-            </label>
-            <input
-              className={
-                errors.dynamicPass?.type === "required"
-                  ? [style.input, style.input_invalid].join(" ")
-                  : style.input
-              }
-              placeholder="ej: 123456"
-              {...register("dynamicPass", { required: true })}
+              label="Banco emisor"
+              inputName="bankIssue"
+              defaultValue="0163"
+              source={banks.map((b: Netsystems.Bank) => ({
+                label: b.name,
+                value: b.code,
+              }))}
+              register={register}
             />
-
-            {errors.dynamicPass?.type === "required" && (
-              <p role="alert" className={style.input_error}>
-                {"Clave dinamica invalida"}
-              </p>
-            )}
           </span>
 
           {/* ? debtAmount input | Monto a pagar  */}
           <span className={style.input_wrapper}>
-            <label htmlFor="reportPayment_debtAmount" className={style.label}>
-              Monto a pagar
-            </label>
-            <input
+            <BaseInput
               id="reportPayment_debtAmount"
-              className={
-                errors.debtAmountLabel?.type === "required"
-                  ? [style.input, style.input_invalid].join(" ")
-                  : style.input
-              }
-              placeholder="Monto a pagar"
-              disabled
-              {...register("debtAmountLabel", { required: true })}
+              label="Monto a pagar"
+              inputName="reportPayment_debtAmount"
+              defaultValue={debtAmountLabel}
+              isDisabled={true}
             />
           </span>
+
+          {/* ? referenceNro input | Nro de referencia  */}
+          {requestOTP && (
+            <span className={style.input_wrapper}>
+              <BaseInput
+                id="reportPayment_dynamicPass"
+                label="Clave dinamica"
+                placeholder="ej: 123456"
+                inputName="dynamicPass"
+                inputRequiredMessage="Clave dinamica invalida"
+                register={register}
+                errors={errors}
+              />
+            </span>
+          )}
         </span>
 
         <span className={style.paymentSec__form__buttons}>
           <PrevStep label="Regresar" handler={() => prevStep()} />
 
-          <NextStep label="Finalizar" handler={handleSubmit(onSubmit)} />
+          <NextStep
+            label={requestOTP ? "Finalizar" : "Solicitar clave"}
+            handler={handleSubmit(onSubmit)}
+          />
         </span>
       </form>
     </>
