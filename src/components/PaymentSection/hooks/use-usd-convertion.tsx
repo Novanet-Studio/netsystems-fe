@@ -17,7 +17,7 @@ interface UseUsdConvertion {
 }
 
 function useUsdConvertion(): UseUsdConvertion {
-  const URL = "https://api.exchangedyn.com/markets/quotes";
+  const URL = import.meta.env.PUBLIC_EXG_API_URL;
 
   const fetchData = useCallback<any>(
     async (endpoint: string, options: ApiOptions = {}) => {
@@ -37,7 +37,7 @@ function useUsdConvertion(): UseUsdConvertion {
         throw error;
       }
     },
-    [URL],
+    [URL]
   );
 
   const getBcvUsd = useCallback(
@@ -45,7 +45,7 @@ function useUsdConvertion(): UseUsdConvertion {
       fetchData("/usdves/bcv", {
         method: "GET",
       }),
-    [fetchData],
+    [fetchData]
   );
 
   const getFormatAmount = (amount: string, pretty = false) => {

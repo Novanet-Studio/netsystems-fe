@@ -62,6 +62,7 @@ const PaymentWrapper = () => {
     },
   ];
 
+  const [payResult, setPayResult] = useState({ status: "", message: "" });
   const [currentStep, setCurrentStep] = useState(0);
   const [data, setData] = useState<any>(null);
 
@@ -74,8 +75,6 @@ const PaymentWrapper = () => {
   };
 
   const goToStep = (step: number) => {
-    console.log(`<<< step in wrapper >>>`, step);
-
     setCurrentStep(step);
   };
 
@@ -87,11 +86,27 @@ const PaymentWrapper = () => {
     setData(userData);
   };
 
+  const getPaymentResult = () => {
+    return payResult;
+  };
+
+  const setPaymentResult = (paymentStatus: any) => {
+    setPayResult(paymentStatus);
+  };
+
   useEffect(() => {}, [null]);
 
   return (
     <PaymentWrapperContex.Provider
-      value={{ nextStep, prevStep, goToStep, getUserData, setUserData }}
+      value={{
+        nextStep,
+        prevStep,
+        goToStep,
+        getUserData,
+        setUserData,
+        getPaymentResult,
+        setPaymentResult,
+      }}
     >
       <FormWrapper stepInfo={steps[currentStep]} />
     </PaymentWrapperContex.Provider>

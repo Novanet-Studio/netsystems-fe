@@ -59,17 +59,19 @@ export const Contract = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <span className={style.paymentSec__form__content}>
-          <SelectInput
-            id="contract_nroContract"
-            label="Contracto de servicio"
-            inputName="nroContract"
-            defaultValue={contracts.length > 0 ? contracts[0].text : ""}
-            source={contracts.map((c) => ({
-              label: c.text,
-              value: c.value,
-            }))}
-            register={register}
-          />
+          <span className={style.input_wrapper}>
+            <SelectInput
+              id="contract_nroContract"
+              label="Contracto de servicio"
+              inputName="nroContract"
+              defaultValue={contracts.length > 0 ? contracts[0].text : ""}
+              source={contracts.map((c) => ({
+                label: c.text,
+                value: c.value,
+              }))}
+              register={register}
+            />
+          </span>
         </span>
         <span className={style.paymentSec__form__buttons}>
           <PrevStep label="Regresar" handler={() => prevStep()} />

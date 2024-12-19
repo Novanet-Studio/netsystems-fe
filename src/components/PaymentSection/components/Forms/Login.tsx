@@ -13,6 +13,7 @@ import type { Netsystems } from "../../../../env";
 import style from "../../_styles.module.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Loading } from "../Loading";
 
 export const Login = () => {
   const { getClientDetails } = useNetsystemsService();
@@ -48,6 +49,7 @@ export const Login = () => {
       const res: Netsystems.LoginResponse = await getClientDetails({
         cedula: data.password,
       });
+
 
       if (res.estado === "error") {
         switch (res.message) {
@@ -112,14 +114,34 @@ export const Login = () => {
               message={"Enviando..."}
               style={style.paymentSec__form__message}
               show={true}
-            />
+            >
+              <Loading />
+            </FormAlert>
           ) : (
             errorInfo !== "" && (
               <FormAlert
                 message={errorInfo}
                 style={style.paymentSec__form__error}
                 show={true}
-              />
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={24}
+                  height={24}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="icon icon-tabler icons-tabler-outline icon-tabler-exclamation-circle"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                  <path d="M12 9v4" />
+                  <path d="M12 16v.01" />
+                </svg>
+              </FormAlert>
             )
           )}
         </span>

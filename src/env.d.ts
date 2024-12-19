@@ -46,8 +46,11 @@ declare namespace Netsystems {
     nextStep: () => void;
     prevStep: () => void;
     goToStep: (step: number) => void;
-    setUserData: (userData: any) => void;
     getUserData: () => LoginResponse;
+    setUserData: (userData: any) => void;
+
+    getPaymentResult: () => any;
+    setPaymentResult: (paymentStatus: any) => void;
   };
 
   //? payment form items <PaymentMethod />

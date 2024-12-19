@@ -1,3 +1,4 @@
+import { Children } from "react";
 import type { Netsystems } from "../../../env";
 import style from "../_styles.module.css";
 
@@ -52,6 +53,7 @@ export const BaseInput = (props: Netsystems.Input) => {
         defaultValue={defaultValue}
         placeholder={placeholder}
         disabled={isDisabled}
+        max={inputType === "date" ? new Date().toISOString().split("T")[0] : ""}
         {...register(inputName, { required: true })}
       />
 
@@ -112,13 +114,16 @@ export const FormAlert = (props: {
   message: string;
   style: string;
   show: boolean;
+  children?: any;
 }) => {
   const { message, style, show } = props;
+  const { children } = props;
 
   if (!show) return <></>;
 
   return (
     <p role="alert" className={style}>
+      {children}
       {message}
     </p>
   );

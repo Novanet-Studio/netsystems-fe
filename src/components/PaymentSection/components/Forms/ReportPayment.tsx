@@ -14,12 +14,14 @@ import { PrevStep } from "../PrevStep";
 import useNetsystemsService from "../../hooks/use-netsystems-services";
 import useUsdConvertion from "../../hooks/use-usd-convertion";
 import { BaseInput, FormAlert, SelectInput } from "../Input";
+import { Loading } from "../Loading";
 
 export const PaymentReport = () => {
-  const { getInvoiceDebts, getOTP } = useNetsystemsService();
+  const { getInvoiceDebts, getOTP, setBdTPayment, setPayment } =
+    useNetsystemsService();
   const { getBcvUsd, getFormatAmount } = useUsdConvertion();
 
-  const { nextStep, prevStep, getUserData } = useContext(
+  const { nextStep, prevStep, setPaymentResult, getUserData } = useContext(
     PaymentWrapperContext
   ) as Netsystems.PayContextType;
 
@@ -27,11 +29,11 @@ export const PaymentReport = () => {
   const [formInfo, setFormInfo] = useState({
     phone: "",
     cedula: "",
+    dynamicPass: "",
   });
   const [sendingInfo, setSendingInfo] = useState(false);
 
   const [requestOTP, setRequestOTP] = useState(false);
-  const [OTP, setOTP] = useState("");
 
   const [debtAmountLabel, setDebtAmountLabel] = useState("");
 
@@ -42,9 +44,10 @@ export const PaymentReport = () => {
       cedula: yup.string().required(),
       bankIssue: yup.string(),
       payDate: yup.date().required(),
-      // dynamicPass: yup.string().required(),
-      convertionRate: yup.number().default(0),
       debtAmount: yup.number().required(),
+      debtAmountVES: yup.number().required(),
+      convertionRate: yup.number().default(0),
+      IDFactura: yup.number(),
     })
     .required();
 
@@ -58,57 +61,120 @@ export const PaymentReport = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     if (!requestOTP) {
       getRequestOTP(data);
 
       return;
     }
 
-    console.log(`<<< Enviar datos a api/BdV >>>`, data);
+    setSendingInfo(true);
 
-    // nextStep();
+    const payload = {
+      celular: data.phone,
+      banco: data.bankIssue,
+      cedula: `${data.literal}${data.cedula}`,
+      monto: getFormatAmount(String(getValues("debtAmount")), false),
+      token: data.dynamicPass,
+      nombre: getUserData().datos[0].nombre,
+    };
+
+    const res = await setBdTPayment(payload);
+
+    setSendingInfo(false);
+
+    if (res.codres !== "C2P0000") {
+      setErrorInfo("");
+
+      switch (res.descRes) {
+        case "CLIENTE DESTINO NO AFILIADO":
+          setErrorInfo("Usuario no afiliado al servicio de pago");
+          break;
+
+        case "CLAVE DINAMICA ESTA VENCIDA":
+          setErrorInfo("Error en la generacion de pago");
+
+          setFormInfo({
+            dynamicPass: "Clave dinamica invalida",
+            phone: "",
+            cedula: "",
+          });
+
+          break;
+
+        case "TOKEN INVALIDA, INTENTE DE NUEVO":
+          setErrorInfo("Error en la generacion de pago");
+
+          setFormInfo({
+            dynamicPass: "Clave dinamica invalida",
+            phone: "",
+            cedula: "",
+          });
+          break;
+
+        default:
+          setErrorInfo("Error desconocido con servicio de pago");
+          break;
+      }
+    } else {
+      const payment = {
+        IDFactura: getValues("IDFactura")!,
+        valor: getValues("debtAmount"),
+        fecha: res.fecha.split("/").reverse().join("-"),
+        secuencial: genSecuencial(),
+      };
+
+      const resPayment = await setPayment(payment);
+
+      console.log(`<<< resPayment >>>`, resPayment);
+
+      if (resPayment.code === "000") {
+        setPaymentResult({
+          status: "CONFIRMED_PAYMENT",
+          message: "Pago registrado con exito",
+        });
+
+        nextStep();
+      }
+    }
   };
 
   const getRequestOTP = async (info: any) => {
     setSendingInfo(true);
-    if (!requestOTP) {
-      const res = await getOTP({
-        celularDestino: `${info.literal}0${info.cedula}`,
+    setErrorInfo("");
+
+    const res = await getOTP({
+      ci: `${info.literal}0${info.cedula}`,
+    });
+
+    if (res.codResp === "ERROR") {
+      setErrorInfo("Error de comunicacion con Servicio de pago");
+
+      setSendingInfo(false);
+
+      return;
+    }
+
+    if (res.codResp === "P2P0041") {
+      setErrorInfo("Cedula no asociada a un usuario");
+
+      setFormInfo({
+        dynamicPass: "",
+        phone: "",
+        cedula: "Ingreso invalido",
       });
 
-      console.log(`<<< res >>>`, res);
-
-      if (res.codResp === "ERROR") {
-        setErrorInfo("Error de comunicacion con Banco del Tesoro");
-
-        setSendingInfo(false);
-
-        return;
-      }
-
-      if (res.codResp === "P2P0041") {
-        setErrorInfo("Cedula no asociada a un usuario");
-
-        setFormInfo({
-          ...formInfo,
-          cedula: "Ingreso invalido",
-        });
-
-        setSendingInfo(false);
-
-        return;
-      }
-
-      if (res.codResp === "C2P0000") {
-        setOTP(res.claveDinamica);
-
-        setRequestOTP(true);
-
-        setSendingInfo(false);
-      }
-    } else {
       setSendingInfo(false);
+
+      return;
+    }
+
+    if (res.codResp === "C2P0000") {
+      setRequestOTP(true);
+
+      setSendingInfo(false);
+
+      console.log(`<<< res >>>`, res);
     }
   };
 
@@ -128,6 +194,7 @@ export const PaymentReport = () => {
       }
 
       setValue("debtAmount", Number(res.facturas[0].valor));
+      setValue("IDFactura", Number(res.facturas[0].IDFactura));
 
       if (getValues("convertionRate")) setVesAmount();
     } catch (e) {
@@ -143,7 +210,7 @@ export const PaymentReport = () => {
 
       if (getValues("debtAmount")) setVesAmount();
     } catch (e) {
-      setErrorInfo("😡 Error de comunicacion con exchangedyn");
+      setErrorInfo("Error de comunicacion con exchangedyn");
     }
   };
 
@@ -153,7 +220,7 @@ export const PaymentReport = () => {
     );
 
     setValue(
-      "debtAmount",
+      "debtAmountVES",
       getValues("debtAmount") * getValues("convertionRate")
     );
   };
@@ -232,7 +299,6 @@ export const PaymentReport = () => {
                 inputType="number"
                 placeholder="ej: 10000000"
                 inputName="cedula"
-                defaultValue="11484286"
                 showInputErros={false}
                 isInvalid={formInfo.cedula !== ""}
                 register={register}
@@ -251,28 +317,18 @@ export const PaymentReport = () => {
 
           {/* ? payDate input | Fecha de pago */}
           <span className={style.input_wrapper}>
-            <label htmlFor="reportPayment_payDate" className={style.label}>
-              Fecha del pago
-            </label>
-            <input
+            <BaseInput
               id="reportPayment_payDate"
-              type="date"
-              className={
-                errors.payDate?.type === "required"
-                  ? [style.input, style.input_invalid].join(" ")
-                  : style.input
-              }
+              label="Fecha del pago"
+              placeholder="..."
               defaultValue={new Date().toISOString().substr(0, 10)}
-              {...register("payDate", {
-                valueAsDate: true,
-              })}
+              inputName="payDate"
+              inputType="date"
+              inputInfo={""}
+              isDisabled={false}
+              register={register}
+              errors={errors}
             />
-
-            {errors.payDate?.type === "required" && (
-              <p role="alert" className={style.input_error}>
-                {"Fecha de pago invalid"}
-              </p>
-            )}
           </span>
 
           {/* ? bankIssue input | Banco emisor */}
@@ -301,15 +357,15 @@ export const PaymentReport = () => {
             />
           </span>
 
-          {/* ? referenceNro input | Nro de referencia  */}
+          {/* ? dynamicPass state | Clave dinamica  */}
           {requestOTP && (
             <span className={style.input_wrapper}>
               <BaseInput
                 id="reportPayment_dynamicPass"
                 label="Clave dinamica"
-                placeholder="ej: 123456"
+                placeholder="ej: 1234568"
                 inputName="dynamicPass"
-                inputRequiredMessage="Clave dinamica invalida"
+                inputInfo={formInfo.dynamicPass}
                 register={register}
                 errors={errors}
               />
@@ -319,17 +375,37 @@ export const PaymentReport = () => {
 
         {sendingInfo ? (
           <FormAlert
-            message={"Enviando..."}
+            message={requestOTP ? "Enviando..." : "Solicitando clave..."}
             style={style.paymentSec__form__message}
             show={true}
-          />
+          >
+            <Loading />
+          </FormAlert>
         ) : (
           errorInfo !== "" && (
             <FormAlert
               message={errorInfo}
               style={style.paymentSec__form__error}
               show={true}
-            />
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={24}
+                height={24}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="icon icon-tabler icons-tabler-outline icon-tabler-exclamation-circle"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                <path d="M12 9v4" />
+                <path d="M12 16v.01" />
+              </svg>
+            </FormAlert>
           )
         )}
 
@@ -345,3 +421,7 @@ export const PaymentReport = () => {
     </>
   );
 };
+
+function genSecuencial(): number {
+  return Number(`${Date.now()}0`);
+}

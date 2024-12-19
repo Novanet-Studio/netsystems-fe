@@ -17,7 +17,10 @@ interface GetInvoiceDebtsParams {
 }
 
 interface SetPaymentParams {
-  body: any;
+  IDFactura: number;
+  valor: number;
+  fecha: string;
+  secuencial: number;
 }
 
 //? bdt
@@ -26,16 +29,21 @@ interface GetBanksParams {
 }
 
 interface GetOTPParams {
-  celularDestino: string;
+  ci: string;
 }
 
 interface SetBdTPaymentParams {
-  body: any;
+  celular: string;
+  banco: string;
+  cedula: string;
+  monto: string;
+  token: string;
+  nombre: string;
 }
 
-interface SetConformationParams {
-  body: any;
-}
+// interface SetConformationParams {
+//   body: any;
+// }
 
 interface UseNetsystemsService {
   //? users
@@ -47,11 +55,11 @@ interface UseNetsystemsService {
   getBanks: (params: GetBanksParams) => Promise<any>;
   getOTP: (params: GetOTPParams) => Promise<any>;
   setBdTPayment: (params: SetBdTPaymentParams) => Promise<any>;
-  setConformation: (params: SetConformationParams) => Promise<any>;
+  //setConformation: (params: SetConformationParams) => Promise<any>;
 }
 
 function useNetsystemsService(): UseNetsystemsService {
-  const URL = "http://localhost:1302/api/v1";
+  const URL = import.meta.env.PUBLIC_NET_API_URL;
 
   //? cluster fetch
   const fetchData = useCallback<any>(
@@ -99,10 +107,10 @@ function useNetsystemsService(): UseNetsystemsService {
   );
 
   const setPayment = useCallback(
-    async ({ body }: SetPaymentParams): Promise<any> =>
+    async (body: SetPaymentParams): Promise<any> =>
       fetchData("/user/registrar-pago", {
         method: "POST",
-        body,
+        body: JSON.stringify(body),
       }),
     [fetchData]
   );
@@ -118,31 +126,31 @@ function useNetsystemsService(): UseNetsystemsService {
   );
 
   const getOTP = useCallback(
-    async ({ celularDestino }: GetOTPParams): Promise<any> =>
+    async ({ ci }: GetOTPParams): Promise<any> =>
       fetchData("/bdt/getOTP", {
         method: "POST",
-        body: JSON.stringify({ celularDestino: celularDestino }),
+        body: JSON.stringify({ celularDestino: ci }),
       }),
     [fetchData]
   );
 
   const setBdTPayment = useCallback(
-    async ({ body }: SetBdTPaymentParams): Promise<any> =>
+    async (body: SetBdTPaymentParams): Promise<any> =>
       fetchData("/bdt/setPayment", {
         method: "POST",
-        body,
+        body: JSON.stringify(body),
       }),
     [fetchData]
   );
 
-  const setConformation = useCallback(
-    async ({ body }: SetConformationParams): Promise<any> =>
-      fetchData("/bdt/conformation", {
-        method: "POST",
-        body,
-      }),
-    [fetchData]
-  );
+  // const setConformation = useCallback(
+  //   async ({ body }: SetConformationParams): Promise<any> =>
+  //     fetchData("/bdt/conformation", {
+  //       method: "POST",
+  //       body,
+  //     }),
+  //   [fetchData]
+  // );
 
   return {
     //? users
@@ -154,7 +162,7 @@ function useNetsystemsService(): UseNetsystemsService {
     getBanks,
     getOTP,
     setBdTPayment,
-    setConformation,
+    //setConformation,
   };
 }
 
