@@ -50,7 +50,6 @@ export const Login = () => {
         cedula: data.password,
       });
 
-
       if (res.estado === "error") {
         switch (res.message) {
           case "No existe el cliente con el filtro indicado.":
@@ -71,7 +70,6 @@ export const Login = () => {
 
       nextStep();
     } catch (e) {
-      console.log(`<<< e >>>`, e);
       setErrorInfo("🤕 Error de conexion con el servicio de pago");
     } finally {
       setSendingInfo(false);

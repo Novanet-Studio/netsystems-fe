@@ -42,7 +42,7 @@ export const PaymentReport = () => {
       phone: yup.string().required(),
       literal: yup.string(),
       cedula: yup.string().required(),
-      bankIssue: yup.string(),
+      bankIssue: yup.string().required(),
       payDate: yup.date().required(),
       debtAmount: yup.number().required(),
       debtAmountVES: yup.number().required(),
@@ -56,13 +56,14 @@ export const PaymentReport = () => {
     handleSubmit,
     setValue,
     getValues,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = async (data: any) => {
-    if (!requestOTP) {
+    if (!requestOTP && getValues("bankIssue") === "0163") {
       getRequestOTP(data);
 
       return;
@@ -73,8 +74,9 @@ export const PaymentReport = () => {
     const payload = {
       celular: data.phone,
       banco: data.bankIssue,
+      // !!! test exception !!!
       cedula: `${data.literal}${data.cedula}`,
-      monto: getFormatAmount(String(getValues("debtAmount")), false),
+      monto: getFormatAmount(String(getValues("debtAmountVES")), false),
       token: data.dynamicPass,
       nombre: getUserData().datos[0].nombre,
     };
@@ -113,7 +115,7 @@ export const PaymentReport = () => {
           break;
 
         default:
-          setErrorInfo("Error desconocido con servicio de pago");
+          setErrorInfo("Error con el servicio de pago");
           break;
       }
     } else {
@@ -125,8 +127,6 @@ export const PaymentReport = () => {
       };
 
       const resPayment = await setPayment(payment);
-
-      console.log(`<<< resPayment >>>`, resPayment);
 
       if (resPayment.code === "000") {
         setPaymentResult({
@@ -173,8 +173,6 @@ export const PaymentReport = () => {
       setRequestOTP(true);
 
       setSendingInfo(false);
-
-      console.log(`<<< res >>>`, res);
     }
   };
 
@@ -197,9 +195,7 @@ export const PaymentReport = () => {
       setValue("IDFactura", Number(res.facturas[0].IDFactura));
 
       if (getValues("convertionRate")) setVesAmount();
-    } catch (e) {
-      console.log(`<<< e >>>`, e);
-    }
+    } catch (e) {}
   };
 
   const getVesUsd = async () => {
@@ -224,6 +220,8 @@ export const PaymentReport = () => {
       getValues("debtAmount") * getValues("convertionRate")
     );
   };
+
+  const watchFields = watch();
 
   useEffect(() => {
     getDebts();
@@ -337,7 +335,6 @@ export const PaymentReport = () => {
               id="reportPayment_backIssue"
               label="Banco emisor"
               inputName="bankIssue"
-              defaultValue="0163"
               source={banks.map((b: Netsystems.Bank) => ({
                 label: b.name,
                 value: b.code,
@@ -358,7 +355,7 @@ export const PaymentReport = () => {
           </span>
 
           {/* ? dynamicPass state | Clave dinamica  */}
-          {requestOTP && (
+          {(requestOTP || watchFields.bankIssue !== "0163") && (
             <span className={style.input_wrapper}>
               <BaseInput
                 id="reportPayment_dynamicPass"
@@ -375,7 +372,11 @@ export const PaymentReport = () => {
 
         {sendingInfo ? (
           <FormAlert
-            message={requestOTP ? "Enviando..." : "Solicitando clave..."}
+            message={
+              requestOTP || watchFields.bankIssue !== "0163"
+                ? "Enviando..."
+                : "Solicitando clave..."
+            }
             style={style.paymentSec__form__message}
             show={true}
           >
@@ -413,7 +414,11 @@ export const PaymentReport = () => {
           <PrevStep label="Regresar" handler={() => prevStep()} />
 
           <NextStep
-            label={requestOTP ? "Finalizar" : "Solicitar clave"}
+            label={
+              requestOTP || watchFields.bankIssue !== "0163"
+                ? "Finalizar"
+                : "Solicitar clave"
+            }
             handler={handleSubmit(onSubmit)}
           />
         </span>
