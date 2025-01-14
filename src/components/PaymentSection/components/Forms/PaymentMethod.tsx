@@ -8,19 +8,19 @@ import { NextStep } from "../NextStep";
 
 export const PaymentMethod = () => {
   const { nextStep } = useContext(
-    PaymentWrapperContext,
+    PaymentWrapperContext
   ) as Netsystems.PayContextType;
 
   const paymentMethods: Netsystems.PaymentMethodItem[] = [
     {
       bank: "BdV",
-      logoImage: "/images/payment-form/banks/BdV.png",
+      logoImage: "/images/payment-form/banks/bt.svg",
     },
   ];
 
   const selectPaymentMethod = (
     _event: any,
-    _p: Netsystems.PaymentMethodItem,
+    _p: Netsystems.PaymentMethodItem
   ) => {
     _event.preventDefault();
 

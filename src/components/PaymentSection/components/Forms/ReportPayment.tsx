@@ -12,14 +12,19 @@ import type { Netsystems } from "../../../../env";
 import { NextStep } from "../NextStep";
 import { PrevStep } from "../PrevStep";
 import useNetsystemsService from "../../hooks/use-netsystems-services";
-import useUsdConvertion from "../../hooks/use-usd-convertion";
+
 import { BaseInput, FormAlert, SelectInput } from "../Input";
 import { Loading } from "../Loading";
 
 export const PaymentReport = () => {
-  const { getInvoiceDebts, getOTP, setBdTPayment, setPayment } =
-    useNetsystemsService();
-  const { getBcvUsd, getFormatAmount } = useUsdConvertion();
+  const {
+    getInvoiceDebts,
+    getOTP,
+    setBdTPayment,
+    setPayment,
+    getUsdVesConvertion,
+    getFormatAmount,
+  } = useNetsystemsService();
 
   const { nextStep, prevStep, setPaymentResult, getUserData } = useContext(
     PaymentWrapperContext
@@ -74,7 +79,6 @@ export const PaymentReport = () => {
     const payload = {
       celular: data.phone,
       banco: data.bankIssue,
-      // !!! test exception !!!
       cedula: `${data.literal}${data.cedula}`,
       monto: getFormatAmount(String(getValues("debtAmountVES")), false),
       token: data.dynamicPass,
@@ -82,6 +86,8 @@ export const PaymentReport = () => {
     };
 
     const res = await setBdTPayment(payload);
+
+    console.log(`<<< res >>>`, res);
 
     setSendingInfo(false);
 
@@ -114,6 +120,16 @@ export const PaymentReport = () => {
           });
           break;
 
+        case "TOKEN ESTA VENCIDO":
+          setErrorInfo("Error en la generacion de pago");
+
+          setFormInfo({
+            dynamicPass: "Clave dinamica expirada",
+            phone: "",
+            cedula: "",
+          });
+          break;
+
         default:
           setErrorInfo("Error con el servicio de pago");
           break;
@@ -126,7 +142,13 @@ export const PaymentReport = () => {
         secuencial: genSecuencial(),
       };
 
+      console.log(`<<< payment >>>`, payment);
+
+      return;
+
       const resPayment = await setPayment(payment);
+
+      console.log(`<<< resPayment >>>`, resPayment);
 
       if (resPayment.code === "000") {
         setPaymentResult({
@@ -146,6 +168,8 @@ export const PaymentReport = () => {
     const res = await getOTP({
       ci: `${info.literal}0${info.cedula}`,
     });
+
+    console.log(`<<< res >>>`, res);
 
     if (res.codResp === "ERROR") {
       setErrorInfo("Error de comunicacion con Servicio de pago");
@@ -170,6 +194,8 @@ export const PaymentReport = () => {
     }
 
     if (res.codResp === "C2P0000") {
+      console.log(`<<< res >>>`, res);
+
       setRequestOTP(true);
 
       setSendingInfo(false);
@@ -200,9 +226,9 @@ export const PaymentReport = () => {
 
   const getVesUsd = async () => {
     try {
-      const res: Netsystems.BcvUsdResponse = await getBcvUsd();
+      const res: Netsystems.BcvUsdResponse = await getUsdVesConvertion();
 
-      setValue("convertionRate", Number(res.sources.BCV.quote));
+      setValue("convertionRate", Number(res.promedio));
 
       if (getValues("debtAmount")) setVesAmount();
     } catch (e) {

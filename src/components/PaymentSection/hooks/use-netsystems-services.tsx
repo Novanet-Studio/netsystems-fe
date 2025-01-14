@@ -51,6 +51,10 @@ interface UseNetsystemsService {
   getInvoiceDebts: (params: GetInvoiceDebtsParams) => Promise<any>;
   setPayment: (params: SetPaymentParams) => Promise<any>;
 
+  //? usd ves
+  getUsdVesConvertion: () => Promise<any>;
+  getFormatAmount: (amount: string, pretty: boolean) => any;
+
   //? bdt
   getBanks: (params: GetBanksParams) => Promise<any>;
   getOTP: (params: GetOTPParams) => Promise<any>;
@@ -73,8 +77,9 @@ function useNetsystemsService(): UseNetsystemsService {
           ...options,
         });
 
-        const data = await response.json();
-        return data;
+        const res = await response.text();
+
+        return JSON.parse(res);
       } catch (error) {
         throw error;
       }
@@ -114,6 +119,26 @@ function useNetsystemsService(): UseNetsystemsService {
     [fetchData]
   );
 
+  //? usd ves convertion
+  const getUsdVesConvertion = useCallback(
+    async (): Promise<any> =>
+      fetchData("/usdVes/get-usd-ves-rate-1", {
+        method: "GET",
+      }),
+    [fetchData]
+  );
+
+  const getFormatAmount = (amount: string, pretty = false) => {
+    const [integer, decimal] = amount.split(".");
+    const quote = `${integer}.${decimal.slice(0, 2)}`;
+
+    if (pretty) {
+      return quote.replace(".", ",");
+    }
+
+    return quote;
+  };
+
   //? bdt
   const getBanks = useCallback(
     async ({ body }: GetBanksParams): Promise<any> =>
@@ -142,20 +167,15 @@ function useNetsystemsService(): UseNetsystemsService {
     [fetchData]
   );
 
-  // const setConformation = useCallback(
-  //   async ({ body }: SetConformationParams): Promise<any> =>
-  //     fetchData("/bdt/conformation", {
-  //       method: "POST",
-  //       body,
-  //     }),
-  //   [fetchData]
-  // );
-
   return {
     //? users
     getInvoiceDebts,
     getClientDetails,
     setPayment,
+
+    //? usd ves
+    getUsdVesConvertion,
+    getFormatAmount,
 
     //? bdt
     getBanks,

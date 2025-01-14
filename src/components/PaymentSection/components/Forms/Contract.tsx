@@ -41,12 +41,14 @@ export const Contract = () => {
     let cAux: contract[] = [];
 
     data.datos?.forEach((i) => {
-      i.servicios?.forEach((s) => {
-        cAux.push({
-          text: s.perfil,
-          value: String(s.id),
+      if (i.fecha_suspendido === "0000-00-00 00:00:00") {
+        i.servicios?.forEach((s) => {
+          cAux.push({
+            text: s.perfil,
+            value: String(s.id),
+          });
         });
-      });
+      }
     });
 
     setContracts(cAux);

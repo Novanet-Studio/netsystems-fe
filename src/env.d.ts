@@ -62,7 +62,7 @@ declare namespace Netsystems {
   //? login user response <Login />
   interface LoginResponse {
     estado: string;
-    message?: string;
+    mensaje?: string;
     datos: UserData[];
 
     currentContract?: string;
@@ -141,13 +141,11 @@ declare namespace Netsystems {
 
   //? login user response <ReportPayment />
   export interface BcvUsdResponse {
-    name: string;
-    pair: string;
-    sources: {
-      BCV: {
-        name: string;
-        quote: string;
-      };
-    };
+    fuente: string;
+    nombre: string;
+    compra?: any;
+    venta?: any;
+    promedio: number;
+    fechaActualizacion: string;
   }
 }

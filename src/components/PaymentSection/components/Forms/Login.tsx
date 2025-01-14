@@ -51,7 +51,7 @@ export const Login = () => {
       });
 
       if (res.estado === "error") {
-        switch (res.message) {
+        switch (res.mensaje) {
           case "No existe el cliente con el filtro indicado.":
             setUsernameInfo("Usuario no encontrado");
 
