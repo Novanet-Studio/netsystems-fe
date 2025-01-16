@@ -48,7 +48,7 @@ export const PaymentReport = () => {
       literal: yup.string(),
       cedula: yup.string().required(),
       bankIssue: yup.string().required(),
-      payDate: yup.date().required(),
+      payDate: yup.date(),
       debtAmount: yup.number().required(),
       debtAmountVES: yup.number().required(),
       convertionRate: yup.number().default(0),
@@ -86,8 +86,6 @@ export const PaymentReport = () => {
     };
 
     const res = await setBdTPayment(payload);
-
-    console.log(`<<< res >>>`, res);
 
     setSendingInfo(false);
 
@@ -144,11 +142,7 @@ export const PaymentReport = () => {
 
       console.log(`<<< payment >>>`, payment);
 
-      return;
-
       const resPayment = await setPayment(payment);
-
-      console.log(`<<< resPayment >>>`, resPayment);
 
       if (resPayment.code === "000") {
         setPaymentResult({
@@ -171,34 +165,46 @@ export const PaymentReport = () => {
 
     console.log(`<<< res >>>`, res);
 
-    if (res.codResp === "ERROR") {
-      setErrorInfo("Error de comunicacion con Servicio de pago");
+    switch (res.codResp) {
+      case "ERROR":
+        setErrorInfo("Error de comunicacion con Servicio de pago");
 
-      setSendingInfo(false);
+        setSendingInfo(false);
 
-      return;
-    }
+        return;
 
-    if (res.codResp === "P2P0041") {
-      setErrorInfo("Cedula no asociada a un usuario");
+      case "P2P0041":
+        setErrorInfo("Cedula no asociada a un usuario");
 
-      setFormInfo({
-        dynamicPass: "",
-        phone: "",
-        cedula: "Ingreso invalido",
-      });
+        setFormInfo({
+          dynamicPass: "",
+          phone: "",
+          cedula: "Ingreso invalido",
+        });
 
-      setSendingInfo(false);
+        setSendingInfo(false);
 
-      return;
-    }
+        return;
 
-    if (res.codResp === "C2P0000") {
-      console.log(`<<< res >>>`, res);
+      case "P2P0001":
+        setErrorInfo("Servicio de pago C2P fuera de servicio");
 
-      setRequestOTP(true);
+        setSendingInfo(false);
 
-      setSendingInfo(false);
+        return;
+
+      case "C2P0000":
+        //> successfull case
+        setRequestOTP(true);
+
+        setSendingInfo(false);
+        return;
+
+      default:
+        setErrorInfo("Error desconocido con Servicio de pago");
+
+        setSendingInfo(false);
+        break;
     }
   };
 
@@ -207,6 +213,8 @@ export const PaymentReport = () => {
       const res: Netsystems.InvoiceDebtsResponse = await getInvoiceDebts({
         cedula: getUserData().datos[0].cedula,
       });
+
+      console.log(`<<< res >>>`, res);
 
       if (!res.code) {
         return;
@@ -228,11 +236,13 @@ export const PaymentReport = () => {
     try {
       const res: Netsystems.BcvUsdResponse = await getUsdVesConvertion();
 
-      setValue("convertionRate", Number(res.promedio));
+      console.log(`<<< res >>>`, res);
+
+      setValue("convertionRate", Number(res.rate));
 
       if (getValues("debtAmount")) setVesAmount();
     } catch (e) {
-      setErrorInfo("Error de comunicacion con exchangedyn");
+      setErrorInfo("Error obteniendo UsdVesConvertionRate");
     }
   };
 
@@ -349,7 +359,7 @@ export const PaymentReport = () => {
               inputName="payDate"
               inputType="date"
               inputInfo={""}
-              isDisabled={false}
+              isDisabled={true}
               register={register}
               errors={errors}
             />

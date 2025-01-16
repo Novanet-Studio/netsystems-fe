@@ -92,7 +92,7 @@ function useNetsystemsService(): UseNetsystemsService {
     async ({
       cedula,
     }: GetClientDetailsParams): Promise<Netsystems.LoginResponse> =>
-      fetchData("/user/get-client-details", {
+      fetchData("/user/getClientDetails", {
         method: "POST",
         body: JSON.stringify({ cedula: cedula }),
       }),
@@ -103,7 +103,7 @@ function useNetsystemsService(): UseNetsystemsService {
     async ({
       cedula,
     }: GetInvoiceDebtsParams): Promise<Netsystems.InvoiceDebtsResponse> =>
-      fetchData("/user/consulta-deuda", {
+      fetchData("/user/getDebt", {
         method: "POST",
         body: JSON.stringify({ cedula: cedula }),
       }),
@@ -112,7 +112,7 @@ function useNetsystemsService(): UseNetsystemsService {
 
   const setPayment = useCallback(
     async (body: SetPaymentParams): Promise<any> =>
-      fetchData("/user/registrar-pago", {
+      fetchData("/user/setPayment", {
         method: "POST",
         body: JSON.stringify(body),
       }),
@@ -122,7 +122,7 @@ function useNetsystemsService(): UseNetsystemsService {
   //? usd ves convertion
   const getUsdVesConvertion = useCallback(
     async (): Promise<any> =>
-      fetchData("/usdVes/get-usd-ves-rate-1", {
+      fetchData("/usdVes/getUsdVesCurrent", {
         method: "GET",
       }),
     [fetchData]

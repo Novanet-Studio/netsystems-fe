@@ -141,11 +141,7 @@ declare namespace Netsystems {
 
   //? login user response <ReportPayment />
   export interface BcvUsdResponse {
-    fuente: string;
-    nombre: string;
-    compra?: any;
-    venta?: any;
-    promedio: number;
-    fechaActualizacion: string;
+    status: "ERROR" | "SUCCESS";
+    rate: number;
   }
 }

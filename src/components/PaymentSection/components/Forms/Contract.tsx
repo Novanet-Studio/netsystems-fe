@@ -40,8 +40,10 @@ export const Contract = () => {
 
     let cAux: contract[] = [];
 
+    console.log(`<<< data.datos >>>`, data.datos);
+
     data.datos?.forEach((i) => {
-      if (i.fecha_suspendido === "0000-00-00 00:00:00") {
+      if (i.estado === "ACTIVO") {
         i.servicios?.forEach((s) => {
           cAux.push({
             text: s.perfil,
