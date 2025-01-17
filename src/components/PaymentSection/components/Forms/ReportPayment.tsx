@@ -44,9 +44,31 @@ export const PaymentReport = () => {
 
   const schema = yup
     .object({
-      phone: yup.string().required(),
+      phone: yup
+        .string()
+        .required()
+        .test(
+          "regex",
+          "Formato de Telefono incorrecto",
+          (item: any, _content: any) => {
+            const rgx = /^(0412|0414|0424|0416|0426)\d{7}$/;
+
+            return rgx.test(item);
+          }
+        ),
       literal: yup.string(),
-      cedula: yup.string().required(),
+      cedula: yup
+        .string()
+        .required()
+        .test(
+          "regex",
+          "Formato de Cedula incorrecto",
+          (item: any, _content: any) => {
+            const rgx = watchFields.literal === "J" ? /^\d{9}$/ : /^\d{7,8}$/;
+
+            return rgx.test(item);
+          }
+        ),
       bankIssue: yup.string().required(),
       payDate: yup.date(),
       debtAmount: yup.number().required(),
@@ -68,6 +90,9 @@ export const PaymentReport = () => {
   });
 
   const onSubmit = async (data: any) => {
+    console.log(`<<< data >>>`, data);
+
+    return;
     if (!requestOTP && getValues("bankIssue") === "0163") {
       getRequestOTP(data);
 
@@ -257,7 +282,7 @@ export const PaymentReport = () => {
     );
   };
 
-  const watchFields = watch();
+  const watchFields: any = watch();
 
   useEffect(() => {
     getDebts();

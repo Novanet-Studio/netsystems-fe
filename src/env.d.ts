@@ -29,6 +29,7 @@ declare namespace Netsystems {
     source?: { label: string; value: string }[];
     errors?: any;
     register?: any;
+    options?: any;
   };
 
   //? stepper items

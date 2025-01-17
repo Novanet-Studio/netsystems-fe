@@ -17,6 +17,7 @@ export const BaseInput = (props: Netsystems.Input) => {
     showInputErros = true,
     errors,
     register,
+    options = {},
   } = props;
 
   if (isDisabled)
@@ -46,7 +47,10 @@ export const BaseInput = (props: Netsystems.Input) => {
         id={id}
         type={inputType}
         className={
-          errors[inputName]?.type === "required" || inputInfo || isInvalid
+          errors[inputName]?.type === "required" ||
+          errors[inputName]?.message ||
+          inputInfo ||
+          isInvalid
             ? [style.input, style.input_invalid].join(" ")
             : style.input
         }
@@ -54,14 +58,20 @@ export const BaseInput = (props: Netsystems.Input) => {
         placeholder={placeholder}
         disabled={isDisabled}
         max={inputType === "date" ? new Date().toISOString().split("T")[0] : ""}
-        {...register(inputName, { required: true })}
+        {...register(inputName, options)}
       />
 
       {showInputErros && (
         <FormAlert
-          message={inputInfo || inputRequiredMessage}
+          message={
+            inputInfo  || errors[inputName]?.message || inputRequiredMessage
+          }
           style={style.paymentSec__form__error}
-          show={errors[inputName]?.type === "required" || inputInfo !== ""}
+          show={
+            errors[inputName]?.type === "required" ||
+            inputInfo !== "" ||
+            errors[inputName]?.message
+          }
         />
       )}
     </>
