@@ -50,8 +50,6 @@ export const Login = () => {
         cedula: data.password,
       });
 
-      console.log(`<<< res >>>`, res);
-
       if (res.estado === "error") {
         switch (res.mensaje) {
           case "No existe el cliente con el filtro indicado.":

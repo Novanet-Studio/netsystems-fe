@@ -90,9 +90,6 @@ export const PaymentReport = () => {
   });
 
   const onSubmit = async (data: any) => {
-    console.log(`<<< data >>>`, data);
-
-    return;
     if (!requestOTP && getValues("bankIssue") === "0163") {
       getRequestOTP(data);
 
@@ -164,8 +161,6 @@ export const PaymentReport = () => {
         fecha: res.fecha.split("/").reverse().join("-"),
         secuencial: genSecuencial(),
       };
-
-      console.log(`<<< payment >>>`, payment);
 
       const resPayment = await setPayment(payment);
 
@@ -239,8 +234,6 @@ export const PaymentReport = () => {
         cedula: getUserData().datos[0].cedula,
       });
 
-      console.log(`<<< res >>>`, res);
-
       if (!res.code) {
         return;
       }
@@ -260,8 +253,6 @@ export const PaymentReport = () => {
   const getVesUsd = async () => {
     try {
       const res: Netsystems.BcvUsdResponse = await getUsdVesConvertion();
-
-      console.log(`<<< res >>>`, res);
 
       setValue("convertionRate", Number(res.rate));
 

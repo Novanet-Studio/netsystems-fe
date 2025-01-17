@@ -40,8 +40,6 @@ export const Contract = () => {
 
     let cAux: contract[] = [];
 
-    console.log(`<<< data.datos >>>`, data.datos);
-
     data.datos?.forEach((i) => {
       if (i.estado === "ACTIVO") {
         i.servicios?.forEach((s) => {
