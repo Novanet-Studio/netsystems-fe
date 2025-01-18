@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import PaymentWrapperContext from "../../PaymentWrapperContex";
-import style from "../../_styles.module.css";
 
 import type { Netsystems } from "../../../../env";
 
@@ -11,12 +10,12 @@ export const CompletedPayment = () => {
 
   return (
     <>
-      <form className={style.paymentSec__form}>
-        <span className={style.paymentSec__form__content}>
-          <span className={style.message}>
+      <form className="paymentSec__form">
+        <span className="paymentSec__form__content">
+          <span className="message">
             {getPaymentResult().status === "CONFIRMED_PAYMENT" ? (
               <>
-                <span className={style.message__icon}>
+                <span className="message__icon">
                   <CheckIcon />
                 </span>
                 <h3>¡Exitoso!</h3>
@@ -24,7 +23,7 @@ export const CompletedPayment = () => {
               </>
             ) : (
               <>
-                <span className={style.message__icon}>
+                <span className="message__icon">
                   <FailIcon />
                 </span>
                 <h3>Error</h3>
@@ -33,7 +32,7 @@ export const CompletedPayment = () => {
             )}
           </span>
         </span>
-        <span className={style.paymentSec__form__buttons}>
+        <span className="paymentSec__form__buttons">
           <a href="/" className="theme-btn btn-style-four">
             <span className="txt">Volver al inicio</span>
           </a>

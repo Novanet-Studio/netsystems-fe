@@ -1,5 +1,3 @@
-import style from "../_styles.module.css";
-
 export const NextStep = (props: { label: string; handler?: () => void }) => {
   const { label, handler } = props;
 
@@ -12,11 +10,11 @@ export const NextStep = (props: { label: string; handler?: () => void }) => {
   return (
     <button
       type="submit"
-      className={[style.button, style.nextButton].join(" ")}
+      className="button nextButton"
       onClick={(e) => handlerButton(e)}
     >
       {label}
-      <span className={style.button__icon}>
+      <span className="button__icon">
         <i className="lnr lnr-arrow-right"></i>
       </span>
     </button>

@@ -1,12 +1,11 @@
 import { useContext } from "react";
 import PaymentWrapperContext from "./PaymentWrapperContex";
-import style from "./_styles.module.css";
 
 import type { Netsystems } from "../../env";
 
 export const Steps = (props: { currentStep: number }) => {
   const { goToStep } = useContext(
-    PaymentWrapperContext,
+    PaymentWrapperContext
   ) as Netsystems.PayContextType;
 
   const { currentStep } = props;
@@ -23,7 +22,7 @@ export const Steps = (props: { currentStep: number }) => {
     s: {
       relativeStep: number;
       ordinalStep: number;
-    },
+    }
   ) => {
     _event.preventDefault();
 
@@ -31,20 +30,15 @@ export const Steps = (props: { currentStep: number }) => {
   };
 
   return (
-    <span className={style.paymentSec__steppIndicator}>
+    <span className="paymentSec__steppIndicator">
       {STEPS.map((s) => (
         <span
           key={`st_${s.relativeStep}`}
-          className={
+          className={`style.paymentSec__steppButton ${
             s.relativeStep <= currentStep
-              ? [
-                  style.paymentSec__steppButton,
-                  s.relativeStep === currentStep
-                    ? style.paymentSec__steppButtonCurrent
-                    : style.paymentSec__steppButtonActive,
-                ].join(" ")
-              : style.paymentSec__steppButton
-          }
+              ? "paymentSec__steppButtonCurren"
+              : "paymentSec__steppButtonActive"
+          }`}
           onClick={(e) => handlerStep(e, s)}
         >
           <button>{s.relativeStep}</button>

@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import PaymentWrapperContext from "../../PaymentWrapperContex";
-import style from "../../_styles.module.css";
 
 import type { Netsystems } from "../../../../env";
 
@@ -56,12 +55,9 @@ export const Contract = () => {
 
   return (
     <>
-      <form
-        className={style.paymentSec__form}
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <span className={style.paymentSec__form__content}>
-          <span className={style.input_wrapper}>
+      <form className="paymentSec__form" onSubmit={handleSubmit(onSubmit)}>
+        <span className="paymentSec__form__content">
+          <span className="input_wrapper">
             <SelectInput
               id="contract_nroContract"
               label="Contracto de servicio"
@@ -75,7 +71,7 @@ export const Contract = () => {
             />
           </span>
         </span>
-        <span className={style.paymentSec__form__buttons}>
+        <span className="paymentSec__form__buttons">
           <PrevStep label="Regresar" handler={() => prevStep()} />
 
           <NextStep label="Siguiente" handler={handleSubmit(onSubmit)} />

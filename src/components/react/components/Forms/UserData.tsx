@@ -1,6 +1,5 @@
 import { useContext, useEffect } from "react";
 import PaymentWrapperContext from "../../PaymentWrapperContex";
-import style from "../../_styles.module.css";
 
 import type { Netsystems } from "../../../../env";
 
@@ -17,8 +16,8 @@ export const UserData = () => {
 
   return (
     <>
-      <form className={style.paymentSec__form}>
-        <span className={style.paymentSec__form__content}>
+      <form className="paymentSec__form">
+        <span className="paymentSec__form__content">
           <BaseInput
             id="userData_nroContract"
             label="Número de contrato"
@@ -44,7 +43,7 @@ export const UserData = () => {
           />
         </span>
 
-        <span className={style.paymentSec__form__buttons}>
+        <span className="paymentSec__form__buttons">
           <PrevStep label="Regresar" handler={() => prevStep()} />
           <NextStep label="Siguiente" handler={() => nextStep()} />
         </span>

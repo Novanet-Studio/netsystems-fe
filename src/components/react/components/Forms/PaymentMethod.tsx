@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import PaymentWrapperContext from "../../PaymentWrapperContex";
-import style from "../../_styles.module.css";
 
 import type { Netsystems } from "../../../../env";
 
@@ -29,8 +28,8 @@ export const PaymentMethod = () => {
 
   return (
     <>
-      <form className={style.paymentSec__form}>
-        <span className={style.paymentSec__form__paymentMethods}>
+      <form className="paymentSec__form">
+        <span className="paymentSec__form__paymentMethods">
           {paymentMethods.map((p, index) => (
             <button
               key={`pm_${index}`}
@@ -41,7 +40,7 @@ export const PaymentMethod = () => {
             </button>
           ))}
         </span>
-        <span className={style.paymentSec__form__buttons}>
+        <span className="paymentSec__form__buttons">
           <NextStep label="Continuar" handler={() => nextStep()} />
         </span>
       </form>

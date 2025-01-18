@@ -10,7 +10,6 @@ import { NextStep } from "../NextStep";
 
 //? others
 import type { Netsystems } from "../../../../env";
-import style from "../../_styles.module.css";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Loading } from "../Loading";
@@ -80,11 +79,8 @@ export const Login = () => {
 
   return (
     <>
-      <form
-        className={style.paymentSec__form}
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <span className={style.paymentSec__form__content}>
+      <form className="paymentSec__form" onSubmit={handleSubmit(onSubmit)}>
+        <span className="paymentSec__form__content">
           <BaseInput
             id="login_username"
             label="Usuario"
@@ -110,7 +106,7 @@ export const Login = () => {
           {sendingInfo ? (
             <FormAlert
               message={"Enviando..."}
-              style={style.paymentSec__form__message}
+              style="paymentSec__form__message"
               show={true}
             >
               <Loading />
@@ -119,7 +115,7 @@ export const Login = () => {
             errorInfo !== "" && (
               <FormAlert
                 message={errorInfo}
-                style={style.paymentSec__form__error}
+                style="paymentSec__form__error"
                 show={true}
               >
                 <svg
@@ -144,7 +140,7 @@ export const Login = () => {
           )}
         </span>
 
-        <span className={style.paymentSec__form__buttons}>
+        <span className="paymentSec__form__buttons">
           <NextStep label="Iniciar sesion" handler={handleSubmit(onSubmit)} />
         </span>
       </form>

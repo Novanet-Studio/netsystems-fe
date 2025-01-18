@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import PaymentWrapperContex from "./PaymentWrapperContex";
 import { Steps } from "./Steps";
 
-import style from "./_styles.module.css";
 import type { Netsystems } from "../../env";
 
 //FORMS
@@ -124,16 +123,16 @@ const FormWrapper = ({
   const { label, title, subtitle, bannerImage, form } = stepInfo;
 
   return (
-    <div className={style.paymentSec__wrapper}>
+    <div className="paymentSec__wrapper">
       <aside
-        className={style.paymentSec__banner}
+        className="paymentSec__banner"
         style={{
           background: `url(${bannerImage}) center/cover`,
         }}
       >
         {stepInfo.stepIndicator}
       </aside>
-      <div className={style.paymentSec__main}>
+      <div className="paymentSec__main">
         <p>{label}</p>
         <h1>{title}</h1>
         <h2>{subtitle}</h2>

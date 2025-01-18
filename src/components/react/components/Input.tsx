@@ -1,6 +1,5 @@
 import { Children } from "react";
 import type { Netsystems } from "../../../env";
-import style from "../_styles.module.css";
 
 export const BaseInput = (props: Netsystems.Input) => {
   const {
@@ -23,13 +22,13 @@ export const BaseInput = (props: Netsystems.Input) => {
   if (isDisabled)
     return (
       <>
-        <label htmlFor={id} className={style.label}>
+        <label htmlFor={id} className="label">
           {label}
         </label>
         <input
           id={id}
           type={inputType}
-          className={style.input}
+          className="input"
           defaultValue={defaultValue}
           disabled
         />
@@ -39,7 +38,7 @@ export const BaseInput = (props: Netsystems.Input) => {
   return (
     <>
       {label !== "" && (
-        <label htmlFor={id} className={style.label}>
+        <label htmlFor={id} className="label">
           {label}
         </label>
       )}
@@ -51,8 +50,8 @@ export const BaseInput = (props: Netsystems.Input) => {
           errors[inputName]?.message ||
           inputInfo ||
           isInvalid
-            ? [style.input, style.input_invalid].join(" ")
-            : style.input
+            ? "input input_invalid"
+            : "input"
         }
         defaultValue={defaultValue}
         placeholder={placeholder}
@@ -66,7 +65,7 @@ export const BaseInput = (props: Netsystems.Input) => {
           message={
             inputInfo || errors[inputName]?.message || inputRequiredMessage
           }
-          style={style.paymentSec__form__error}
+          style="paymentSec__form__error"
           show={
             errors[inputName]?.type === "required" ||
             inputInfo !== "" ||
@@ -93,17 +92,13 @@ export const SelectInput = (props: Netsystems.Input) => {
   return (
     <>
       {label !== "" && (
-        <label htmlFor={id} className={style.label}>
+        <label htmlFor={id} className="label">
           {label}
         </label>
       )}
       <select
         id={id}
-        className={
-          !isInvalid
-            ? style.input
-            : [style.input, style.input_invalid].join(" ")
-        }
+        className={!isInvalid ? "input" : "input input_invalid"}
         style={{ width: "100%" }}
         {...register(inputName, { required: true })}
         disabled={isDisabled}

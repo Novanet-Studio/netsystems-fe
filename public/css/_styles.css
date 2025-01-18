@@ -3,7 +3,7 @@
   min-height: 758px;
   margin: 0 auto;
 
-  background: url("images/background/2.jpg") center/cover no-repeat;
+  background: url("../images/background/2.jpg") center/cover no-repeat;
 
   display: grid;
   grid-template-columns: 300px 1fr 300px;

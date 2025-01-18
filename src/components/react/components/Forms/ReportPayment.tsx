@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import PaymentWrapperContext from "../../PaymentWrapperContex";
-import style from "../../_styles.module.css";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -108,7 +107,6 @@ export const PaymentReport = () => {
     };
 
     console.log(`<<< payload >>>`, payload);
-
 
     const res = await setBdTPayment(payload);
 
@@ -285,15 +283,10 @@ export const PaymentReport = () => {
 
   return (
     <>
-      <form className={style.paymentSec__form}>
-        <span
-          className={[
-            style.paymentSec__form__content,
-            style.paymentSec__form__content_twoColumns,
-          ].join(" ")}
-        >
+      <form className="paymentSec__form">
+        <span className="paymentSec__form__content paymentSec__form__content_twoColumns">
           {/* ? phone input | telefono */}
-          <span className={style.input_wrapper}>
+          <span className="input_wrapper">
             <BaseInput
               id="reportPayment_phone"
               label="Telefono"
@@ -307,12 +300,12 @@ export const PaymentReport = () => {
           </span>
 
           {/* ? ci input | cedula */}
-          <span className={style.input_wrapper}>
-            <label htmlFor="reportPayment_cedula" className={style.label}>
+          <span className="input_wrapper">
+            <label htmlFor="reportPayment_cedula" className="label">
               Cedula de identidad
             </label>
             <span
-              className={style.input_wrapper_row}
+              className="input_wrapper_row"
               style={{
                 display: "grid",
                 gridTemplateColumns: "50px 1fr",
@@ -361,7 +354,7 @@ export const PaymentReport = () => {
 
             <FormAlert
               message={formInfo.cedula || "Cedula requerida"}
-              style={style.paymentSec__form__error}
+              style="paymentSec__form__error"
               show={
                 errors.cedula?.type === "required" || formInfo.cedula !== ""
               }
@@ -369,7 +362,7 @@ export const PaymentReport = () => {
           </span>
 
           {/* ? payDate input | Fecha de pago */}
-          <span className={style.input_wrapper}>
+          <span className="input_wrapper">
             <BaseInput
               id="reportPayment_payDate"
               label="Fecha del pago"
@@ -385,7 +378,7 @@ export const PaymentReport = () => {
           </span>
 
           {/* ? bankIssue input | Banco emisor */}
-          <span className={style.input_wrapper}>
+          <span className="input_wrapper">
             <SelectInput
               id="reportPayment_backIssue"
               label="Banco emisor"
@@ -399,7 +392,7 @@ export const PaymentReport = () => {
           </span>
 
           {/* ? debtAmount input | Monto a pagar  */}
-          <span className={style.input_wrapper}>
+          <span className="input_wrapper">
             <BaseInput
               id="reportPayment_debtAmount"
               label="Monto a pagar"
@@ -411,7 +404,7 @@ export const PaymentReport = () => {
 
           {/* ? dynamicPass state | Clave dinamica  */}
           {(requestOTP || watchFields.bankIssue !== "0163") && (
-            <span className={style.input_wrapper}>
+            <span className="input_wrapper">
               <BaseInput
                 id="reportPayment_dynamicPass"
                 label="Clave dinamica"
@@ -432,7 +425,7 @@ export const PaymentReport = () => {
                 ? "Enviando..."
                 : "Solicitando clave..."
             }
-            style={style.paymentSec__form__message}
+            style="paymentSec__form__message"
             show={true}
           >
             <Loading />
@@ -441,7 +434,7 @@ export const PaymentReport = () => {
           errorInfo !== "" && (
             <FormAlert
               message={errorInfo}
-              style={style.paymentSec__form__error}
+              style="paymentSec__form__error"
               show={true}
             >
               <svg
@@ -465,7 +458,7 @@ export const PaymentReport = () => {
           )
         )}
 
-        <span className={style.paymentSec__form__buttons}>
+        <span className="paymentSec__form__buttons">
           <PrevStep label="Regresar" handler={() => prevStep()} />
 
           <NextStep
