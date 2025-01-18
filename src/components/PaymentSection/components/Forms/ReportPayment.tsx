@@ -107,6 +107,9 @@ export const PaymentReport = () => {
       nombre: getUserData().datos[0].nombre,
     };
 
+    console.log(`<<< payload >>>`, payload);
+
+
     const res = await setBdTPayment(payload);
 
     setSendingInfo(false);

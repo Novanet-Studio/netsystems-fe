@@ -64,7 +64,7 @@ export const BaseInput = (props: Netsystems.Input) => {
       {showInputErros && (
         <FormAlert
           message={
-            inputInfo  || errors[inputName]?.message || inputRequiredMessage
+            inputInfo || errors[inputName]?.message || inputRequiredMessage
           }
           style={style.paymentSec__form__error}
           show={
