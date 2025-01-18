@@ -34,7 +34,7 @@ export const Steps = (props: { currentStep: number }) => {
       {STEPS.map((s) => (
         <span
           key={`st_${s.relativeStep}`}
-          className={`style.paymentSec__steppButton ${
+          className={`paymentSec__steppButton ${
             s.relativeStep <= currentStep
               ? "paymentSec__steppButtonCurren"
               : "paymentSec__steppButtonActive"

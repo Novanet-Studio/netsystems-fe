@@ -1,17 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
+import Preloader from "../components/Preloader.astro";
 import MainFooter from "../components/MainFooter.astro";
 import MainHeader from "../components/MainHeader.astro";
-import Preloader from "../components/Preloader.astro";
 import PaymentSection from "../components/PaymentSection.astro";
 ---
 
-<Layout title="Netsystem">
+<Layout title="Netsystem | Reporte de pago">
   <main>
     <div class="page-wrapper">
       <!-- Preloader -->
-      <!-- <Preloader /> -->
+      <Preloader />
       <!-- End Preloader -->
 
       <!-- Main Header -->
@@ -28,5 +28,3 @@ import PaymentSection from "../components/PaymentSection.astro";
     <!-- End Main Footer -->
   </main>
 </Layout>
-
-<style is:inline></style>
