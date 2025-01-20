@@ -36,8 +36,8 @@ export const Steps = (props: { currentStep: number }) => {
           key={`st_${s.relativeStep}`}
           className={`paymentSec__steppButton ${
             s.relativeStep <= currentStep
-              ? "paymentSec__steppButtonCurren"
-              : "paymentSec__steppButtonActive"
+              ? "paymentSec__steppButtonActive"
+              : "paymentSec__steppButtonCurren"
           }`}
           onClick={(e) => handlerStep(e, s)}
         >

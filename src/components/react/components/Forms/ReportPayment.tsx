@@ -89,11 +89,13 @@ export const PaymentReport = () => {
   });
 
   const onSubmit = async (data: any) => {
+    /*
     if (!requestOTP && getValues("bankIssue") === "0163") {
       getRequestOTP(data);
 
       return;
     }
+      */
 
     setSendingInfo(true);
 
@@ -105,8 +107,6 @@ export const PaymentReport = () => {
       token: data.dynamicPass,
       nombre: getUserData().datos[0].nombre,
     };
-
-    console.log(`<<< payload >>>`, payload);
 
     const res = await setBdTPayment(payload);
 
@@ -403,28 +403,22 @@ export const PaymentReport = () => {
           </span>
 
           {/* ? dynamicPass state | Clave dinamica  */}
-          {(requestOTP || watchFields.bankIssue !== "0163") && (
-            <span className="input_wrapper">
-              <BaseInput
-                id="reportPayment_dynamicPass"
-                label="Clave dinamica"
-                placeholder="ej: 1234568"
-                inputName="dynamicPass"
-                inputInfo={formInfo.dynamicPass}
-                register={register}
-                errors={errors}
-              />
-            </span>
-          )}
+          <span className="input_wrapper">
+            <BaseInput
+              id="reportPayment_dynamicPass"
+              label="Clave dinamica"
+              placeholder="ej: 1234568"
+              inputName="dynamicPass"
+              inputInfo={formInfo.dynamicPass}
+              register={register}
+              errors={errors}
+            />
+          </span>
         </span>
 
         {sendingInfo ? (
           <FormAlert
-            message={
-              requestOTP || watchFields.bankIssue !== "0163"
-                ? "Enviando..."
-                : "Solicitando clave..."
-            }
+            message="Enviando..."
             style="paymentSec__form__message"
             show={true}
           >
@@ -461,14 +455,7 @@ export const PaymentReport = () => {
         <span className="paymentSec__form__buttons">
           <PrevStep label="Regresar" handler={() => prevStep()} />
 
-          <NextStep
-            label={
-              requestOTP || watchFields.bankIssue !== "0163"
-                ? "Finalizar"
-                : "Solicitar clave"
-            }
-            handler={handleSubmit(onSubmit)}
-          />
+          <NextStep label="Finalizar" handler={handleSubmit(onSubmit)} />
         </span>
       </form>
     </>
