@@ -16,33 +16,19 @@ npm create astro@latest -- --template basics
 
 Inside of your Astro project, you'll see the following folders and files:
 
-
 ```text
-
+/
+├── public/
+│   └── favicon.svg
 ├── src/
-│   ├── react/
-│   │   ├── components/
-│   │   │   ├── Forms/
-│   │   │   │   ├── CompletedPayment.tsx
-│   │   │   │   ├── Contract.tsx
-│   │   │   │   ├── Login.tsx
-│   │   │   │   ├── PaymentMethod.tsx
-│   │   │   │   ├── ReportPayment.tsx                
-│   │   │   │   └── UserData.tsx
-│   │   │   ├── Input.tsx
-│   │   │   ├── Loading.tsx
-│   │   │   ├── NextStep.tsx
-│   │   │   └── PrevStep.tsx
-│   │   ├── hooks/
-│   │   │   └── use-netsystems-services.tsx
-│   │   ├── PaymentWrapper.tsx
-│   │   ├── PaymentWrapperContex.tsx
-│   │   └── Steps.tsx
+│   ├── components/
+│   │   └── Card.astro
+│   ├── layouts/
+│   │   └── Layout.astro
 │   └── pages/
-│       └── payment.astro
-
+│       └── index.astro
+└── package.json
 ```
-
 
 Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
