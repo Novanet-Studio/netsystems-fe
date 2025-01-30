@@ -35,10 +35,9 @@ export const PaymentReport = () => {
     cedula: "",
     dynamicPass: "",
   });
+  const [invalidForm, setInvalidForm] = useState(false);
   const [sendingInfo, setSendingInfo] = useState(false);
-
   const [requestOTP, setRequestOTP] = useState(false);
-
   const [debtAmountLabel, setDebtAmountLabel] = useState("");
 
   const schema = yup
@@ -95,6 +94,8 @@ export const PaymentReport = () => {
       return;
     }
 
+    if (invalidForm) return;
+
     setSendingInfo(true);
 
     const payload = {
@@ -106,71 +107,90 @@ export const PaymentReport = () => {
       nombre: getUserData().datos[0].nombre,
     };
 
-    const res = await setBdTPayment(payload);
+    try {
+      const res = await setBdTPayment(payload);
 
-    setSendingInfo(false);
+      if (res.codres !== "C2P0000") {
+        setSendingInfo(false);
+        setErrorInfo("");
 
-    if (res.codres !== "C2P0000") {
-      setErrorInfo("");
+        switch (res.descRes) {
+          case "CLIENTE DESTINO NO AFILIADO":
+            setErrorInfo("Usuario no afiliado al servicio de pago");
+            break;
 
-      switch (res.descRes) {
-        case "CLIENTE DESTINO NO AFILIADO":
-          setErrorInfo("Usuario no afiliado al servicio de pago");
-          break;
+          case "CLAVE DINAMICA ESTA VENCIDA":
+            setErrorInfo("Error en la generacion de pago");
 
-        case "CLAVE DINAMICA ESTA VENCIDA":
-          setErrorInfo("Error en la generacion de pago");
+            setFormInfo({
+              dynamicPass: "Clave dinamica invalida",
+              phone: "",
+              cedula: "",
+            });
 
-          setFormInfo({
-            dynamicPass: "Clave dinamica invalida",
-            phone: "",
-            cedula: "",
-          });
+            break;
 
-          break;
+          case "TOKEN INVALIDA, INTENTE DE NUEVO":
+            setErrorInfo("Error en la generacion de pago");
 
-        case "TOKEN INVALIDA, INTENTE DE NUEVO":
-          setErrorInfo("Error en la generacion de pago");
+            setFormInfo({
+              dynamicPass: "Clave dinamica invalida",
+              phone: "",
+              cedula: "",
+            });
+            break;
 
-          setFormInfo({
-            dynamicPass: "Clave dinamica invalida",
-            phone: "",
-            cedula: "",
-          });
-          break;
+          case "TOKEN ESTA VENCIDO":
+            setErrorInfo("Error en la generacion de pago");
 
-        case "TOKEN ESTA VENCIDO":
-          setErrorInfo("Error en la generacion de pago");
+            setFormInfo({
+              dynamicPass: "Clave dinamica expirada",
+              phone: "",
+              cedula: "",
+            });
+            break;
 
-          setFormInfo({
-            dynamicPass: "Clave dinamica expirada",
-            phone: "",
-            cedula: "",
-          });
-          break;
+          default:
+            setErrorInfo("Error con el servicio de pago");
+            break;
+        }
+      } else {
+        const payment = {
+          IDFactura: getValues("IDFactura")!,
+          valor: getValues("debtAmount"),
+          fecha: res.fecha.split("/").reverse().join("-"),
+          secuencial: genSecuencial(),
+        };
 
-        default:
-          setErrorInfo("Error con el servicio de pago");
-          break;
+        try {
+          const resPayment = await setPayment(payment);
+
+          if (resPayment.code === "000") {
+            setSendingInfo(false);
+
+            setPaymentResult({
+              status: "CONFIRMED_PAYMENT",
+              message: "Pago registrado con exito",
+            });
+
+            nextStep();
+          } else {
+            setErrorInfo(
+              "Su pago ha sido registrado, mas no procesado. Comuniquese con soporte para notificar su pago"
+            );
+          }
+        } catch (error) {
+          setSendingInfo(false);
+
+          setErrorInfo(
+            "Su pago ha sido registrado, mas no procesado. Comuniquese con soporte para notificar su pago"
+          );
+        }
       }
-    } else {
-      const payment = {
-        IDFactura: getValues("IDFactura")!,
-        valor: getValues("debtAmount"),
-        fecha: res.fecha.split("/").reverse().join("-"),
-        secuencial: genSecuencial(),
-      };
+    } catch (error) {
+      setErrorInfo("Error de comunicacion con el servicio de pago");
 
-      const resPayment = await setPayment(payment);
-
-      if (resPayment.code === "000") {
-        setPaymentResult({
-          status: "CONFIRMED_PAYMENT",
-          message: "Pago registrado con exito",
-        });
-
-        nextStep();
-      }
+      setSendingInfo(false);
     }
   };
 
@@ -178,52 +198,58 @@ export const PaymentReport = () => {
     setSendingInfo(true);
     setErrorInfo("");
 
-    const res = await getOTP({
-      ci: `${info.literal}0${info.cedula}`,
-    });
+    try {
+      const res = await getOTP({
+        ci: `${info.literal}0${info.cedula}`,
+      });
 
-    console.log(`<<< BdT Otp >>>`, res.claveDinamica);
+      console.log(`<<< BdT Otp >>>`, res.claveDinamica);
 
-    switch (res.codResp) {
-      case "ERROR":
-        setErrorInfo("Error de comunicacion con Servicio de pago");
+      switch (res.codResp) {
+        case "ERROR":
+          setErrorInfo("Error de comunicacion con Servicio de pago");
 
-        setSendingInfo(false);
+          setSendingInfo(false);
 
-        return;
+          return;
 
-      case "P2P0041":
-        setErrorInfo("Cedula no asociada a un usuario");
+        case "P2P0041":
+          setErrorInfo("Cedula no asociada a un usuario");
 
-        setFormInfo({
-          dynamicPass: "",
-          phone: "",
-          cedula: "Ingreso invalido",
-        });
+          setFormInfo({
+            dynamicPass: "",
+            phone: "",
+            cedula: "Ingreso invalido",
+          });
 
-        setSendingInfo(false);
+          setSendingInfo(false);
 
-        return;
+          return;
 
-      case "P2P0001":
-        setErrorInfo("Servicio de pago C2P fuera de servicio");
+        case "P2P0001":
+          setErrorInfo("Servicio de pago C2P fuera de servicio");
 
-        setSendingInfo(false);
+          setSendingInfo(false);
 
-        return;
+          return;
 
-      case "C2P0000":
-        //> successfull case
-        setRequestOTP(true);
+        case "C2P0000":
+          //> successfull case
+          setRequestOTP(true);
 
-        setSendingInfo(false);
-        return;
+          setSendingInfo(false);
+          return;
 
-      default:
-        setErrorInfo("Error desconocido con Servicio de pago");
+        default:
+          setErrorInfo("Error desconocido con Servicio de pago");
 
-        setSendingInfo(false);
-        break;
+          setSendingInfo(false);
+          break;
+      }
+    } catch (error) {
+      setErrorInfo("Error al solicitar Clave Dinamica");
+
+      setSendingInfo(false);
     }
   };
 
@@ -246,7 +272,9 @@ export const PaymentReport = () => {
       setValue("IDFactura", Number(res.facturas[0].IDFactura));
 
       if (getValues("convertionRate")) setVesAmount();
-    } catch (e) {}
+    } catch (e) {
+      setErrorInfo("No tienes facturas por pagar");
+    }
   };
 
   const getVesUsd = async () => {
@@ -456,18 +484,20 @@ export const PaymentReport = () => {
           )
         )}
 
-        <span className="paymentSec__form__buttons">
-          <PrevStep label="Regresar" handler={() => prevStep()} />
+        {!sendingInfo && (
+          <span className="paymentSec__form__buttons">
+            <PrevStep label="Regresar" handler={() => prevStep()} />
 
-          <NextStep
-            label={
-              requestOTP || watchFields.bankIssue !== "0163"
-                ? "Finalizar"
-                : "Solicitar clave"
-            }
-            handler={handleSubmit(onSubmit)}
-          />
-        </span>
+            <NextStep
+              label={
+                requestOTP || watchFields.bankIssue !== "0163"
+                  ? "Finalizar"
+                  : "Solicitar clave"
+              }
+              handler={handleSubmit(onSubmit)}
+            />
+          </span>
+        )}
       </form>
     </>
   );

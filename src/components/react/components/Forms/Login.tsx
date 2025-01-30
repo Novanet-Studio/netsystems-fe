@@ -69,7 +69,7 @@ export const Login = () => {
 
       nextStep();
     } catch (e) {
-      setErrorInfo("🤕 Error de conexion con el servicio de pago");
+      setErrorInfo("Error de conexion con el servicio de pago");
     } finally {
       setSendingInfo(false);
     }
@@ -141,7 +141,14 @@ export const Login = () => {
         </span>
 
         <span className="paymentSec__form__buttons">
-          <NextStep label="Iniciar sesion" handler={handleSubmit(onSubmit)} />
+          {!sendingInfo && (
+            <>
+              <NextStep
+                label="Iniciar sesion"
+                handler={handleSubmit(onSubmit)}
+              />
+            </>
+          )}
         </span>
       </form>
     </>
