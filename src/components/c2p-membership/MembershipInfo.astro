@@ -81,19 +81,6 @@ let source: Netsystems.c2pMembershipInfo[] = c2pMembership;
       }
     });
   });
-
-  setTimeout(() => {
-    const anchor = "bank-0102";
-
-    const target = document.getElementById(anchor);
-
-    window.scrollTo({
-      top: Number(target?.getBoundingClientRect().top) - 150,
-      behavior: "smooth",
-    });
-
-    target?.classList.add("open");
-  }, 1000);
 </script>
 
 <style>
@@ -123,7 +110,6 @@ let source: Netsystems.c2pMembershipInfo[] = c2pMembership;
     font-size: 0.85rem;
     color: whitesmoke;
   }
-
 
   .membership__accordions {
     width: min(900px, 90%);

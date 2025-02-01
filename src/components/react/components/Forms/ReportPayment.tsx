@@ -6,7 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 import { banks } from "../../../../utils/banks";
-import type { Netsystems } from "../../../../env";
 
 import { NextStep } from "../NextStep";
 import { PrevStep } from "../PrevStep";

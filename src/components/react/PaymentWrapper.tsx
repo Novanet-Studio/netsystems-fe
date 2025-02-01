@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import PaymentWrapperContex from "./PaymentWrapperContex";
 import { Steps } from "./Steps";
 
-import type { Netsystems } from "../../env";
-
 //FORMS
 import { Login } from "./components/Forms/Login";
 import { PaymentMethod } from "./components/Forms/PaymentMethod";

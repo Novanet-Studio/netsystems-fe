@@ -115,7 +115,7 @@
 }
 
 .paymentSec__main {
-  width: min(600px, calc(100% - 50px));
+  width: min(650px, calc(100% - 50px));
   padding-bottom: 2rem;
   margin: 0 auto;
 
@@ -146,7 +146,7 @@
 
 .paymentSec__form {
   width: 100%;
-  height: min(calc(100% - 50px), 400px);
+  height: min(calc(100% - 50px), 500px);
 
   display: flex;
   flex-direction: column;
@@ -267,7 +267,7 @@ select.input {
 }
 
 .paymentSec__form__paymentMethods {
-  flex: 1;
+  min-height: 250px;
 
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -303,6 +303,31 @@ select.input {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+}
+
+.paymentSec__form__info {
+  margin-bottom: 3rem;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  text-align: center;
+}
+
+.paymentSec__form__info h4 {
+  font-size: 1rem;
+  color: #37406a;
+}
+
+.paymentSec__form__info p {
+  font-size: 0.85rem;
+  color: #37406a;
+  margin-bottom: 0;
+}
+.paymentSec__form__info a {
+  font-size: 1rem;
+  color: #c200ec;
 }
 
 .button {
