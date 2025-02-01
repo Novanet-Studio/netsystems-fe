@@ -1,8 +1,6 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
-import type { JSX } from "react";
-
 declare namespace Netsystems {
   //? utils
   type Bank = {
@@ -144,5 +142,24 @@ declare namespace Netsystems {
   export interface BcvUsdResponse {
     status: "ERROR" | "SUCCESS";
     rate: number;
+  }
+
+  //? data
+  export interface c2pMembershipInfo {
+    code: string;
+    head: {
+      title: string;
+      image: string;
+      desc: string;
+    };
+    blocks: {
+      type: string;
+      text?: string;
+      source?: string[];
+    }[];
+  }
+
+  interface Window {
+    accordions: Array<c2pMembershipInfo & { open: boolean }>;
   }
 }

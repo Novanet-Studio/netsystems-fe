@@ -203,7 +203,7 @@ export const PaymentReport = () => {
         ci: `${info.literal}0${info.cedula}`,
       });
 
-      console.log(`<<< BdT Otp >>>`, res.claveDinamica);
+      console.log(`<<< BdT Otp >>>`, res);
 
       switch (res.codResp) {
         case "ERROR":

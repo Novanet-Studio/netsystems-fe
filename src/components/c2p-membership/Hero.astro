@@ -1,0 +1,63 @@
+<section class="hero">
+  <div class="hero__wrapper">
+    <h1 class="hero__title">Afiliación a Clave Dinámica</h1>
+    <p class="hero__pharas">
+      ¿Listo para proteger tus transacciones bancarias con la más alta
+      tecnología? Aprende cómo activar el servicio de Clave Dinámica (OTP) en tu
+      banco y disfruta de la máxima seguridad en cada operación.
+    </p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    margin: 0 auto;
+
+    background: url("images/c2p-membership/cable-net-systems-afiliacion-otp.webp")
+      center/cover no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(12, 21, 63, 0.5);
+    z-index: 0;
+  }
+
+  .hero__wrapper {
+    width: min(800px, 80%);
+    z-index: 1;
+  }
+
+  .hero__title {
+    font-size: 3.5rem;
+    color: whitesmoke;
+  }
+
+  .hero__pharas {
+    font-size: 1.25rem;
+    color: whitesmoke;
+  }
+
+  @media (max-width: 768px) {
+    .hero__title {
+      font-size: 2.5rem;
+    }
+
+    .hero__pharas {
+      font-size: 1rem;
+    }
+  }
+</style>
