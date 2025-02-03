@@ -2,8 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import PaymentWrapperContext from "../../PaymentWrapperContex";
 
-import type { Netsystems } from "../../../../env";
-
 import { NextStep } from "../NextStep";
 import { PrevStep } from "../PrevStep";
 import { SelectInput } from "../Input";

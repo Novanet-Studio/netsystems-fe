@@ -1,5 +1,4 @@
 import { Children } from "react";
-import type { Netsystems } from "../../../env";
 
 export const BaseInput = (props: Netsystems.Input) => {
   const {

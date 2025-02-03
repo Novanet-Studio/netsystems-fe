@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import PaymentWrapperContext from "../../PaymentWrapperContex";
 
-import type { Netsystems } from "../../../../env";
-
 export const CompletedPayment = () => {
   const { getPaymentResult } = useContext(
     PaymentWrapperContext

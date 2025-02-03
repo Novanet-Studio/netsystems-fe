@@ -34,7 +34,6 @@ export const PaymentReport = () => {
     cedula: "",
     dynamicPass: "",
   });
-  const [invalidForm, setInvalidForm] = useState(false);
   const [sendingInfo, setSendingInfo] = useState(false);
   const [requestOTP, setRequestOTP] = useState(false);
   const [debtAmountLabel, setDebtAmountLabel] = useState("");
@@ -92,8 +91,6 @@ export const PaymentReport = () => {
 
       return;
     }
-
-    if (invalidForm) return;
 
     setSendingInfo(true);
 

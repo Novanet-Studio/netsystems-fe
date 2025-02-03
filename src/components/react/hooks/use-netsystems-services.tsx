@@ -1,5 +1,4 @@
 import { useCallback } from "react";
-import type { Netsystems } from "../../../env";
 
 interface ApiOptions {
   headers?: Record<string, string>;

@@ -1,15 +1,13 @@
 import { useContext, useEffect } from "react";
 import PaymentWrapperContext from "../../PaymentWrapperContex";
 
-import type { Netsystems } from "../../../../env";
-
 import { NextStep } from "../NextStep";
 import { PrevStep } from "../PrevStep";
 import { BaseInput } from "../Input";
 
 export const UserData = () => {
   const { nextStep, prevStep, getUserData } = useContext(
-    PaymentWrapperContext
+    PaymentWrapperContext,
   ) as Netsystems.PayContextType;
 
   useEffect(() => {}, []);

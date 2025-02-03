@@ -9,7 +9,6 @@ import { BaseInput, FormAlert } from "../Input";
 import { NextStep } from "../NextStep";
 
 //? others
-import type { Netsystems } from "../../../../env";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Loading } from "../Loading";
