@@ -11,7 +11,7 @@ export const PaymentMethod = () => {
   const paymentMethods: Netsystems.PaymentMethodItem[] = [
     {
       bank: "BdV",
-      logoImage: "/images/payment-form/banks/bt.svg",
+      logoImage: "images/payment-form/banks/bt.svg",
     },
   ];
 
@@ -47,7 +47,7 @@ export const PaymentMethod = () => {
             Aprende cómo activar el servicio de Clave Dinámica (OTP) en tu banco
             y disfruta de la máxima seguridad en cada operación.
           </p>
-          <a href="/c2p">
+          <a href="/c2p?">
             Conoce más <i className="lnr lnr-arrow-right"></i>
           </a>
         </span>

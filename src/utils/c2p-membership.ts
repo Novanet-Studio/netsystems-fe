@@ -3,7 +3,7 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0105",
     head: {
       title: "Banco Mercantil",
-      image: "images/c2p-membership/banks/mercantil.webp",
+      image: "/images/c2p-membership/banks/mercantil.webp",
       desc: "Para solicitar la clave C2P del Banco Mercantil, puedes usar la aplicación de Tpago o enviar un SMS al 24024.",
     },
     blocks: [
@@ -41,7 +41,7 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0134",
     head: {
       title: "Banesco",
-      image: "images/c2p-membership/banks/banesco.webp",
+      image: "/images/c2p-membership/banks/banesco.webp",
       desc: "Para solicitar la clave C2P en Banco Banesco, se puede enviar un mensaje de texto al número 2846. ",
     },
     blocks: [
@@ -64,7 +64,7 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0102",
     head: {
       title: "Banco de Venezuela",
-      image: "images/c2p-membership/banks/venezuela.webp",
+      image: "/images/c2p-membership/banks/venezuela.webp",
       desc: "",
     },
     blocks: [
@@ -90,7 +90,7 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0174",
     head: {
       title: "Banplus",
-      image: "images/c2p-membership/banks/banplus.webp",
+      image: "/images/c2p-membership/banks/banplus.webp",
       desc: "",
     },
     blocks: [
@@ -112,7 +112,7 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0191",
     head: {
       title: "BNC",
-      image: "images/c2p-membership/banks/nacional-credito.webp",
+      image: "/images/c2p-membership/banks/nacional-credito.webp",
       desc: "",
     },
     blocks: [
@@ -140,8 +140,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0115",
     head: {
       title: "Banco Exterior",
-      image: "images/c2p-membership/banks/exterior.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/exterior.webp",
+
       desc: "Para solicitar la clave de Cobro Comercio (C2P) del Banco Exterior, se puede utilizar la aplicación Exterior NEXO Pago Móvil.",
     },
     blocks: [
@@ -166,8 +166,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0114",
     head: {
       title: "Bancaribe",
-      image: "images/c2p-membership/banks/bancaribe.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/bancaribe.webp",
+
       desc: "Para solicitar una clave C2P en Bancaribe, puedes usar la aplicación Mi Pago Bancaribe o enviar un SMS. ",
     },
     blocks: [
@@ -201,8 +201,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0108",
     head: {
       title: "Banco Provincial",
-      image: "images/c2p-membership/banks/provincial.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/provincial.webp",
+
       desc: "",
     },
     blocks: [
@@ -228,8 +228,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0104",
     head: {
       title: "Banco Venezolano de Crédito",
-      image: "images/c2p-membership/banks/venezolano-credito.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/venezolano-credito.webp",
+
       desc: "",
     },
     blocks: [
@@ -252,8 +252,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0172",
     head: {
       title: "Bancamiga",
-      image: "images/c2p-membership/banks/bancamiga.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/bancamiga.webp",
+
       desc: "Para solicitar la clave C2P de Bancamiga Banco Universal C.A., puedes ingresar a Bancamiga Suite y seleccionar la opción de pago móvil. Para cobrar a través de la web, puedes: ",
     },
     blocks: [
@@ -275,8 +275,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0156",
     head: {
       title: "100%banco",
-      image: "images/c2p-membership/banks/100-banco.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/100-banco.webp",
+
       desc: "Para solicitar la clave C2P de 100% Banco, puedes enviar un mensaje de texto al número 100102.",
     },
     blocks: [
@@ -308,8 +308,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0171",
     head: {
       title: "Banco Activo",
-      image: "images/c2p-membership/banks/activo.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/activo.webp",
+
       desc: "",
     },
     blocks: [
@@ -332,8 +332,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0175",
     head: {
       title: "Banco Bicentenario",
-      image: "images/c2p-membership/banks/bicentenario.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/bicentenario.webp",
+
       desc: "Para solicitar la clave C2P del Banco Bicentenario, puedes ingresar a la página web bncenlinea.com o utilizar la aplicación TuBancaMóvil. ",
     },
     blocks: [
@@ -359,8 +359,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0128",
     head: {
       title: "Banco Caroni",
-      image: "images/c2p-membership/banks/caroni.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/caroni.webp",
+
       desc: "Para solicitar la clave C2P del Banco Caroní, puedes ingresar a Click Caroní, iniciar sesión con tu usuario y contraseña, y seguir los pasos para solicitar la Tarjeta de Seguridad. ",
     },
     blocks: [
@@ -388,8 +388,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0177",
     head: {
       title: "Banco de la Fuerza Armada",
-      image: "images/c2p-membership/banks/banfanb.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/banfanb.webp",
+
       desc: "Para solicitar la clave C2P del Banco de la Fuerza Armada, puedes seguir los siguientes pasos: ",
     },
     blocks: [
@@ -415,8 +415,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0163",
     head: {
       title: "Banco del Tesoro",
-      image: "images/c2p-membership/banks/tesoro.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/tesoro.webp",
+
       desc: "",
     },
     blocks: [
@@ -430,8 +430,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0138",
     head: {
       title: "Banco Plaza",
-      image: "images/c2p-membership/banks/plaza.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/plaza.webp",
+
       desc: "Para solicitar una clave temporal de pago móvil en el Banco Plaza, puedes llamar al Centro de Atención Telefónica al 0501-PLAZA-00 (0501-75292-00). También puedes generar una clave temporal a través de la aplicación Tu Dinero Ya o de Tu Plaza en Línea. ",
     },
     blocks: [
@@ -475,8 +475,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0137",
     head: {
       title: "Banco Sofitasa",
-      image: "images/c2p-membership/banks/sofitasa.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/sofitasa.webp",
+
       desc: "Para solicitar la clave C2P del Banco Sofitasa, se puede generar un token a través de la App Sofimóvil. ",
     },
     blocks: [
@@ -506,8 +506,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0128",
     head: {
       title: "Bancrecer",
-      image: "images/c2p-membership/banks/bancrecer.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/bancrecer.webp",
+
       desc: "",
     },
     blocks: [
@@ -529,8 +529,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0151",
     head: {
       title: "BFC Banco Fondo Común",
-      image: "images/c2p-membership/banks/fondo-comun.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/fondo-comun.webp",
+
       desc: "",
     },
     blocks: [
@@ -552,8 +552,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0157",
     head: {
       title: "Del Sur",
-      image: "images/c2p-membership/banks/del-sur.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/del-sur.webp",
+
       desc: "",
     },
     blocks: [
@@ -567,8 +567,8 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     code: "0169",
     head: {
       title: "R4 - Mi Banco",
-      image: "images/c2p-membership/banks/mi-banco.webp",
-      //image: "",
+      image: "/images/c2p-membership/banks/mi-banco.webp",
+
       desc: "",
     },
     blocks: [
