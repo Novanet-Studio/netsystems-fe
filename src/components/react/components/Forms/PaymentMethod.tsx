@@ -10,8 +10,8 @@ export const PaymentMethod = () => {
 
   const paymentMethods: Netsystems.PaymentMethodItem[] = [
     {
-      bank: "BdV",
-      logoImage: "/images/payment-form/banks/bt.svg",
+      bank: "BdT",
+      logoImage: "/images/payment-form/banks/bdt.webp",
     },
   ];
 

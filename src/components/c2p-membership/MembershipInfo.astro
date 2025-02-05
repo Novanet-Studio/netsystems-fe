@@ -6,7 +6,9 @@ let source: Netsystems.c2pMembershipInfo[] = c2pMembership;
 
 <section class="membership">
   <div class="membership__info">
-    <h2 class="membership__title">Guía para Afiliarte a la Clave Dinámica</h2>
+    <h2 id="membership__title" class="membership__title">
+      Guía para Afiliarte a la Clave Dinámica
+    </h2>
     <p class="membership__pharas">
       Los pasos para la afiliación de la Clave Dinámica (OTP) varían según el
       banco. A continuación, se presenta una guía general y los pasos
@@ -19,7 +21,7 @@ let source: Netsystems.c2pMembershipInfo[] = c2pMembership;
       source.map((acc) => (
         <article class="accordion" id={`bank-${acc.code}`}>
           <div class="accordion__head">
-            <a>{acc.head.title}</a>
+            <h3>{acc.head.title}</h3>
 
             <div class="toggle">
               <img
@@ -81,6 +83,23 @@ let source: Netsystems.c2pMembershipInfo[] = c2pMembership;
       }
     });
   });
+
+  setTimeout(() => {
+    const title = document.getElementById("membership__title");
+
+    const target = Number(title?.getBoundingClientRect().y);
+
+    if (window.scrollY === 0) {
+      window.scrollTo({
+        top: target - 100,
+        behavior: "smooth",
+      });
+
+      setTimeout(() => {
+        accHeads[0].click();
+      }, 600);
+    }
+  }, 1000);
 </script>
 
 <style>
@@ -135,7 +154,7 @@ let source: Netsystems.c2pMembershipInfo[] = c2pMembership;
     align-items: center;
   }
 
-  .accordion__head a {
+  .accordion__head h3 {
     color: #37406a;
     font-weight: 600;
     font-size: 1.1rem;

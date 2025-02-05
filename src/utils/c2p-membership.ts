@@ -1,5 +1,39 @@
 export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
   {
+    code: "0163",
+    head: {
+      title: "Banco del Tesoro",
+      image: "/images/c2p-membership/banks/tesoro.webp",
+
+      desc: "",
+    },
+    blocks: [
+      {
+        type: "text",
+        text: "¿Cómo solicitar Token para realizar pagos C2P vía BT Móvil?",
+      },
+      {
+        type: "list",
+        source: [
+          "Ingresa a BT Móvil.",
+          "Despliega las opciones en el menú y selecciona Cobro C2P.",
+          "Obtén el código o token para finalizar la operación de cobro C2P.",
+        ],
+      },
+      {
+        type: "text",
+        text: "¿Cómo solicitar Token para realizar pagos C2P vía SMS?",
+      },
+      {
+        type: "list",
+        source: [
+          "Envía un mensaje de texto al 2383, escribe la palabra comercio, seguido de un espacio V/E y el número de cédula.",
+          "Recibirás un SMS con la clave o token de compras.",
+        ],
+      },
+    ],
+  },
+  {
     code: "0105",
     head: {
       title: "Banco Mercantil",
@@ -408,21 +442,6 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
           "Selecciona la cantidad de claves a generar",
           "Presiona la opción Continuar",
         ],
-      },
-    ],
-  },
-  {
-    code: "0163",
-    head: {
-      title: "Banco del Tesoro",
-      image: "/images/c2p-membership/banks/tesoro.webp",
-
-      desc: "",
-    },
-    blocks: [
-      {
-        type: "text",
-        text: "Envía un mensaje de texto al 2383, escribe la palabra comercio, seguido de un espacio V/E y el número de cédula. Recibirás un SMS con la clave o token de compras.",
       },
     ],
   },
