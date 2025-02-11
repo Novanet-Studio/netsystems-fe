@@ -1,3 +1,3 @@
-export function isActive(url, link) {
-   return url.pathname === link;
- }
+export function isActive(url: { pathname: string }, link: string): boolean {
+  return url.pathname === link;
+}
