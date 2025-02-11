@@ -1,3 +1,19 @@
+---
+import { isActive } from "../utils/links-handler";
+
+const { url } = Astro.request;
+const links = [
+  { href: "/", text: "Inicio", item: "inicio" },
+  { href: "/#planes/", text: "Planes", item: "planes" },
+  { href: "/#panel", text: "Panel de usuarios", item: "panel" },
+  { href: "/#galeria/", text: "Galería", item: "galería" },
+  { href: "/#servicios/", text: "Servicios", item: "servicios" },
+  { href: "/payment/", text: "Pagos C2P", item: "pagos" },
+  { href: "/c2p/", text: "Afiliación Clave dinámica", item: "afiliación" },
+  { href: "/#contacto/", text: "Contacto", item: "contacto" },
+];
+---
+
 <header class="main-header">
   <!-- Header Top -->
   <div class="header-top">
@@ -28,9 +44,9 @@
       <div class="inner-container netsystem-header-menu">
         <div class="pull-left logo-box">
           <div class="logo">
-            <a href="#inicio"
-              ><img src="images/netsystem-logo.png" alt="" title="" /></a
-            >
+            <a href="/"
+              ><img src="/images/netsystem-logo.png" alt="" title="" />
+            </a>
           </div>
         </div>
         <div class="nav-outer clearfix">
@@ -61,24 +77,18 @@
               id="navbarSupportedContent"
             >
               <ul class="navigation clearfix">
-                <li class="current dropdown" data-menu-item="inicio">
-                  <a href="#">Inicio</a>
-                </li>
-                <li class="dropdown" data-menu-item="planes">
-                  <a href="#planes">Planes</a>
-                </li>
-                <li class="dropdown" data-menu-item="panel">
-                  <a href="#panel">Panel de usuario</a>
-                </li>
-                <li class="dropdown" data-menu-item="galeria">
-                  <a href="#galeria">Galeria</a>
-                </li>
-                <li class="dropdown" data-menu-item="servicios">
-                  <a href="#servicios">Servicios</a>
-                </li>
-                <li>
-                  <a href="#contacto" data-menu-item="contacto">Contacto</a>
-                </li>
+                {
+                  links.map((link) => (
+                    <li
+                      class={
+                        isActive(url, link.href) ? "current" : "" + "dropdown"
+                      }
+                      data-menu-item={link.item}
+                    >
+                      <a href={link.href}>{link.text}</a>
+                    </li>
+                  ))
+                }
               </ul>
             </div>
           </nav>
@@ -95,7 +105,7 @@
       <!-- Logo -->
       <div class="logo pull-left">
         <a href="#home"
-          ><img src="images/netsystem-logo.png" alt="" title="" /></a
+          ><img src="/images/netsystem-logo.png" alt="" title="" /></a
         >
       </div>
 
@@ -122,7 +132,7 @@
       <div class="nav-logo">
         <!-- <a href="index.html"><img src="images/logo.png" alt="" title="" /></a> -->
         <a href="#inicio"
-          ><img src="images/netsystem-logo.png" alt="" title="" /></a
+          ><img src="/images/netsystem-logo.png" alt="" title="" /></a
         >
       </div>
       <div class="menu-outer">
@@ -134,13 +144,13 @@
 
 <script>
   const listItems = document.querySelectorAll(
-    "#navbarSupportedContent ul li.dropdown"
+    "#navbarSupportedContent ul li.dropdown",
   );
 
   listItems.forEach((item) => {
     item.addEventListener("click", () => {
       const elements = document.querySelectorAll(
-        `[data-menu-item="${(item as HTMLElement).dataset.menuItem}"]`
+        `[data-menu-item="${(item as HTMLElement).dataset.menuItem}"]`,
       );
 
       listItems.forEach((li) => {
@@ -176,27 +186,27 @@
     justify-content: flex-end;
   }
 
-  @media only screen and (min-width: 768px){
-  .logo-box .logo img {
-    width: 110px;
+  @media only screen and (min-width: 768px) {
+    .logo-box .logo img {
+      width: 110px;
+    }
+
+    .sticky-header .logo.pull-left a[href="#home"] img {
+      width: 95px;
+      height: auto;
+    }
+    .sticky-header .netsystem-header-menu .mobile-nav-toggler {
+      display: none;
+    }
   }
 
-  .sticky-header .logo.pull-left a[href="#home"] img {
-    width: 95px;
-    height: auto;
-  }
-	.sticky-header .netsystem-header-menu .mobile-nav-toggler {
-		display: none;
-	}
-}
+  @media only screen and (max-width: 1340px) {
+    .logo-box .logo img {
+      width: 130px;
+    }
 
-@media only screen and (max-width: 1340px){
-  .logo-box .logo img {
-    width: 130px;
+    .sticky-header .logo.pull-left a[href="#home"] img {
+      width: 105px;
+    }
   }
-
-  .sticky-header .logo.pull-left a[href="#home"] img {
-    width: 105px;
-  }
-}
 </style>

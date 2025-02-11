@@ -1,0 +1,241 @@
+---
+import { c2pMembership } from "../../utils/c2p-membership";
+
+let source: Netsystems.c2pMembershipInfo[] = c2pMembership;
+---
+
+<section class="membership">
+  <div class="membership__info">
+    <h2 id="membership__title" class="membership__title">
+      Guía para Afiliarte a la Clave Dinámica
+    </h2>
+    <p class="membership__pharas">
+      Los pasos para la afiliación de la Clave Dinámica (OTP) varían según el
+      banco. A continuación, se presenta una guía general y los pasos
+      específicos para algunos bancos:
+    </p>
+  </div>
+
+  <div class="membership__accordions">
+    {
+      source.map((acc) => (
+        <article class="accordion" id={`bank-${acc.code}`}>
+          <div class="accordion__head">
+            <h3>{acc.head.title}</h3>
+
+            <div class="toggle">
+              <img
+                src="/images/c2p-membership/arrow-down.svg"
+                alt="arrow-toggler"
+              />
+            </div>
+          </div>
+          <div class="accordion__content">
+            <div class="wrapper">
+              <picture>
+                <img src={acc.head.image} alt={`bank-${acc.code}-logo`} />
+              </picture>
+
+              <div class="blocks">
+                <p class="desc">{acc.head.desc}</p>
+
+                {acc.blocks.map((b) => {
+                  switch (b.type) {
+                    case "text":
+                      return <p>{b.text}</p>;
+
+                    case "list":
+                      return (
+                        <ul>
+                          {b.source?.map((s) => (
+                            <li>{s}</li>
+                          ))}
+                        </ul>
+                      );
+                  }
+                })}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  const accordions: NodeListOf<HTMLElement> =
+    document.querySelectorAll(".accordion")!;
+
+  const accHeads: NodeListOf<HTMLElement> =
+    document.querySelectorAll(".accordion__head")!;
+
+  accordions.forEach((acc, index) => {
+    accHeads[index].addEventListener("click", () => {
+      if (!acc.classList.contains("open")) {
+        acc.classList.add("open");
+
+        acc.querySelector("img")!.src = "/images/c2p-membership/arrow-up.svg";
+      } else {
+        acc.classList.remove("open");
+
+        acc.querySelector("img")!.src = "/images/c2p-membership/arrow-down.svg";
+      }
+    });
+  });
+
+  setTimeout(() => {
+    const title = document.getElementById("membership__title");
+
+    const target = Number(title?.getBoundingClientRect().y);
+
+    if (window.scrollY === 0) {
+      window.scrollTo({
+        top: target - 100,
+        behavior: "smooth",
+      });
+
+      setTimeout(() => {
+        accHeads[0].click();
+      }, 600);
+    }
+  }, 1000);
+</script>
+
+<style>
+  .membership {
+    padding: 2rem 0;
+    /* background-color: #37406a; */
+    background: url("/images/c2p-membership/layer.svg") center/cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .membership__info {
+    width: min(700px, 80%);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .membership__title {
+    font-size: 1.75rem;
+    color: whitesmoke;
+  }
+
+  .membership__pharas {
+    font-size: 0.85rem;
+    color: whitesmoke;
+  }
+
+  .membership__accordions {
+    width: min(900px, 90%);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .accordion {
+    width: min(100%);
+
+    background-color: whitesmoke;
+
+    transition: background-color 0.5s ease-out;
+  }
+
+  .accordion__head {
+    padding: 0.75rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .accordion__head h3 {
+    color: #37406a;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .accordion__content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s ease-out;
+
+    overflow: hidden;
+  }
+
+  .accordion.open,
+  .accordion:focus-within {
+    background-color: #e7f4f8;
+  }
+
+  .accordion.open .accordion__content,
+  .accordion:focus-within .accordion__content {
+    grid-template-rows: 1fr;
+  }
+
+  .wrapper {
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: 175px 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 668px) {
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .wrapper picture {
+    padding: 0.5rem 0.5rem 1rem 1.5rem;
+  }
+
+  .wrapper picture img {
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+
+    background-color: whitesmoke;
+  }
+
+  .wrapper .blocks {
+    padding: 0 2rem 1rem 0;
+  }
+
+  @media (max-width: 668px) {
+    .wrapper .blocks {
+      padding: 0 2rem 1rem 2rem;
+    }
+  }
+
+  .wrapper .blocks > * {
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.5rem;
+  }
+
+  .wrapper .blocks .desc {
+    margin-bottom: 1rem;
+  }
+
+  .wrapper .blocks ul {
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+
+    color: #0a738d;
+  }
+
+  .wrapper .blocks ul li {
+    list-style: disc;
+  }
+</style>

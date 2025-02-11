@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import Preloader from "../components/Preloader.astro";
+import MainHeader from "../components/MainHeader.astro";
+import MainFooter from "../components/MainFooter.astro";
+
+import Hero from "../components/c2p-membership/Hero.astro";
+import Info from "../components/c2p-membership/Info.astro";
+import MembershipInfo from "../components/c2p-membership/MembershipInfo.astro";
+---
+
+<Layout title="Netsystem | Afiliación a pago C2P">
+  <main>
+    <div class="page-wrapper">
+      <!-- Preloader -->
+      <Preloader />
+      <!-- End Preloader -->
+
+      <!-- Main Header -->
+      <MainHeader />
+      <!-- End Main Header -->
+
+      <!-- Hero -->
+      <Hero />
+      <!-- End Hero -->
+
+      <!-- Info -->
+      <Info />
+      <!-- End Info -->
+
+      <!-- MembershipInfo -->
+      <MembershipInfo />
+      <!-- End MembershipInfo -->
+    </div>
+
+    <!-- Main Footer -->
+    <MainFooter />
+    <!-- End Main Footer -->
+  </main>
+</Layout>
+
+<style>
+  .auto-container {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

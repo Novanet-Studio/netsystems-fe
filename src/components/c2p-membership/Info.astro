@@ -1,0 +1,147 @@
+<section class="info auto-container">
+  <div class="info__row row clearfix">
+    <!-- Image Column -->
+    <div class="image-column col-lg-6 col-md-12 col-sm-12">
+      <div class="inner-column titlt" data-tilt data-tilt-max="3">
+        <div class="color-layer"></div>
+        <div class="border-layer"></div>
+        <div class="image">
+          <img src="/images/c2p-membership/ast-1.png" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Column -->
+    <div class="content-column col-lg-6 col-md-12 col-sm-12">
+      <div class="inner-column">
+        <!-- Sec Title -->
+        <div class="sec-title">
+          <h2>¿Qué es la Clave Dinámica (OTP)?</h2>
+        </div>
+        <div class="bold-text">
+          Es una medida de seguridad electrónica implementada a través de un
+          código único y de un solo uso, generado aleatoriamente y válido por un
+          tiempo muy limitado, que se usa para la autenticación de identidad en
+          un entorno digital, como en transacciones bancarias o acceso a cuentas
+          en línea.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info__row --dist row clearfix">
+    <!-- Image Column -->
+    <div class="image-column col-lg-6 col-md-12 col-sm-12">
+      <div class="inner-column titlt" data-tilt data-tilt-max="3">
+        <div class="color-layer"></div>
+        <div class="border-layer"></div>
+        <div class="image">
+          <img src="/images/c2p-membership/ast-2.png" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Column -->
+    <div class="content-column col-lg-6 col-md-12 col-sm-12">
+      <div class="inner-column">
+        <!-- Sec Title -->
+        <div class="sec-title">
+          <h2>¿Por qué necesitas la Clave Dinámica?</h2>
+        </div>
+        <div class="bold-text">
+          La Clave Dinámica (OTP) ofrece una capa adicional de protección a tu
+          información confidencial al prevenir el acceso no autorizado en caso
+          de que tu contraseña sea comprometida o robada, ya que esta clave
+          cambia constantemente y es específica para cada operación.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .info {
+    padding: 10rem 0 5rem 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .info__row.--dist {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .image-column {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    margin-bottom: var(--margin-bottom-30);
+  }
+
+  .image-column .inner-column {
+    position: relative;
+  }
+
+  .image-column .image {
+    position: relative;
+  }
+
+  .image-column .image img {
+    position: relative;
+    width: 100%;
+    display: block;
+  }
+
+  .image-column .color-layer {
+    position: absolute;
+    left: 42px;
+    bottom: -10px;
+    right: 60px;
+    height: 100%;
+    background: url(/images/resource/service-pattern-layer-new.png) no-repeat;
+    background-size: cover;
+  }
+
+  .info__row.--dist > .image-column .color-layer {
+    position: absolute;
+    left: 42px;
+    bottom: -10px;
+    right: 60px;
+    height: 100%;
+    background: url(/images/resource/service-pattern-layer-new-1.png) no-repeat;
+
+    background-size: cover;
+  }
+
+  .image-column .border-layer {
+    position: absolute;
+    left: 82px;
+    bottom: 20px;
+    right: 35px;
+    top: -17px;
+    z-index: 1;
+    background: url(/images/resource/service-border-layer-new.png) no-repeat;
+    background-size: cover;
+  }
+
+  .content-column {
+    position: relative;
+    margin-bottom: var(--margin-bottom-30);
+  }
+
+  .content-column .inner-column {
+    position: relative;
+    padding-left: var(--padding-left-30);
+  }
+
+  .content-column .inner-column .sec-title h2 {
+    color: #37406a;
+  }
+
+  .content-column .inner-column .bold-text {
+    color: #37406a;
+    font-size: 1.1rem;
+  }
+</style>
