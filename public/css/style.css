@@ -664,11 +664,11 @@
 .services-section .image-column .color-layer {
   position: absolute;
   left: 42px;
-  bottom: -10px;
+  bottom: -15px;
   right: 60px;
   height: 100%;
   background: url(../images/resource/service-pattern-layer-new.png) no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
 .services-section .image-column .border-layer {

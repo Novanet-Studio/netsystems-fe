@@ -95,6 +95,29 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     ],
   },
   {
+    code: "0172",
+    head: {
+      title: "Bancamiga",
+      image: "/images/c2p-membership/banks/bancamiga.webp",
+
+      desc: "Para solicitar la clave C2P de Bancamiga Banco Universal C.A., puedes ingresar a Bancamiga Suite y seleccionar la opción de pago móvil. Para cobrar a través de la web, puedes: ",
+    },
+    blocks: [
+      {
+        type: "text",
+        text: "",
+      },
+      {
+        type: "list",
+        source: [
+          "Acceder a www.bancamiga.com",
+          "Hacer clic en el botón C2P",
+          "Ser dirigido a la plataforma Admin Pagos",
+        ],
+      },
+    ],
+  },
+  {
     code: "0102",
     head: {
       title: "Banco de Venezuela",
@@ -116,28 +139,6 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
           "Hacer clic en el botón 'Generador de Clave C2P'",
           "Seleccionar la cantidad de claves a generar",
           "Pulsar la opción 'Continuar'",
-        ],
-      },
-    ],
-  },
-  {
-    code: "0174",
-    head: {
-      title: "Banplus",
-      image: "/images/c2p-membership/banks/banplus.webp",
-      desc: "",
-    },
-    blocks: [
-      {
-        type: "text",
-        text: "Para generar la clave OTP de Banplus, se pueden seguir los siguientes pasos: ",
-      },
-      {
-        type: "list",
-        source: [
-          "Instalar la aplicación Pago Plus, Banplus Pay o President's Club Móvil",
-          "Ingresar a la aplicación",
-          "Seleccionar la opción 'Generar tu Clave'",
         ],
       },
     ],
@@ -166,6 +167,55 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
           "Presionar la opción Continuar",
           "Introducir el Número de Control y el Número de Coordenadas de BINGO BNC",
           "Hacer clic en Continuar",
+        ],
+      },
+    ],
+  },
+  {
+    code: "0175",
+    head: {
+      title: "Banco Bicentenario",
+      image: "/images/c2p-membership/banks/bicentenario.webp",
+
+      desc: "Para solicitar la clave C2P del Banco Bicentenario, puedes ingresar a la página web bncenlinea.com o utilizar la aplicación TuBancaMóvil. ",
+    },
+    blocks: [
+      {
+        type: "text",
+        text: "Para solicitar la clave C2P en la página web, puedes seguir estos pasos: ",
+      },
+      {
+        type: "list",
+        source: [
+          "Ingresar a bncenlinea.com",
+          "Seleccionar la opción Personas",
+          "Completar los datos solicitados",
+          "Seleccionar la pestaña Pagos / Pago Móvil",
+          "Hacer clic en el botón Generador de Clave C2P",
+          "Seleccionar la cantidad de claves a generar",
+          "Presionar la opción Continuar",
+        ],
+      },
+    ],
+  },
+  {
+    code: "0174",
+    head: {
+      title: "Banplus",
+      image: "/images/c2p-membership/banks/banplus.webp",
+      desc: "",
+    },
+    blocks: [
+      {
+        type: "text",
+        text: "Para generar la clave OTP de Banplus, se pueden seguir los siguientes pasos: ",
+      },
+      {
+        type: "list",
+        source: [
+          "Instalar la aplicación Pago Plus, Banplus Pay o President's Club Móvil",
+          "Ingresar a la aplicación",
+          "Seleccionar la opción 'Generar tu Clave'",
         ],
       },
     ],
@@ -283,29 +333,6 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
     ],
   },
   {
-    code: "0172",
-    head: {
-      title: "Bancamiga",
-      image: "/images/c2p-membership/banks/bancamiga.webp",
-
-      desc: "Para solicitar la clave C2P de Bancamiga Banco Universal C.A., puedes ingresar a Bancamiga Suite y seleccionar la opción de pago móvil. Para cobrar a través de la web, puedes: ",
-    },
-    blocks: [
-      {
-        type: "text",
-        text: "",
-      },
-      {
-        type: "list",
-        source: [
-          "Acceder a www.bancamiga.com",
-          "Hacer clic en el botón C2P",
-          "Ser dirigido a la plataforma Admin Pagos",
-        ],
-      },
-    ],
-  },
-  {
     code: "0156",
     head: {
       title: "100%banco",
@@ -358,33 +385,6 @@ export const c2pMembership: Netsystems.c2pMembershipInfo[] = [
           "Ir a la sección Cobro Activo",
           "Ingresar el número de afiliación en la página de Ubii Pagos C2P",
           "Descargar la aplicación Cobro Activo desde la tienda de aplicaciones",
-        ],
-      },
-    ],
-  },
-  {
-    code: "0175",
-    head: {
-      title: "Banco Bicentenario",
-      image: "/images/c2p-membership/banks/bicentenario.webp",
-
-      desc: "Para solicitar la clave C2P del Banco Bicentenario, puedes ingresar a la página web bncenlinea.com o utilizar la aplicación TuBancaMóvil. ",
-    },
-    blocks: [
-      {
-        type: "text",
-        text: "Para solicitar la clave C2P en la página web, puedes seguir estos pasos: ",
-      },
-      {
-        type: "list",
-        source: [
-          "Ingresar a bncenlinea.com",
-          "Seleccionar la opción Personas",
-          "Completar los datos solicitados",
-          "Seleccionar la pestaña Pagos / Pago Móvil",
-          "Hacer clic en el botón Generador de Clave C2P",
-          "Seleccionar la cantidad de claves a generar",
-          "Presionar la opción Continuar",
         ],
       },
     ],
