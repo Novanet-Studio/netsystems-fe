@@ -80,9 +80,7 @@ const links = [
                 {
                   links.map((link) => (
                     <li
-                      class={
-                        isActive(url, link.href) ? "current" : "" + "dropdown"
-                      }
+                      class={`${isActive(url, link.href) ? "current" : ""} dropdown`}
                       data-menu-item={link.item}
                     >
                       <a href={link.href}>{link.text}</a>
